@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 class TestsController extends GetxController {
   RxBool showInstruments = true.obs;
 
-  void toggleInstruments() {
-    showInstruments.value = !showInstruments.value;
+  void exitTest() {
+    Get.back();
   }
 
   @override
