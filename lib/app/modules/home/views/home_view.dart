@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
-import 'package:rosset_client/app/modules/home/widgets/drag_panel.dart';
-import 'package:rosset_client/app/modules/home/widgets/instrument_card.dart';
+import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
+import 'package:rosset_client/app/modules/workspace/widgets/device_draggable.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
@@ -17,9 +17,7 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: AppColors.background,
         body: Stack(
           children: [
-            Positioned.fill(
-              child: DragExapmple(),
-            ),
+            Positioned.fill(child: WorkspaceView()),
             Align(
               alignment: Alignment.topLeft,
               child: Obx(
@@ -67,8 +65,7 @@ class HomeView extends GetView<HomeController> {
                         child: ListView(
                           children: [
                             SizedBox(height: 24),
-                            InstrumentCard(),
-                            InstrumentCard(),
+                            ...controller.models.map((m) => DeviceDraggable(m)).toList(),
                           ],
                         ),
                       )

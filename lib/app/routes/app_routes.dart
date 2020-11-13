@@ -5,4 +5,5 @@ abstract class Routes {
   static const HOME = '/home';
   static const AUTH = '/auth';
   static const TESTS = '/home/tests';
+  static const WORKSPACE = '/workspace';
 }
