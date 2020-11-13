@@ -71,7 +71,18 @@ class InstrumentCard extends StatelessWidget {
               feedback: Container(
                 width: constraints.maxWidth,
                 height: 120,
-                color: Colors.blueGrey.withOpacity(0.3),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Material(
+                  color: AppColors.secondary.withOpacity(0.2),
+                  child: Center(
+                    child: Text(
+                      model.name,
+                      style: AppTextStyles.mediumLabel,
+                    ),
+                  ),
+                ),
               ),
               maxSimultaneousDrags: 1,
               child: child);
@@ -80,8 +91,19 @@ class InstrumentCard extends StatelessWidget {
               data: model,
               feedback: Container(
                 width: constraints.maxWidth,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Material(
+                  color: AppColors.secondary.withOpacity(0.2),
+                  child: Center(
+                    child: Text(
+                      model.name,
+                      style: AppTextStyles.mediumLabel,
+                    ),
+                  ),
+                ),
                 height: 120,
-                color: Colors.blueGrey.withOpacity(0.3),
               ),
               maxSimultaneousDrags: 1,
               hapticFeedbackOnStart: true,
