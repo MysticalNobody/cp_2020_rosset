@@ -9,14 +9,16 @@ class InstrumentCard extends StatelessWidget {
       height: 120,
       margin: EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
-          color: AppColors.generalWhite,
-          borderRadius: BorderRadius.circular(3),
-          boxShadow: [
-            BoxShadow(
-                color: AppColors.grey.withOpacity(.15),
-                blurRadius: 3,
-                spreadRadius: 1),
-          ]),
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(3),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.grey.withOpacity(.15),
+            blurRadius: 3,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
       child: TextButton(
         onPressed: () {},
         child: Padding(
@@ -33,8 +35,10 @@ class InstrumentCard extends StatelessWidget {
                   ),
                   SizedBox(width: 12),
                   Flexible(
-                    child: Text('Терминал релейной защиты ',
-                        style: AppTextStyles.bigBlackW500),
+                    child: Text(
+                      'Терминал релейной защиты ',
+                      style: AppTextStyles.headLine1,
+                    ),
                   )
                 ],
               ),
@@ -45,7 +49,7 @@ class InstrumentCard extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     'Подробнее',
-                    style: AppTextStyles.smallBlackW600,
+                    style: AppTextStyles.headLine1,
                   ),
                 ),
               )
