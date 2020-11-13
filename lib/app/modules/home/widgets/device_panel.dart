@@ -71,10 +71,9 @@ class DevicePanel extends StatelessWidget {
                     SizedBox(height: 24),
                     RaisedButton(
                       onPressed: () => Get.toNamed(Routes.TESTS),
-                      child: Text(
-                        'Тесты',
-                        style: AppTextStyles.button,
-                      ),
+                      child: Text('Тесты',
+                          style: AppTextStyles.button
+                              .copyWith(color: AppColors.white)),
                     ),
                     SizedBox(height: 24),
                     ...controller.models
