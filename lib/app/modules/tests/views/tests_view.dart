@@ -11,79 +11,72 @@ class TestsView extends GetView<TestsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Анатолич',
-                    style: AppTextStyles.subtitle.copyWith(
-                      color: AppColors.secondary,
+      body: Obx(
+        () => Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Анатолич',
+                      style: AppTextStyles.subtitle.copyWith(
+                        color: AppColors.secondary,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Тест на проверку освоенного материала',
-                    style: AppTextStyles.subtitle.copyWith(
-                      color: AppColors.secondary,
+                    Text(
+                      'Тест на проверку освоенного материала',
+                      style: AppTextStyles.subtitle.copyWith(
+                        color: AppColors.secondary,
+                      ),
                     ),
+                    RaisedButton(
+                      child: Text('Закончить тест'),
+                      onPressed: controller.exitTest,
+                    ),
+                  ],
+                ),
+                SizedBox(height: Get.height * .2),
+                if (controller.isBusy)
+                  CircularProgressIndicator()
+                else
+                  Column(
+                    children: [
+                      Text(
+                        controller.nowQuestion.title,
+                        style: AppTextStyles.headLine3,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Вопрос ${controller.nowQuestionIndex + 1} из ${controller.questions.length}',
+                        style: AppTextStyles.secondary,
+                      ),
+                      SizedBox(height: 30),
+                      ...List.generate(
+                        4,
+                        (index) => OptionButton(
+                          onTap: () {},
+                          text: controller.nowQuestion.options[index],
+                          type: OptionType.normal,
+                        ),
+                      ),
+                    ],
                   ),
-                  RaisedButton(
-                    child: Text('Закончить тест'),
-                    onPressed: controller.exitTest,
-                  ),
-                ],
-              ),
-              SizedBox(height: Get.height * .2),
-              Column(
-                children: [
-                  Text(
-                    'Вопрос 1 блаопопшоук пзо укзсщка',
-                    style: AppTextStyles.headLine3,
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Вопрос 1 из 20',
-                    style: AppTextStyles.secondary,
-                  ),
-                  SizedBox(height: 30),
-                  OptionButton(
-                    onTap: () {},
-                    text: 'Lorem Ipsum Dolores',
-                    type: OptionType.normal,
-                  ),
-                  OptionButton(
-                    onTap: () {},
-                    text: 'Lorem Ipsum Dolores',
-                    type: OptionType.error,
-                  ),
-                  OptionButton(
-                    onTap: () {},
-                    text: 'Lorem Ipsum Dolores',
-                    type: OptionType.right,
-                  ),
-                  OptionButton(
-                    onTap: () {},
-                    text: 'Lorem Ipsum Dolores',
-                    type: OptionType.normal,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.only(bottom: Get.height * .1),
-            alignment: Alignment.bottomCenter,
-            child: RaisedButton(
-              child: Text('Следующий вопрос'),
-              onPressed: controller.exitTest,
+              ],
             ),
-          ),
-        ],
+            Container(
+              padding: EdgeInsets.only(bottom: Get.height * .1),
+              alignment: Alignment.bottomCenter,
+              child: RaisedButton(
+                child: Text('Следующий вопрос'),
+                onPressed: controller.nextQuestion,
+              ),
+            ),
+          ],
+        ),
       ),
     ).unfocusOnTap();
   }
