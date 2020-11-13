@@ -29,8 +29,9 @@ class HomeView extends GetView<HomeController> {
       );
     });
     return Scaffold(
-        backgroundColor: AppColors.background,
-        body: Stack(
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: Stack(
           children: [
             Row(
               children: [
@@ -39,20 +40,18 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
             Positioned(
-              top: 24,
-              left: 24,
-              child: Obx(
-                () => AnimatedContainer(
-                  width: controller.showInstruments.value ? 36 : 64,
-                  height: controller.showInstruments.value ? 36 : 64,
-                  duration: 300.milliseconds,
-                  child: FloatingActionButton(
-                    backgroundColor: controller.showInstruments.value
-                        ? AppColors.primary
-                        : AppColors.white,
-                    onPressed: controller.toggleInstruments,
-                    child: AnimatedUpDownicon(),
-                  ),
+              top: 300,
+              left: 12,
+              child: DescribedFeatureOverlay(
+                title: Text('Выбор инструмента'),
+                description: Text(
+                    'Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
+                backgroundColor: AppColors.secondary,
+                enablePulsingAnimation: false,
+                featureId: 'device',
+                tapTarget: IgnorePointer(child: Icon(Icons.done)),
+                child: SizedBox(
+                  width: 500,
                 ),
               ),
             ),
@@ -99,6 +98,7 @@ class HomeView extends GetView<HomeController> {
                   height: controller.showInstruments.value ? 36 : 64,
                   duration: 300.milliseconds,
                   child: FloatingActionButton(
+                    heroTag: 'open_close_menu',
                     backgroundColor: AppColors.white,
                     onPressed: controller.toggleInstruments,
                     child: AnimatedUpDownicon(),
@@ -107,6 +107,8 @@ class HomeView extends GetView<HomeController> {
               ),
             )
           ],
-        )).unfocusOnTap();
+        ),
+      ),
+    ).unfocusOnTap();
   }
 }
