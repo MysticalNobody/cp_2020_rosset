@@ -1,3 +1,5 @@
+import 'package:rosset_client/app/modules/auth/views/auth_view.dart';
+import 'package:rosset_client/app/modules/auth/bindings/auth_binding.dart';
 import 'package:rosset_client/app/modules/home/views/home_view.dart';
 import 'package:rosset_client/app/modules/home/bindings/home_binding.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,11 @@ static const INITIAL = Routes.HOME;
       name: Routes.HOME, 
       page:()=> HomeView(), 
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.AUTH, 
+      page:()=> AuthView(), 
+      binding: AuthBinding(),
     ),
   ];
 }
