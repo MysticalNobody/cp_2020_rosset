@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
+import 'package:rosset_client/theme/app_colors.dart';
 
 class DeviceGrid extends StatelessWidget {
   const DeviceGrid({Key key, this.controller}) : super(key: key);
