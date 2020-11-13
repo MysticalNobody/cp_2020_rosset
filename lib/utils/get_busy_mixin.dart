@@ -25,7 +25,7 @@ extension BusyStack on Widget {
                   color: AppColors.grey.withOpacity(.5),
                   alignment: Alignment.center,
                   child: const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(AppColors.generalBlue),
+                    valueColor: AlwaysStoppedAnimation(AppColors.primary),
                     strokeWidth: 1,
                   ),
                 ),

@@ -12,29 +12,31 @@ extension DateTimeExtension on DateTime {
 }
 
 class Utils {
-  static void showSnackbar(String title, String message,
-      {SnackbarType type = SnackbarType.primary}) {
+  static void showSnackbar(String title, String message, {SnackbarType type = SnackbarType.primary}) {
     Color bgColor;
-    final Color textColor = AppColors.generalWhite;
+    final Color textColor = AppColors.text;
     switch (type) {
       case SnackbarType.error:
         bgColor = AppColors.redStatus;
         break;
       case SnackbarType.primary:
-        bgColor = AppColors.generalBlue;
+        bgColor = AppColors.primary;
         break;
       case SnackbarType.success:
         bgColor = AppColors.greenStatus;
         break;
       default:
-        bgColor = AppColors.generalBlue;
+        bgColor = AppColors.background;
         break;
     }
-    Get.snackbar(title, message,
-        backgroundColor: bgColor,
-        colorText: textColor,
-        maxWidth: 500,
-        margin: EdgeInsets.only(top: 12));
+    Get.snackbar(
+      title,
+      message,
+      backgroundColor: bgColor,
+      colorText: textColor,
+      maxWidth: 500,
+      margin: EdgeInsets.only(top: 12),
+    );
   }
 
   static getNoun(int number, String one, String two, String five) {
@@ -51,14 +53,5 @@ class Utils {
       return two;
     }
     return five;
-  }
-
-  static Future<void> launchGoogleMapsUrl(double lat, double lon) async {
-    final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lon';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

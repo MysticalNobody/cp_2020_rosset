@@ -9,7 +9,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.fillColor,
+        backgroundColor: AppColors.background,
         body: Stack(
           children: [
             Align(
@@ -17,12 +17,11 @@ class HomeView extends GetView<HomeController> {
               child: Obx(
                 () => AnimatedContainer(
                   width: 300,
-                  height:
-                      controller.showInstruments.value ? Get.height - 24 : 56,
+                  height: controller.showInstruments.value ? Get.height - 24 : 56,
                   margin: EdgeInsets.all(12),
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppColors.generalWhite,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.circular(6),
                   ),
                   duration: 300.milliseconds,
