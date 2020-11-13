@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 enum SnackbarType { error, success, primary }
 

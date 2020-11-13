@@ -37,7 +37,7 @@ class InstrumentCard extends StatelessWidget {
                   Flexible(
                     child: Text(
                       'Терминал релейной защиты ',
-                      style: AppTextStyles.headLine1,
+                      style: AppTextStyles.subtitle,
                     ),
                   )
                 ],
@@ -49,7 +49,7 @@ class InstrumentCard extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     'Подробнее',
-                    style: AppTextStyles.headLine1,
+                    style: AppTextStyles.subtitle,
                   ),
                 ),
               )

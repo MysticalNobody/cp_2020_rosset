@@ -42,14 +42,14 @@ class AppTextStyles {
     fontFamily: fontFamily,
     height: 1.27,
   );
-  static const text1 = TextStyle(
+  static const text = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.normal,
     color: AppColors.text,
     fontFamily: fontFamily,
     height: 1.55,
   );
-  static const text2 = TextStyle(
+  static const secondary = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.normal,
     color: AppColors.text,
