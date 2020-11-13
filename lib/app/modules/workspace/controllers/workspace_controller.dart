@@ -62,13 +62,16 @@ class WorkspaceController extends GetxController {
     update();
   }
 
-  onLinkDropped(DeviceSlotModel slot) {
+  void onLinkDropped(DeviceSlotModel slot) {
     if (slot.link == null) return;
-    slot.link?.end?.link = null;
-    slot.link?.start?.link = null;
+    final start = slot.link?.start;
+    final end = slot.link?.end;
+    start.link = null;
+    end.link = null;
+    update();
   }
 
-  onLinkEnd(DeviceSlotModel slot, DeviceSlotModel another) {
+  void onLinkEnd(DeviceSlotModel slot, DeviceSlotModel another) {
     final link = DeviceLinkModel()
       ..start = another
       ..end = slot;
