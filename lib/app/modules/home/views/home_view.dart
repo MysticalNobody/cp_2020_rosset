@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
@@ -53,7 +54,12 @@ class HomeView extends GetView<HomeController> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           child: TextFormField(
                             decoration: InputDecoration(
-                              border: InputBorder.none,
+                              prefixIcon: Icon(EvaIcons.search),
+                              hintText: 'Поиск',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9),
+                                borderSide: BorderSide.none,
+                              ),
                               filled: true,
                             ),
                           ),

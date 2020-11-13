@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rosset_client/theme/app_colors.dart';
+import 'package:rosset_client/theme/app_text_styles.dart';
 
 class InstrumentCard extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class InstrumentCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
           color: AppColors.generalWhite,
-          borderRadius: BorderRadius.circular(9),
+          borderRadius: BorderRadius.circular(3),
           boxShadow: [
             BoxShadow(
                 color: AppColors.grey.withOpacity(.15),
@@ -18,7 +19,40 @@ class InstrumentCard extends StatelessWidget {
           ]),
       child: TextButton(
         onPressed: () {},
-        child: SizedBox(),
+        child: Padding(
+          padding: EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Image.network(
+                    'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
+                    height: 60,
+                    fit: BoxFit.contain,
+                  ),
+                  SizedBox(width: 12),
+                  Flexible(
+                    child: Text('Терминал релейной защиты ',
+                        style: AppTextStyles.bigBlackW500),
+                  )
+                ],
+              ),
+              SizedBox(height: 6),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: FlatButton(
+                  onPressed: () {},
+                  color: AppColors.grey.withOpacity(.075),
+                  child: Text(
+                    'Подробнее',
+                    style: AppTextStyles.smallBlackW600,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
