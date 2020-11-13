@@ -8,6 +8,7 @@ class WorkspaceController extends GetxController {
   DeviceModel hintModel;
   List<DroppedDeviceModel> dropped = [];
   bool isDragging = false;
+  GlobalKey baseKey = GlobalKey();
 
   void onDragStarted() {
     isDragging = true;
@@ -19,11 +20,17 @@ class WorkspaceController extends GetxController {
     update();
   }
 
+  void getBaseOffset() {
+    final RenderBox rb = baseKey.currentContext.findRenderObject();
+    debugPrint(rb.localToGlobal(Offset.zero).toString());
+  }
+
   bool enterTarget(int i, int j, DeviceModel data) {
     debugPrint(['enterTarget', i, j, data.name].toString());
     hintX = i;
     hintY = j;
     hintModel = data;
+    // getBaseOffset();
     update();
     return true;
   }

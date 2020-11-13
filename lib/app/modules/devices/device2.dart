@@ -44,6 +44,10 @@ class Device2 extends StatelessWidget {
                       ),
                     );
                   },
+                  onWillAccept: (data) {
+                    debugPrint(data.toString());
+                    return true;
+                  },
                 ),
             ],
           ),
