@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 
 import 'device_link.dart';
+import 'device_slot.dart';
 
 class DroppedDeviceModel {
   int id;
@@ -9,5 +10,5 @@ class DroppedDeviceModel {
   int x;
   int y;
   Widget widget;
-  List<DeviceLinkModel> links;
+  List<DeviceSlotModel> slots;
 }

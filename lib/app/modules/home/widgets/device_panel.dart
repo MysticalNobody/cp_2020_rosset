@@ -3,11 +3,12 @@ import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
-import 'package:rosset_client/app/modules/workspace/widgets/device_draggable.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
+
+import 'instrument_card.dart';
 
 class DevicePanel extends StatelessWidget {
   const DevicePanel({Key key, this.opened}) : super(key: key);
@@ -77,7 +78,7 @@ class DevicePanel extends StatelessWidget {
                     ),
                     SizedBox(height: 24),
                     ...controller.models
-                        .map((m) => DeviceDraggable(m))
+                        .map((m) => InstrumentCard(model: m))
                         .toList(),
                   ],
                 ),

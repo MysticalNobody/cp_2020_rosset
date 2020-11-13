@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
+import 'package:rosset_client/app/data/model/device_link.dart';
+import 'package:rosset_client/app/data/model/device_slot.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 
 class WorkspaceController extends GetxController {
@@ -8,6 +10,7 @@ class WorkspaceController extends GetxController {
   DeviceModel hintModel;
   List<DroppedDeviceModel> dropped = [];
   bool isDragging = false;
+  GlobalKey baseKey = GlobalKey();
 
   void onDragStarted() {
     isDragging = true;
@@ -19,11 +22,17 @@ class WorkspaceController extends GetxController {
     update();
   }
 
+  void getBaseOffset() {
+    final RenderBox rb = baseKey.currentContext.findRenderObject();
+    debugPrint(rb.localToGlobal(Offset.zero).toString());
+  }
+
   bool enterTarget(int i, int j, DeviceModel data) {
     debugPrint(['enterTarget', i, j, data.name].toString());
     hintX = i;
     hintY = j;
     hintModel = data;
+    // getBaseOffset();
     update();
     return true;
   }
@@ -31,9 +40,16 @@ class WorkspaceController extends GetxController {
   void onDrop(int i, int j, DeviceModel data) {
     debugPrint(['onDrop', i, j, data.name].toString());
     final dm = DroppedDeviceModel()
+      ..id = DateTime.now().millisecondsSinceEpoch
       ..model = data
       ..x = i
       ..y = j;
+    dm.slots = List.generate(
+        data.slotsCount,
+        (index) => DeviceSlotModel()
+          ..slotId = index
+          ..device = dm
+          ..key = GlobalKey());
     dm.widget = data.widgetBuilder(dm);
     dropped.add(dm);
     hintModel = null;
@@ -43,6 +59,21 @@ class WorkspaceController extends GetxController {
   void leaveTarget(int i, int j) {
     debugPrint(['leaveTarget', i, j].toString());
     hintModel = null;
+    update();
+  }
+
+  onLinkDropped(DeviceSlotModel slot) {
+    if (slot.link == null) return;
+    slot.link?.end?.link = null;
+    slot.link?.start?.link = null;
+  }
+
+  onLinkEnd(DeviceSlotModel slot, DeviceSlotModel another) {
+    final link = DeviceLinkModel()
+      ..start = another
+      ..end = slot;
+    another.link = link;
+    slot.link = link;
     update();
   }
 }

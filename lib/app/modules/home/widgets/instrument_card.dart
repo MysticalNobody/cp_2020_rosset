@@ -9,68 +9,72 @@ class InstrumentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LongPressDraggable<DeviceModel>(
-      data: model,
-      feedback: Container(
-        width: 50,
-        height: 50,
-        color: Colors.blueGrey.withOpacity(0.3),
-      ),
-      maxSimultaneousDrags: 1,
-      hapticFeedbackOnStart: true,
-      child: Container(
-        height: 120,
-        margin: EdgeInsets.only(bottom: 24),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(3),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.grey.withOpacity(.15),
-              blurRadius: 3,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: TextButton(
-          onPressed: () {},
-          child: Padding(
-            padding: EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  children: [
-                    Image.network(
-                      'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
-                      height: 60,
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(width: 12),
-                    Flexible(
-                      child: Text(
-                        'Терминал релейной защиты ',
-                        style: AppTextStyles.subtitle,
-                      ),
-                    )
-                  ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return LongPressDraggable<DeviceModel>(
+          data: model,
+          feedback: Container(
+            width: constraints.maxWidth,
+            height: 120,
+            color: Colors.blueGrey.withOpacity(0.3),
+          ),
+          maxSimultaneousDrags: 1,
+          hapticFeedbackOnStart: true,
+          child: Container(
+            height: 120,
+            margin: EdgeInsets.only(bottom: 24),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(3),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.grey.withOpacity(.15),
+                  blurRadius: 3,
+                  spreadRadius: 1,
                 ),
-                SizedBox(height: 6),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Подробнее',
-                      style: AppTextStyles.subtitle,
-                    ),
-                  ),
-                )
               ],
             ),
+            child: TextButton(
+              onPressed: () {},
+              child: Padding(
+                padding: EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      children: [
+                        Image.network(
+                          'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
+                          height: 60,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(width: 12),
+                        Flexible(
+                          child: Text(
+                            'Терминал релейной защиты ',
+                            style: AppTextStyles.subtitle,
+                          ),
+                        )
+                      ],
+                    ),
+                    // SizedBox(height: 6),
+                    // ClipRRect(
+                    //   borderRadius: BorderRadius.circular(6),
+                    //   child: TextButton(
+                    //     onPressed: () {},
+                    //     child: Text(
+                    //       'Подробнее',
+                    //       style: AppTextStyles.subtitle,
+                    //     ),
+                    //   ),
+                    // )
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

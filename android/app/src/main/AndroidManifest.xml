@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="team.itis.resset.rosset_client">
+    <uses-permission android:name="android.permission.VIBRATE" />
    <application
         android:label="rosset_client"
         android:icon="@mipmap/ic_launcher">
