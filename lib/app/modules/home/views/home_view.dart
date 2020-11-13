@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
+import 'package:rosset_client/app/modules/home/widgets/drag_panel.dart';
+import 'package:rosset_client/app/modules/home/widgets/instrument_card.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
 
@@ -13,6 +15,10 @@ class HomeView extends GetView<HomeController> {
         body: Stack(
           children: [
             Align(
+              alignment: Alignment.center,
+              child: DragExapmple(),
+            ),
+            Align(
               alignment: Alignment.topLeft,
               child: Obx(
                 () => AnimatedContainer(
@@ -23,6 +29,12 @@ class HomeView extends GetView<HomeController> {
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: AppColors.generalWhite,
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.grey.withOpacity(.15),
+                          blurRadius: 6,
+                          spreadRadius: 1),
+                    ],
                     borderRadius: BorderRadius.circular(6),
                   ),
                   duration: 300.milliseconds,
@@ -33,12 +45,21 @@ class HomeView extends GetView<HomeController> {
                         icon: AnimatedUpDownicon(),
                         onPressed: controller.toggleInstruments,
                         label: Text('Выбор устройств'),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            SizedBox(height: 24),
+                            InstrumentCard(),
+                            InstrumentCard(),
+                          ],
+                        ),
                       )
                     ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ));
   }

@@ -33,7 +33,7 @@ class AppTextStyles {
   static const smallBlueW400 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
-    color: AppColors.generalBlue,
+    color: AppColors.general,
     fontFamily: fontFamily,
   );
   static const smallGreyW400 = TextStyle(
@@ -57,7 +57,7 @@ class AppTextStyles {
   static const smallBlueW500 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,
-    color: AppColors.generalBlue,
+    color: AppColors.general,
     fontFamily: fontFamily,
   );
   static const smallBlackW600 = TextStyle(
@@ -86,7 +86,7 @@ class AppTextStyles {
   static const regularBlueW400 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: AppColors.generalBlue,
+    color: AppColors.general,
     fontFamily: fontFamily,
   );
   static const regularBlackW400 = TextStyle(
@@ -122,7 +122,7 @@ class AppTextStyles {
   static const regularBlueW500 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
-    color: AppColors.generalBlue,
+    color: AppColors.general,
     fontFamily: fontFamily,
   );
   static const regularGreyW500 = TextStyle(
@@ -146,7 +146,7 @@ class AppTextStyles {
   static const regularBlueW600 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.generalBlue,
+    color: AppColors.general,
     fontFamily: fontFamily,
   );
   static const regularSemiBlackW600 = TextStyle(
@@ -212,7 +212,7 @@ class AppTextStyles {
   static const largeBlueW600 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
-    color: AppColors.generalBlue,
+    color: AppColors.general,
     fontFamily: fontFamily,
   );
   static const largeWhiteW700 = TextStyle(
@@ -229,7 +229,7 @@ class AppTextStyles {
   static const appbarBlueW600 = TextStyle(
     fontSize: 36,
     fontWeight: FontWeight.w600,
-    color: AppColors.generalBlue,
+    color: AppColors.general,
     fontFamily: fontFamily,
   );
 }

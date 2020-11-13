@@ -21,13 +21,13 @@ class Utils {
         bgColor = AppColors.redStatus;
         break;
       case SnackbarType.primary:
-        bgColor = AppColors.generalBlue;
+        bgColor = AppColors.general;
         break;
       case SnackbarType.success:
         bgColor = AppColors.greenStatus;
         break;
       default:
-        bgColor = AppColors.generalBlue;
+        bgColor = AppColors.general;
         break;
     }
     Get.snackbar(title, message,
