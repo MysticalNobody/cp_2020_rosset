@@ -1,6 +1,6 @@
+import 'device_slot.dart';
+
 class DeviceLinkModel {
-  int startId;
-  int endId;
-  int startSlot;
-  int endSlot;
+  DeviceSlotModel start;
+  DeviceSlotModel end;
 }

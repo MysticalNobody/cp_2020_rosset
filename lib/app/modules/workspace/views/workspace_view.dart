@@ -37,6 +37,7 @@ class WorkspaceView extends GetView<WorkspaceController> {
                     ),
                   ),
                 ),
+                
             ],
           ),
         );

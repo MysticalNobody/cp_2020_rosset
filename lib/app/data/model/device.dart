@@ -6,5 +6,6 @@ class DeviceModel {
   int width;
   int height;
   String name;
+  int slotsCount;
   Widget Function(DroppedDeviceModel) widgetBuilder;
 }

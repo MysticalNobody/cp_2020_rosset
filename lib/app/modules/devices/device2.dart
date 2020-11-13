@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rosset_client/app/data/model/device_link.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
+import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 
 //4x2
 class Device2 extends StatelessWidget {
@@ -17,38 +18,7 @@ class Device2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              for (int i = 0; i < 6; i++)
-                DragTarget<DeviceLinkModel>(
-                  builder: (context, list, list2) {
-                    return Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 0.5, color: Colors.grey),
-                      ),
-                      child: LongPressDraggable<DeviceLinkModel>(
-                        data: DeviceLinkModel(),
-                        feedback: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.red.withOpacity(0.3),
-                        ),
-                        maxSimultaneousDrags: 1,
-                        hapticFeedbackOnStart: true,
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.grey.withOpacity(0.3),
-                        ),
-                        dragAnchor: DragAnchor.pointer,
-                      ),
-                    );
-                  },
-                  onWillAccept: (data) {
-                    debugPrint(data.toString());
-                    return true;
-                  },
-                ),
+              for (int i = 0; i < 6; i++) DeviceSlot(slot: dm.slots[i]),
             ],
           ),
           Row(
