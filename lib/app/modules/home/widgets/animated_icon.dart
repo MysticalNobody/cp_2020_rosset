@@ -29,13 +29,10 @@ class _AnimatedUpDowniconState extends State<AnimatedUpDownicon>
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.find<HomeController>();
-    return Obx(() => AnimatedIcon(
-          icon: AnimatedIcons.close_menu,
-          color: controller.showInstruments.value
-              ? AppColors.white
-              : AppColors.primary,
-          progress: _controller,
-        ));
+    return AnimatedIcon(
+      icon: AnimatedIcons.close_menu,
+      color: AppColors.primary,
+      progress: _controller,
+    );
   }
 }

@@ -1,8 +1,10 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_draggable.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
@@ -26,31 +28,52 @@ class DevicePanel extends StatelessWidget {
               top: 0,
               duration: 300.milliseconds,
               child: Container(
-                color: AppColors.primary,
+                color: AppColors.white,
                 width: 300,
                 height: Get.height,
-                padding: EdgeInsets.all(24),
+                padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 6),
+                    SizedBox(height: 18),
                     Row(
                       children: [
                         SizedBox(width: 56),
                         Text(
-                          'Выбор инструмента',
+                          'Список\nинструментов',
                           style: AppTextStyles.subtitle
-                              .copyWith(color: AppColors.white),
+                              .copyWith(color: AppColors.primary),
                         ),
                       ],
                     ),
-                    SizedBox(height: 36),
+                    SizedBox(height: 24),
                     TextFormField(
                       decoration: InputDecoration(
                         filled: true,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide:
+                              BorderSide(color: AppColors.primary, width: .5),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6),
+                            borderSide: BorderSide.none),
                         contentPadding: EdgeInsets.symmetric(horizontal: 6),
                         hintText: 'Поиск',
+                        hintStyle: AppTextStyles.text.copyWith(
+                          fontSize: 16,
+                          color: AppColors.text.withOpacity(.5),
+                        ),
                         prefixIcon: Icon(EvaIcons.searchOutline),
+                      ),
+                      style: AppTextStyles.text.copyWith(fontSize: 16),
+                    ),
+                    SizedBox(height: 24),
+                    RaisedButton(
+                      onPressed: () => Get.toNamed(Routes.TESTS),
+                      child: Text(
+                        'Тесты',
+                        style: AppTextStyles.button,
                       ),
                     ),
                     SizedBox(height: 24),
