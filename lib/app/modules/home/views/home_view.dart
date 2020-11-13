@@ -40,24 +40,6 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
             Positioned(
-              top: 24,
-              left: 24,
-              child: Obx(
-                () => AnimatedContainer(
-                  width: controller.showInstruments.value ? 36 : 64,
-                  height: controller.showInstruments.value ? 36 : 64,
-                  duration: 300.milliseconds,
-                  child: FloatingActionButton(
-                    backgroundColor: controller.showInstruments.value
-                        ? AppColors.primary
-                        : AppColors.white,
-                    onPressed: controller.toggleInstruments,
-                    child: AnimatedUpDownicon(),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
               top: 300,
               left: 12,
               child: DescribedFeatureOverlay(
@@ -116,6 +98,7 @@ class HomeView extends GetView<HomeController> {
                   height: controller.showInstruments.value ? 36 : 64,
                   duration: 300.milliseconds,
                   child: FloatingActionButton(
+                    heroTag: 'open_close_menu',
                     backgroundColor: AppColors.white,
                     onPressed: controller.toggleInstruments,
                     child: AnimatedUpDownicon(),
