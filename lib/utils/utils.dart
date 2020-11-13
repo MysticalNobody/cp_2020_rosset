@@ -20,13 +20,13 @@ class Utils {
         bgColor = AppColors.redStatus;
         break;
       case SnackbarType.primary:
-        bgColor = AppColors.primary;
+        bgColor = AppColors.general;
         break;
       case SnackbarType.success:
         bgColor = AppColors.greenStatus;
         break;
       default:
-        bgColor = AppColors.background;
+        bgColor = AppColors.general;
         break;
     }
     Get.snackbar(

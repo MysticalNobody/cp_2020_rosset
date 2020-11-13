@@ -1,8 +1,12 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
+import 'package:rosset_client/app/modules/home/widgets/drag_panel.dart';
+import 'package:rosset_client/app/modules/home/widgets/instrument_card.dart';
 import 'package:rosset_client/theme/app_colors.dart';
+import 'package:rosset_client/utils/unfocus_ext.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -12,6 +16,9 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: AppColors.background,
         body: Stack(
           children: [
+            Positioned.fill(
+              child: DragExapmple(),
+            ),
             Align(
               alignment: Alignment.topLeft,
               child: Obx(
@@ -32,13 +39,40 @@ class HomeView extends GetView<HomeController> {
                         icon: AnimatedUpDownicon(),
                         onPressed: controller.toggleInstruments,
                         label: Text('Выбор устройств'),
+                      ),
+                      AnimatedOpacity(
+                        opacity: controller.showInstruments.value ? 1 : 0,
+                        duration: 300.milliseconds,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(EvaIcons.search),
+                              hintText: 'Поиск',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            SizedBox(height: 24),
+                            InstrumentCard(),
+                            InstrumentCard(),
+                          ],
+                        ),
                       )
                     ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
-        ));
+        )).unfocusOnTap();
   }
 }

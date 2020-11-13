@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
@@ -29,7 +30,7 @@ class _AnimatedUpDowniconState extends State<AnimatedUpDownicon>
   Widget build(BuildContext context) {
     return RotationTransition(
       turns: Tween(begin: 0.0, end: .5).animate(_controller),
-      child: Icon(Icons.keyboard_arrow_up),
+      child: Icon(EvaIcons.arrowIosUpward),
     );
   }
 }
