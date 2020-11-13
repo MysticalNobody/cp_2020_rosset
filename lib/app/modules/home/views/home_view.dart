@@ -5,6 +5,7 @@ import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
 import 'package:rosset_client/app/modules/home/widgets/drag_panel.dart';
 import 'package:rosset_client/app/modules/home/widgets/instrument_card.dart';
 import 'package:rosset_client/theme/app_colors.dart';
+import 'package:rosset_client/utils/unfocus_ext.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -14,8 +15,7 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: AppColors.fillColor,
         body: Stack(
           children: [
-            Align(
-              alignment: Alignment.center,
+            Positioned.fill(
               child: DragExapmple(),
             ),
             Align(
@@ -46,6 +46,19 @@ class HomeView extends GetView<HomeController> {
                         onPressed: controller.toggleInstruments,
                         label: Text('Выбор устройств'),
                       ),
+                      AnimatedOpacity(
+                        opacity: controller.showInstruments.value ? 1 : 0,
+                        duration: 300.milliseconds,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              filled: true,
+                            ),
+                          ),
+                        ),
+                      ),
                       Expanded(
                         child: ListView(
                           children: [
@@ -61,6 +74,6 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
           ],
-        ));
+        )).unfocusOnTap();
   }
 }
