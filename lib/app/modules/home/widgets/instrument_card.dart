@@ -41,9 +41,8 @@ class InstrumentCard extends StatelessWidget {
               SizedBox(height: 6),
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {},
-                  color: AppColors.grey.withOpacity(.075),
                   child: Text(
                     'Подробнее',
                     style: AppTextStyles.smallBlackW600,
