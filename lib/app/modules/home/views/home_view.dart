@@ -5,6 +5,7 @@ import 'package:rosset_client/app/modules/home/controllers/home_controller.dart'
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
 import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_draggable.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
@@ -22,8 +23,7 @@ class HomeView extends GetView<HomeController> {
               child: Obx(
                 () => AnimatedContainer(
                   width: 300,
-                  height:
-                      controller.showInstruments.value ? Get.height - 24 : 56,
+                  height: controller.showInstruments.value ? Get.height - 24 : 56,
                   margin: EdgeInsets.all(12),
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -38,6 +38,10 @@ class HomeView extends GetView<HomeController> {
                         icon: AnimatedUpDownicon(),
                         onPressed: controller.toggleInstruments,
                         label: Text('Выбор устройств'),
+                      ),
+                      InkWell(
+                        child: Text('Экран тестов'),
+                        onTap: () => Get.toNamed(Routes.TESTS),
                       ),
                       AnimatedOpacity(
                         opacity: controller.showInstruments.value ? 1 : 0,
@@ -61,9 +65,7 @@ class HomeView extends GetView<HomeController> {
                         child: ListView(
                           children: [
                             SizedBox(height: 24),
-                            ...controller.models
-                                .map((m) => DeviceDraggable(m))
-                                .toList(),
+                            ...controller.models.map((m) => DeviceDraggable(m)).toList(),
                           ],
                         ),
                       )

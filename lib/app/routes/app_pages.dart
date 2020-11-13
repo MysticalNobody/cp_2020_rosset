@@ -5,6 +5,8 @@ import 'package:rosset_client/app/modules/auth/bindings/auth_binding.dart';
 import 'package:rosset_client/app/modules/home/views/home_view.dart';
 import 'package:rosset_client/app/modules/home/bindings/home_binding.dart';
 import 'package:get/get.dart';
+import 'package:rosset_client/app/modules/tests/bindings/tests_binding.dart';
+import 'package:rosset_client/app/modules/tests/views/tests_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
@@ -20,6 +22,11 @@ class AppPages {
       name: Routes.AUTH,
       page: () => AuthView(),
       binding: AuthBinding(),
+    ),
+    GetPage(
+      name: Routes.TESTS,
+      page: () => TestsView(),
+      binding: TestsBinding(),
     ),
   ];
 }
