@@ -11,8 +11,6 @@ extension DateTimeExtension on DateTime {
   }
 }
 
-const String googleApiKey = 'AIzaSyAlNrreq-u4Yy50vmYdi9jG4W51OyHdsFc';
-
 class Utils {
   static void showSnackbar(String title, String message,
       {SnackbarType type = SnackbarType.primary}) {
