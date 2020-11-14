@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'app/api/api.dart';
+import 'app/data/repository/user_repository.dart';
 import 'app/routes/app_pages.dart';
 import 'theme/app_theme.dart';
 

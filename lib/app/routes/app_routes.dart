@@ -8,4 +8,5 @@ abstract class Routes {
   static const WORKSPACE = '/workspace';
   static const TEST_RESULT = '/test_result';
   static const SETTINGS = '/settings';
+  static const CHALLENGES = '/challenges';
 }
