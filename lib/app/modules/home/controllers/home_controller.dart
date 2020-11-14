@@ -16,14 +16,24 @@ class HomeController extends GetxController {
       ..width = 2
       ..height = 2
       ..slotsCount = 1
-      ..settings = {'test': ''}
+      ..settings = [
+        ['Имя GCB', SettingsFieldType.gcb],
+        ['GOOSE ID', SettingsFieldType.goose],
+        ['MAC адрес', SettingsFieldType.mac],
+        ['APP ID', SettingsFieldType.app],
+        ['VLAN ID', SettingsFieldType.vlan],
+        ['Min Time (мс)', SettingsFieldType.minTime],
+        ['Max Time (мс)', SettingsFieldType.maxTime],
+      ]
       ..widgetBuilder = (DroppedDeviceModel dm) => Device1(dm),
     DeviceModel()
       ..name = 'Промышленный коммутатор'
       ..width = 4
       ..height = 2
       ..slotsCount = 5
-      ..settings = {'test': ''}
+      ..settings = [
+        ['test', SettingsFieldType.text]
+      ]
       ..widgetBuilder = (DroppedDeviceModel dm) => Device2(dm),
   ];
 
