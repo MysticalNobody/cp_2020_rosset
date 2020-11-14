@@ -22,7 +22,7 @@ class AuthController extends GetxController with GetBusyMixin {
 
   void action() {
     if (formKey.currentState.validate()) {
-      Get.offAllNamed(Routes.HOME);
+      Get.offAllNamed(Routes.CHALLENGES);
     }
   }
 }

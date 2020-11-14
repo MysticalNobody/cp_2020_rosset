@@ -17,7 +17,8 @@ class InfoDialog extends StatelessWidget {
             children: [
               Text(
                 'Настройка IED на прием-передачу GOOSE-сообщений',
-                style: AppTextStyles.headLine4.copyWith(color: AppColors.text),
+                style: AppTextStyles.headLine4
+                    .copyWith(color: AppColors.secondary),
               ),
               SizedBox(height: 24),
               Text(
