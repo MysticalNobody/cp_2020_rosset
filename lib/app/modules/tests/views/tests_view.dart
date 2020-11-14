@@ -69,7 +69,7 @@ class TestsView extends GetView<TestsController> {
                             }
                           }
                           return OptionButton(
-                            onTap: () => model.toAnswer(index),
+                            onTap: () => model.chosenOption != null ? null : model.toAnswer(index),
                             text: model.nowQuestion.options[index],
                             type: type,
                           );

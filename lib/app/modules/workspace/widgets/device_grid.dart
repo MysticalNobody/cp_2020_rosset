@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/draggable_device.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -22,8 +21,7 @@ class DeviceGrid extends StatelessWidget {
                       height: 100,
                       width: 100,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 0.25, color: AppColors.grey.withOpacity(.1)),
+                        border: Border.all(width: 0.25, color: AppColors.grey.withOpacity(.1)),
                       ),
                     );
                   },

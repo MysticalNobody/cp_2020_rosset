@@ -1,5 +1,4 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
@@ -70,7 +69,7 @@ class DevicePanel extends StatelessWidget {
                     ),
                     SizedBox(height: 24),
                     RaisedButton(
-                      onPressed: () => Get.toNamed(Routes.TEST_RESULT),
+                      onPressed: () => Get.toNamed(Routes.TESTS),
                       child: Text(
                         'Тесты',
                         style: AppTextStyles.button.copyWith(color: AppColors.white),
