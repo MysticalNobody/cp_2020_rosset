@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
+import 'package:rosset_client/app/modules/settings/views/settings_view.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -85,7 +86,9 @@ class Device2 extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () => Get.dialog(
+                        Dialog(child: SettingsView(dm)),
+                      ),
                     ),
                     IconButton(
                       icon: Icon(EvaIcons.closeSquare),

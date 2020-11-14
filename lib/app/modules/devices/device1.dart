@@ -71,7 +71,9 @@ class Device1 extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () => Get.dialog(
+                          Dialog(child: SettingsView(dm)),
+                        ),
                       ),
                       IconButton(
                         icon: Icon(EvaIcons.closeSquare),
@@ -86,7 +88,8 @@ class Device1 extends StatelessWidget {
               Row(
                 children: [
                   Spacer(flex: 3),
-                  Expanded(flex: 5,
+                  Expanded(
+                    flex: 5,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
