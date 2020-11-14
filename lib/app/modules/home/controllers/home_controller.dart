@@ -19,7 +19,7 @@ class HomeController extends GetxController {
       ..settings = {'test': ''}
       ..widgetBuilder = (DroppedDeviceModel dm) => Device1(dm),
     DeviceModel()
-      ..name = 'Промышленный коммуникатор'
+      ..name = 'Промышленный коммутатор'
       ..width = 4
       ..height = 2
       ..slotsCount = 5

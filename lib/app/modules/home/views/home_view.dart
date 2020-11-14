@@ -117,7 +117,9 @@ class HomeView extends GetView<HomeController> {
                 right: 24,
                 child: Obx(
                   () => AnimatedOpacity(
-                    opacity: controller.showInstruments.value ? 0 : 1,
+                    opacity: controller.showInstruments.value && Get.width < 600
+                        ? 0
+                        : 1,
                     duration: 300.milliseconds,
                     child: Container(
                       alignment: Alignment.bottomCenter,
