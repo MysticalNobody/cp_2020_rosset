@@ -58,13 +58,13 @@ class AnswersWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          question.options[question.answer - 1],
+                          question.options[question.answer],
                           style: TextStyle(
                             fontSize: 16,
                             color: Color(0xFF0D964D),
                           ),
                         ),
-                        if (userAnswer != question.answer - 1)
+                        if (userAnswer != question.answer)
                           Text(
                             'Вы ответили: ${question.options[userAnswer]}',
                             style: TextStyle(

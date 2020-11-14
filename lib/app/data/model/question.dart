@@ -12,6 +12,7 @@ class QuestionModel {
 
   String title;
   List<String> options;
+  String tag;
   int answer;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) => _$QuestionModelFromJson(json);
