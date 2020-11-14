@@ -17,6 +17,7 @@ class DeviceSlot extends StatelessWidget {
             width: 50,
             decoration: BoxDecoration(
               border: Border.all(width: 0.5, color: Colors.grey),
+              borderRadius: BorderRadius.circular(3)
             ),
             alignment: Alignment.center,
             child: PlatformDraggable<DeviceSlotModel>(
@@ -50,7 +51,7 @@ class DeviceSlot extends StatelessWidget {
                 color: (slot.link != null
                         ? Colors.black
                         : list.isNotEmpty
-                            ? Colors.red
+                            ? Colors.green
                             : Colors.grey)
                     .withOpacity(0.3),
                 alignment: Alignment.center,

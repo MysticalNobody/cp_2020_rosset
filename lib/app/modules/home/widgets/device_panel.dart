@@ -1,6 +1,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -10,8 +11,11 @@ import 'package:supercharged_dart/supercharged_dart.dart';
 import 'instrument_card.dart';
 
 class DevicePanel extends StatelessWidget {
-  const DevicePanel({Key key, this.opened}) : super(key: key);
+  const DevicePanel({Key key, this.opened, this.onSearchChange, this.devices})
+      : super(key: key);
   final bool opened;
+  final Function(String) onSearchChange;
+  final List<DeviceModel> devices;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +55,7 @@ class DevicePanel extends StatelessWidget {
                       ),
                       SizedBox(height: 24),
                       TextFormField(
+                        onChanged: onSearchChange,
                         decoration: InputDecoration(
                           filled: true,
                           focusedBorder: OutlineInputBorder(
@@ -78,7 +83,7 @@ class DevicePanel extends StatelessWidget {
                         style: AppTextStyles.text.copyWith(fontSize: 16),
                       ),
                       SizedBox(height: 30),
-                      ...controller.models.map((m) => InstrumentCard(model: m)).toList(),
+                      ...devices.map((m) => InstrumentCard(model: m)).toList(),
                     ],
                   ),
                   Container(

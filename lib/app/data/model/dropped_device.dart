@@ -9,5 +9,6 @@ class DroppedDeviceModel {
   int x;
   int y;
   Widget widget;
+  Map<String, String> settings;
   List<DeviceSlotModel> slots;
 }
