@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
-import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
@@ -11,8 +10,12 @@ import 'package:supercharged_dart/supercharged_dart.dart';
 import 'instrument_card.dart';
 
 class DevicePanel extends StatelessWidget {
-  const DevicePanel({Key key, this.opened, this.onSearchChange, this.devices})
-      : super(key: key);
+  const DevicePanel({
+    Key key,
+    this.opened,
+    this.onSearchChange,
+    this.devices,
+  }) : super(key: key);
   final bool opened;
   final Function(String) onSearchChange;
   final List<DeviceModel> devices;

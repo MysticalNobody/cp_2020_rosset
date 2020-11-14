@@ -7,7 +7,6 @@ import 'package:rosset_client/app/modules/settings/views/settings_view.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:rosset_client/theme/app_text_styles.dart';
 
 //4x2
 class Device2 extends StatelessWidget {
@@ -27,10 +26,9 @@ class Device2 extends StatelessWidget {
               children: [
                 Obx(
                   () => AnimatedCrossFade(
-                    crossFadeState:
-                        Get.find<HomeController>().isSimpleMode.value
-                            ? CrossFadeState.showFirst
-                            : CrossFadeState.showSecond,
+                    crossFadeState: Get.find<HomeController>().isSimpleMode.value
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
                     duration: 100.milliseconds,
                     firstChild: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -95,8 +93,7 @@ class Device2 extends StatelessWidget {
                   IconButton(
                     icon: Icon(EvaIcons.closeSquare),
                     color: Colors.redAccent,
-                    onPressed: () =>
-                        Get.find<WorkspaceController>().deleteDevice(dm),
+                    onPressed: () => Get.find<WorkspaceController>().deleteDevice(dm),
                   ),
                 ],
               ),

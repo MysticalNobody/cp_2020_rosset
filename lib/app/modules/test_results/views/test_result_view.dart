@@ -5,7 +5,6 @@ import 'package:rosset_client/app/modules/test_results/widgets/answers.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/appbar.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/card.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/left_card.dart';
-import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 
@@ -26,7 +25,7 @@ class TestResultView extends GetView<TestResultController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TestResultAppbar(
-                onBackTap: () => Get.toNamed(Routes.HOME),
+                onBackTap: model.onClosedTap,
               ),
               SizedBox(height: Get.height * .01),
               if (model.answers?.isEmpty ?? true)

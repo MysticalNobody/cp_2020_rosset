@@ -11,11 +11,6 @@ class AuthController extends GetxController with GetBusyMixin {
 
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  @override
-  void onInit() {}
-
-  @override
-  void onReady() {}
 
   @override
   void onClose() {}
