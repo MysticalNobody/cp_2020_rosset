@@ -55,6 +55,15 @@ class Device1 extends StatelessWidget {
                   color: Colors.white,
                   child: Row(
                     children: [
+                      SizedBox(width: 12),
+                      Tooltip(
+                        message:
+                            'Терминал релейной защиты.\n\nЕго настройка занимает в 3 раза \nменьше времени, чем обычного.\n\nУстранение неполадок не требует \nприсутствия человека и решается \nво многих случаях дистанционно',
+                        child: Icon(
+                          EvaIcons.questionMarkCircle,
+                          color: AppColors.grey.withOpacity(.5),
+                        ),
+                      ),
                       Spacer(),
                       Text(dm.model.name),
                       Spacer(),
