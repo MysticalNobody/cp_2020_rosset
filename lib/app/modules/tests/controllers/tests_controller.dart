@@ -36,7 +36,7 @@ class TestsController extends GetxController {
   }
 
   void nextQuestion() {
-    if (nowQuestionIndex + 1 == questions.length) Get.back();
+    if (nowQuestionIndex + 1 == questions.length) return Get.back();
     chosenOption = null;
     nowQuestionIndex++;
     update();
