@@ -81,6 +81,7 @@ class DevicePanel extends StatelessWidget {
                       ),
                       SizedBox(height: 30),
                       ...devices.map((m) => InstrumentCard(model: m)).toList(),
+                      SizedBox(height: 30),
                     ],
                   ),
                 ),
