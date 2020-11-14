@@ -21,7 +21,8 @@ class DeviceGrid extends StatelessWidget {
                       height: 100,
                       width: 100,
                       decoration: BoxDecoration(
-                        border: Border.all(width: 0.5, color: Colors.grey),
+                        border: Border.all(
+                            width: 0.25, color: AppColors.grey.withOpacity(.1)),
                       ),
                     );
                   },
