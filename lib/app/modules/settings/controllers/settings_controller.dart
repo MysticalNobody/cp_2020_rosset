@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
-import 'package:rosset_client/utils/logger.dart';
 import 'package:rosset_client/utils/utils.dart';
 
 class SettingsController extends GetxController {
@@ -14,7 +13,9 @@ class SettingsController extends GetxController {
       device.settings = {};
     }
     for (int i = 0; i < device.model.settings.length; i += 1) {
-      device.settings[device.model.settings[i][1]] = controllers[i]?.text ?? '';
+      if (device.model.settings[i].length == 2)
+        device.settings[device.model.settings[i][1]] =
+            controllers[i]?.text ?? '';
     }
     Get.back();
     Utils.showSnackbar('Настройки сохранены', 'Устройство ${device.model.name}',
@@ -23,20 +24,14 @@ class SettingsController extends GetxController {
 
   @override
   void onInit() {
-    for (int i = 0; i < device.model.settings.toList().length; i += 1) {
+    super.onInit();
+    for (int i = 0; i < device.model.settings.length; i += 1) {
       String text;
-      if (device.settings?.isNotEmpty ?? false) {
-        text = device.settings[device.model.settings[i]];
+      if (device.model.settings[i].length == 2 &&
+          (device.settings?.isNotEmpty ?? false)) {
+        text = device.settings[device.model.settings[i][1]];
       }
       controllers.add(TextEditingController(text: text));
     }
-    super.onInit();
-    update();
   }
-
-  @override
-  void onReady() {}
-
-  @override
-  void onClose() {}
 }

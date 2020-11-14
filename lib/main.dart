@@ -7,8 +7,11 @@ import 'app/data/repository/user_repository.dart';
 import 'app/routes/app_pages.dart';
 import 'theme/app_theme.dart';
 
-Future<void> main() async {
-  await Get.putAsync(() => UserRepository().init());
+void main() {
+  print(int.parse('01:0C:CD:01:00:01'.replaceAll(':', ''), radix: 16));
+  print(int.parse('01:0C:CD:01:01:FF'.replaceAll(':', ''), radix: 16));
+  print(int.parse('8000'.replaceAll(':', ''), radix: 16));
+  print(int.parse('BFFF'.replaceAll(':', ''), radix: 16));
   AppApi.init();
   runApp(
     GetMaterialApp(

@@ -11,9 +11,11 @@ class DeviceGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: 100),
         for (int j = 0; j < 12; j++)
           Row(
             children: [
+              SizedBox(width: 100),
               for (int i = 0; i < 20; i++)
                 DragTarget<DraggableDevice>(
                   builder: (context, list, list2) {
@@ -21,7 +23,8 @@ class DeviceGrid extends StatelessWidget {
                       height: 100,
                       width: 100,
                       decoration: BoxDecoration(
-                        border: Border.all(width: 0.25, color: AppColors.grey.withOpacity(.1)),
+                        border: Border.all(
+                            width: 0.25, color: AppColors.grey.withOpacity(.1)),
                       ),
                     );
                   },
@@ -31,6 +34,7 @@ class DeviceGrid extends StatelessWidget {
                 ),
             ],
           ),
+        SizedBox(height: 1000),
       ],
     );
   }
