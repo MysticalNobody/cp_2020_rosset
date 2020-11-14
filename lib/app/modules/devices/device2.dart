@@ -17,90 +17,91 @@ class Device2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(6),
-      child: Material(
-        color: AppColors.white,
-        child: Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            border: Border.all(color: AppColors.accent),
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: Card(
+        elevation: 1,
+        child: Stack(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Obx(
+                  () => AnimatedCrossFade(
+                    crossFadeState:
+                        Get.find<HomeController>().isSimpleMode.value
+                            ? CrossFadeState.showFirst
+                            : CrossFadeState.showSecond,
+                    duration: 100.milliseconds,
+                    firstChild: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(dm.model.name),
+                      ],
+                    ),
+                    secondChild: Image.asset(
+                      'assets/images/commut.png',
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              top: 75,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Obx(
-                    () => AnimatedCrossFade(
-                      crossFadeState:
-                          Get.find<HomeController>().isSimpleMode.value
-                              ? CrossFadeState.showFirst
-                              : CrossFadeState.showSecond,
-                      duration: 100.milliseconds,
-                      firstChild: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(dm.model.name),
-                        ],
-                      ),
-                      secondChild: Image.asset(
-                        'assets/images/commut.png',
-                        fit: BoxFit.fitWidth,
+                  Spacer(flex: 3),
+                  for (int i = 0; i < 8; i++)
+                    Expanded(
+                      child: DeviceSlot(slot: dm.slots[i], size: 37),
+                    ),
+                  Spacer(flex: 2),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Row(
+                children: [
+                  SizedBox(width: 12),
+                  Tooltip(
+                    message: 'Промышленный коммутатор',
+                    child: Icon(
+                      EvaIcons.questionMarkCircle,
+                      color: Colors.black26,
+                    ),
+                  ),
+                  Spacer(),
+                  TextButton.icon(
+                    icon: Icon(
+                      EvaIcons.settings,
+                      color: AppColors.secondary,
+                    ),
+                    label: Text(
+                      'Настройка',
+                      style: TextStyle(
+                        color: AppColors.secondary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
+                    onPressed: () => Get.dialog(
+                      Dialog(child: SettingsView(dm)),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(EvaIcons.closeSquare),
+                    color: Colors.redAccent,
+                    onPressed: () =>
+                        Get.find<WorkspaceController>().deleteDevice(dm),
                   ),
                 ],
               ),
-              Positioned(
-                top: 75,
-                left: 0,
-                right: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Spacer(flex: 3),
-                    for (int i = 0; i < 8; i++)
-                      Expanded(
-                        child: DeviceSlot(slot: dm.slots[i], size: 37),
-                      ),
-                    Spacer(flex: 2),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Row(
-                  children: [
-                    Spacer(),
-                    TextButton.icon(
-                      icon: Icon(
-                        EvaIcons.settings,
-                        color: AppColors.secondary,
-                      ),
-                      label: Text(
-                        'Настройка',
-                        style: TextStyle(
-                          color: AppColors.secondary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onPressed: () => Get.dialog(
-                        Dialog(child: SettingsView(dm)),
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(EvaIcons.closeSquare),
-                      color: Colors.redAccent,
-                      onPressed: () =>
-                          Get.find<WorkspaceController>().deleteDevice(dm),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

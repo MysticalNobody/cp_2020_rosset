@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 import 'package:rosset_client/app/modules/pubsub_settings/controllers/settings_controller.dart';
 import 'package:rosset_client/theme/app_colors.dart';
+import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 
 class PubSubSettingsView extends StatelessWidget {
@@ -16,6 +17,29 @@ class PubSubSettingsView extends StatelessWidget {
         List<Widget> groups = [];
         int index = -1;
         int jindex = -1;
+        if ((controller.devices?.length ?? 0) < 2) {
+          return SizedBox(
+            width: Get.width > 1000 ? 1000 : Get.width * .9,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AppBar(
+                  title: Text('Подписки GOOSE-сообщений'),
+                  backgroundColor: AppColors.secondary,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Center(
+                    child: Text(
+                      'Для настройки подписок GOOSE-сообщений, необходимо, чтобы на рабочей области было больше одной РЗА',
+                      style: AppTextStyles.text,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
         for (final device in controller.devices) {
           index += 1;
           jindex = -1;
