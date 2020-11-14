@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/draggable_device.dart';
+import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/home/widgets/platform_draggable.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
@@ -51,6 +53,8 @@ class InstrumentCard extends StatelessWidget {
         );
         return PlatformDraggable<DraggableDevice>(
           data: DraggableDevice()..model = model,
+          onDraggableStart: () =>
+              Get.find<HomeController>().showInstruments.value = false,
           feedback: Container(
             width: constraints.maxWidth,
             height: 125,
