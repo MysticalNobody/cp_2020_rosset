@@ -35,11 +35,11 @@ class WorkspaceController extends GetxController {
     if (_data.device != null) {
       _data.device.x = i;
       _data.device.y = j;
+      hintModel = null;
       update();
     }
     if (_data.model == null) return;
     final data = _data.model;
-    debugPrint(['onDrop', i, j, data.name].toString());
     final dm = DroppedDeviceModel()
       ..id = DateTime.now().millisecondsSinceEpoch
       ..model = data
@@ -58,7 +58,6 @@ class WorkspaceController extends GetxController {
   }
 
   void leaveTarget(int i, int j) {
-    debugPrint(['leaveTarget', i, j].toString());
     hintModel = null;
     update();
   }
