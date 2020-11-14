@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rosset_client/app/data/model/question.dart';
 import 'package:rosset_client/app/modules/test_results/controllers/test_result_controller.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/answers.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/appbar.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/card.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/left_card.dart';
-import 'package:rosset_client/app/modules/test_results/widgets/option.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 
 class TestResultView extends GetView<TestResultController> {
@@ -31,7 +28,7 @@ class TestResultView extends GetView<TestResultController> {
               TestResultAppbar(
                 onBackTap: () => Get.toNamed(Routes.HOME),
               ),
-              SizedBox(height: Get.height * .05),
+              SizedBox(height: Get.height * .01),
               if (model.answers?.isEmpty ?? true)
                 CircularProgressIndicator()
               else
@@ -39,6 +36,7 @@ class TestResultView extends GetView<TestResultController> {
                   child: ListView(
                     padding: EdgeInsets.symmetric(
                       horizontal: Get.width * .025,
+                      vertical: Get.height * 0.04,
                     ),
                     children: [
                       Row(
