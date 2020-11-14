@@ -50,12 +50,15 @@ class TestsView extends GetView<TestsController> {
                 else
                   Column(
                     children: [
-                      Text(
-                        model.nowQuestion.title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 36,
-                          color: Color(0xFF303C74),
+                      Container(
+                        constraints: BoxConstraints(maxWidth: Get.width * .8),
+                        child: Text(
+                          model.nowQuestion.title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 36,
+                            color: Color(0xFF303C74),
+                          ),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -91,7 +94,7 @@ class TestsView extends GetView<TestsController> {
                   child: RaisedButton(
                     color: AppColors.secondary,
                     child: Text(
-                      'Следующий вопрос',
+                      model.isLastQuestion ? 'К результатам' : 'Следующий вопрос',
                       style: TextStyle(
                         color: AppColors.white,
                         fontSize: 16,

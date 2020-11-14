@@ -11,6 +11,7 @@ class TestsController extends GetxController {
 
   QuestionModel get nowQuestion => questions[nowQuestionIndex];
   int get answer => nowQuestion.answer - 1;
+  bool get isLastQuestion => (nowQuestionIndex + 1) == questions.length;
 
   int nowQuestionIndex = 0;
   int chosenOption;
