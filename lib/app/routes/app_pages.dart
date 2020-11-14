@@ -10,7 +10,7 @@ import 'package:rosset_client/app/modules/tests/views/tests_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.AUTH;
 
   static final routes = [
     GetPage(
