@@ -15,7 +15,7 @@ class HomeController extends GetxController {
       ..name = 'РЗА'
       ..width = 2
       ..height = 2
-      ..slotsCount = 2
+      ..slotsCount = 1
       ..settings = {'test': ''}
       ..widgetBuilder = (DroppedDeviceModel dm) => Device1(dm),
     DeviceModel()

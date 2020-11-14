@@ -57,8 +57,6 @@ class Device1 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       DeviceSlot(slot: dm.slots[0]),
-                      SizedBox(width: 12),
-                      DeviceSlot(slot: dm.slots[1]),
                     ],
                   ),
                 ],
