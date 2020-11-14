@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/device_link.dart';
 import 'package:rosset_client/app/data/model/device_slot.dart';
+import 'package:rosset_client/app/data/model/draggable_device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 
 class WorkspaceController extends GetxController {
@@ -22,23 +23,23 @@ class WorkspaceController extends GetxController {
     update();
   }
 
-  void getBaseOffset() {
-    final RenderBox rb = baseKey.currentContext.findRenderObject();
-    debugPrint(rb.localToGlobal(Offset.zero).toString());
-  }
-
-  bool enterTarget(int i, int j, DeviceModel data) {
-    debugPrint(['enterTarget', i, j, data.name].toString());
+  bool enterTarget(int i, int j, DraggableDevice data) {
     hintX = i;
     hintY = j;
-    hintModel = data;
-    // getBaseOffset();
+    hintModel = data.model ?? data.device.model;
     update();
     return true;
   }
 
-  void onDrop(int i, int j, DeviceModel data) {
-    debugPrint(['onDrop', i, j, data.name].toString());
+  void onDrop(int i, int j, DraggableDevice _data) {
+    if (_data.device != null) {
+      _data.device.x = i;
+      _data.device.y = j;
+      hintModel = null;
+      update();
+    }
+    if (_data.model == null) return;
+    final data = _data.model;
     final dm = DroppedDeviceModel()
       ..id = DateTime.now().millisecondsSinceEpoch
       ..model = data
@@ -57,26 +58,37 @@ class WorkspaceController extends GetxController {
   }
 
   void leaveTarget(int i, int j) {
-    debugPrint(['leaveTarget', i, j].toString());
     hintModel = null;
     update();
   }
 
   void onLinkDropped(DeviceSlotModel slot) {
-    if (slot.link == null) return;
-    final start = slot.link?.start;
-    final end = slot.link?.end;
-    start.link = null;
-    end.link = null;
+    removeLink(slot);
     update();
   }
 
   void onLinkEnd(DeviceSlotModel slot, DeviceSlotModel another) {
+    removeLink(slot);
+    removeLink(another);
     final link = DeviceLinkModel()
       ..start = another
       ..end = slot;
     another.link = link;
     slot.link = link;
+    update();
+  }
+
+  void removeLink(DeviceSlotModel slot) {
+    if (slot.link == null) return;
+    final start = slot.link?.start;
+    final end = slot.link?.end;
+    start?.link = null;
+    end?.link = null;
+  }
+
+  void deleteDevice(DroppedDeviceModel dm) {
+    for (final slot in dm.slots) removeLink(slot);
+    dropped.remove(dm);
     update();
   }
 }

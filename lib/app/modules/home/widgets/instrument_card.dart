@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rosset_client/app/data/model/device.dart';
+import 'package:rosset_client/app/data/model/draggable_device.dart';
+import 'package:rosset_client/app/modules/home/widgets/platform_draggable.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 
@@ -65,49 +67,26 @@ class InstrumentCard extends StatelessWidget {
             ),
           ),
         );
-        if (kIsWeb)
-          return Draggable<DeviceModel>(
-              data: model,
-              feedback: Container(
-                width: constraints.maxWidth,
-                height: 120,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: Material(
-                    color: AppColors.secondary.withOpacity(0.2),
-                    child: Center(
-                      child: Text(
-                        model.name,
-                        style: AppTextStyles.mediumLabel,
-                      ),
-                    ),
+        return PlatformDraggable<DraggableDevice>(
+          data: DraggableDevice()..model = model,
+          feedback: Container(
+            width: constraints.maxWidth,
+            height: 120,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Material(
+                color: AppColors.secondary.withOpacity(0.2),
+                child: Center(
+                  child: Text(
+                    model.name,
+                    style: AppTextStyles.mediumLabel,
                   ),
                 ),
               ),
-              maxSimultaneousDrags: 1,
-              child: child);
-        else
-          return LongPressDraggable<DeviceModel>(
-              data: model,
-              feedback: Container(
-                width: constraints.maxWidth,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: Material(
-                    color: AppColors.secondary.withOpacity(0.2),
-                    child: Center(
-                      child: Text(
-                        model.name,
-                        style: AppTextStyles.mediumLabel,
-                      ),
-                    ),
-                  ),
-                ),
-                height: 120,
-              ),
-              maxSimultaneousDrags: 1,
-              hapticFeedbackOnStart: true,
-              child: child);
+            ),
+          ),
+          child: child,
+        );
       },
     );
   }
