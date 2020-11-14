@@ -22,6 +22,7 @@ class WorkspaceView extends GetView<WorkspaceController> {
               minScale: 0.1,
               maxScale: 2,
               constrained: false,
+              transformationController: controller.gridController,
               child: Stack(
                 children: [
                   DeviceGrid(controller: controller),
