@@ -52,7 +52,8 @@ class Device2 extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () =>
+                          Get.find<WorkspaceController>().deleteDevice(dm),
                     ),
                     TextButton.icon(
                       icon: Icon(

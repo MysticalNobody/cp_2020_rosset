@@ -115,21 +115,27 @@ class HomeView extends GetView<HomeController> {
               Positioned(
                 top: 24,
                 right: 24,
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  margin: EdgeInsets.only(bottom: 40),
-                  child: RaisedButton(
-                    color: AppColors.secondary,
-                    child: Text(
-                      'Проверить',
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                child: Obx(
+                  () => AnimatedOpacity(
+                    opacity: controller.showInstruments.value ? 0 : 1,
+                    duration: 300.milliseconds,
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      margin: EdgeInsets.only(bottom: 40),
+                      child: RaisedButton(
+                        color: AppColors.secondary,
+                        child: Text(
+                          'Проверить',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        onPressed: () => Get.toNamed(Routes.TESTS),
                       ),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    onPressed: () => Get.toNamed(Routes.TESTS),
                   ),
                 ),
               )
