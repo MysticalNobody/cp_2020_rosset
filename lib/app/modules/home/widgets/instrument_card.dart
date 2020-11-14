@@ -50,7 +50,7 @@ class InstrumentCard extends StatelessWidget {
           data: DraggableDevice()..model = model,
           feedback: Container(
             width: constraints.maxWidth,
-            height: 120,
+            height: 125,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: Material(
@@ -58,7 +58,9 @@ class InstrumentCard extends StatelessWidget {
                 child: Center(
                   child: Text(
                     model.name,
-                    style: AppTextStyles.mediumLabel,
+                    style: AppTextStyles.mediumLabel.copyWith(
+                      color: AppColors.white,
+                    ),
                   ),
                 ),
               ),

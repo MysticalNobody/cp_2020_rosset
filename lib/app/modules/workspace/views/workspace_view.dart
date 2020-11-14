@@ -45,7 +45,9 @@ class WorkspaceView extends GetView<WorkspaceController> {
                               child: Center(
                                 child: Text(
                                   dropped.model.name,
-                                  style: AppTextStyles.mediumLabel,
+                                  style: AppTextStyles.mediumLabel.copyWith(
+                                    color: AppColors.white,
+                                  ),
                                 ),
                               ),
                             ),
