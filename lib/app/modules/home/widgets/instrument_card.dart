@@ -36,7 +36,7 @@ class InstrumentCard extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              'Терминал релейной защиты',
+              model.name,
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.normal,
