@@ -39,21 +39,15 @@ class DevicePanel extends StatelessWidget {
                 width: 300,
                 height: Get.height,
                 padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Stack(children: [
-                  Column(
+                child: SingleChildScrollView(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 28),
                       Row(
                         children: [
                           SizedBox(width: 56),
-                          Text(
-                            'Инструменты',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Color(0xFF303C74),
-                            ),
-                          ),
+                          Text('Инструменты', style: TextStyle(fontSize: 20, color: Color(0xFF303C74))),
                         ],
                       ),
                       SizedBox(height: 24),
@@ -89,7 +83,7 @@ class DevicePanel extends StatelessWidget {
                       ...devices.map((m) => InstrumentCard(model: m)).toList(),
                     ],
                   ),
-                ]),
+                ),
               ),
             ),
           ],
