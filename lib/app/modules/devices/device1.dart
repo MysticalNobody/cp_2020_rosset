@@ -85,7 +85,7 @@ class Device1 extends StatelessWidget {
               Row(
                 children: [
                   Spacer(flex: 3),
-                  Expanded(
+                  Expanded(flex: 5,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -118,7 +118,6 @@ class Device1 extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(flex: 4),
                 ],
               ),
             ],
