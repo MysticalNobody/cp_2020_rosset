@@ -53,7 +53,7 @@ https://cp.itis.team/
   
   
 
-## Установка
+## Сборка
 
 ### Android
 
