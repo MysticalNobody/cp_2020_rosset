@@ -9,7 +9,7 @@ class TestsController extends GetxController {
 
   bool get isBusy => _isBusy.value;
   QuestionModel get nowQuestion => questions[nowQuestionIndex.value];
-  int get chosenOption => _chosenOption.value;
+  bool get isRightAnswer => _chosenOption.value == null ? null : nowQuestion.answer == _chosenOption.value;
 
   RxBool _isBusy = false.obs;
   RxInt nowQuestionIndex = 0.obs;

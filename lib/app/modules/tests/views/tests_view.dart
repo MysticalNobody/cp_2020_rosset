@@ -59,12 +59,8 @@ class TestsView extends GetView<TestsController> {
                         4,
                         (index) {
                           OptionType type = OptionType.normal;
-                          if (index == controller.nowQuestion.answer && controller.chosenOption != null) {
-                            if (controller.nowQuestion.answer == controller.chosenOption) {
-                              type = OptionType.right;
-                            } else {
-                              type = OptionType.error;
-                            }
+                          if (index == controller.nowQuestion.answer && controller.isRightAnswer != null) {
+                            type = controller.isRightAnswer ? OptionType.right : OptionType.error;
                           }
                           return OptionButton(
                             onTap: () => controller.answer(index),
