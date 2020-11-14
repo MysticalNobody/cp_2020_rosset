@@ -38,50 +38,53 @@ class DevicePanel extends StatelessWidget {
                 color: AppColors.white,
                 width: 300,
                 height: Get.height,
-                padding: EdgeInsets.symmetric(horizontal: 24),
                 child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 28),
-                      Row(
-                        children: [
-                          SizedBox(width: 56),
-                          Text('Инструменты', style: TextStyle(fontSize: 20, color: Color(0xFF303C74))),
-                        ],
-                      ),
-                      SizedBox(height: 24),
-                      TextFormField(
-                        onChanged: onSearchChange,
-                        decoration: InputDecoration(
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(6),
-                            borderSide: BorderSide(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 28),
+                        Row(
+                          children: [
+                            SizedBox(width: 56),
+                            Text('Инструменты', style: TextStyle(fontSize: 20, color: Color(0xFF303C74))),
+                          ],
+                        ),
+                        SizedBox(height: 24),
+                        TextFormField(
+                          onChanged: onSearchChange,
+                          decoration: InputDecoration(
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6),
+                              borderSide: BorderSide(
+                                color: AppColors.secondary,
+                                width: .5,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6),
+                              borderSide: BorderSide.none,
+                            ),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 6),
+                            hintText: 'Поиск',
+                            hintStyle: AppTextStyles.text.copyWith(
+                              fontSize: 16,
+                              color: AppColors.text.withOpacity(.5),
+                            ),
+                            prefixIcon: Icon(
+                              EvaIcons.searchOutline,
                               color: AppColors.secondary,
-                              width: .5,
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(6),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 6),
-                          hintText: 'Поиск',
-                          hintStyle: AppTextStyles.text.copyWith(
-                            fontSize: 16,
-                            color: AppColors.text.withOpacity(.5),
-                          ),
-                          prefixIcon: Icon(
-                            EvaIcons.searchOutline,
-                            color: AppColors.secondary,
-                          ),
+                          style: AppTextStyles.text.copyWith(fontSize: 16),
                         ),
-                        style: AppTextStyles.text.copyWith(fontSize: 16),
-                      ),
-                      SizedBox(height: 30),
-                      ...devices.map((m) => InstrumentCard(model: m)).toList(),
-                    ],
+                        SizedBox(height: 30),
+                        ...devices.map((m) => InstrumentCard(model: m)).toList(),
+                        SizedBox(height: 30),
+                      ],
+                    ),
                   ),
                 ),
               ),
