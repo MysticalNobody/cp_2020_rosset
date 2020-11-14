@@ -18,7 +18,7 @@ class InstrumentCard extends StatelessWidget {
           children: [
             Card(
               color: AppColors.white,
-              elevation: 5,
+              elevation: 4,
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: Column(
