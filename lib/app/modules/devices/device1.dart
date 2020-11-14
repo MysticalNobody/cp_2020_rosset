@@ -24,6 +24,7 @@ class Device1 extends StatelessWidget {
           ),
           Text('Прибор 2 x 2', style: TextStyle(color: Colors.white)),
           DeviceSlot(slot: dm.slots[0]),
+          DeviceSlot(slot: dm.slots[1]),
         ],
       ),
     );

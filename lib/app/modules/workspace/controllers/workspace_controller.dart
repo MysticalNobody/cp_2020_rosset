@@ -10,17 +10,15 @@ class WorkspaceController extends GetxController {
   int hintX, hintY;
   DeviceModel hintModel;
   List<DroppedDeviceModel> dropped = [];
-  bool isDragging = false;
   GlobalKey baseKey = GlobalKey();
 
-  void onDragStarted() {
-    isDragging = true;
-    update();
-  }
-
-  void onDragEnd() {
-    isDragging = false;
-    update();
+  TransformationController gridController;
+  @override
+  void onInit() {
+    super.onInit();
+    final v = Matrix4.identity();
+    v.scale(0.8);
+    gridController = TransformationController(v);
   }
 
   bool enterTarget(int i, int j, DraggableDevice data) {
