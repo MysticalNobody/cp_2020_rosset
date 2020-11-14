@@ -12,13 +12,13 @@ class HomeController extends GetxController {
 
   List<DeviceModel> _models = [
     DeviceModel()
-      ..name = 'Прибор 2x2'
+      ..name = 'РЗА'
       ..width = 2
       ..height = 2
       ..slotsCount = 2
       ..widgetBuilder = (DroppedDeviceModel dm) => Device1(dm),
     DeviceModel()
-      ..name = 'Прибор 4x2'
+      ..name = 'Промышленный коммуникатор'
       ..width = 4
       ..height = 2
       ..slotsCount = 5

@@ -19,18 +19,21 @@ class InstrumentCard extends StatelessWidget {
             Card(
               color: AppColors.white,
               elevation: 4,
-              child: Padding(
-                padding: EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Image.network(
-                      'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
-                      height: 100,
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(width: 12),
-                  ],
+              child: TextButton(
+                onPressed: () {},
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Image.network(
+                        'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
+                        height: 100,
+                        fit: BoxFit.contain,
+                      ),
+                      SizedBox(width: 12),
+                    ],
+                  ),
                 ),
               ),
             ),
