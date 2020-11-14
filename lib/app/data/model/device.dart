@@ -4,7 +4,6 @@ import 'dropped_device.dart';
 
 enum DeviceType { ied, commutator }
 enum SettingsFieldType {
-  text,
   gcb,
   goose,
   mac,
@@ -14,8 +13,8 @@ enum SettingsFieldType {
   maxTime,
   ip1,
   ip2,
-  mac1,
-  mac2,
+  masc1,
+  masc2,
 }
 
 class DeviceModel {

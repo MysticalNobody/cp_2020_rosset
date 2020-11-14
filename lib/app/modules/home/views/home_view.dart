@@ -52,8 +52,7 @@ class HomeView extends GetView<HomeController> {
                 left: 12,
                 child: DescribedFeatureOverlay(
                   title: Text('Выбор инструмента'),
-                  description: Text(
-                      'Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
+                  description: Text('Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
                   backgroundColor: AppColors.secondary,
                   enablePulsingAnimation: false,
                   featureId: 'device',
@@ -68,8 +67,7 @@ class HomeView extends GetView<HomeController> {
                 left: 12,
                 child: DescribedFeatureOverlay(
                   title: Text('Выбор инструмента'),
-                  description: Text(
-                      'Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
+                  description: Text('Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
                   backgroundColor: AppColors.secondary,
                   enablePulsingAnimation: false,
                   featureId: 'device',
@@ -120,9 +118,7 @@ class HomeView extends GetView<HomeController> {
                 right: 24,
                 child: Obx(
                   () => AnimatedOpacity(
-                    opacity: controller.showInstruments.value && Get.width < 600
-                        ? 0
-                        : 1,
+                    opacity: controller.showInstruments.value && Get.width < 600 ? 0 : 1,
                     duration: 300.milliseconds,
                     child: Row(
                       children: [
@@ -179,7 +175,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                               padding: EdgeInsets.symmetric(horizontal: 40),
-                              onPressed: () => Get.toNamed(Routes.TESTS),
+                              onPressed: controller.startCheck,
                             ),
                           ),
                       ],
@@ -193,22 +189,15 @@ class HomeView extends GetView<HomeController> {
                   right: 24,
                   child: Obx(
                     () => AnimatedOpacity(
-                      opacity: controller.showSimpleModeButton.value &&
-                              Get.width < 600
-                          ? 0
-                          : 1,
+                      opacity: controller.showSimpleModeButton.value && Get.width < 600 ? 0 : 1,
                       duration: 300.milliseconds,
                       child: Container(
                         alignment: Alignment.bottomCenter,
                         child: RaisedButton.icon(
                           color: AppColors.secondary,
-                          icon: Icon(controller.isSimpleMode.value
-                              ? EvaIcons.eye
-                              : EvaIcons.eyeOff),
+                          icon: Icon(controller.isSimpleMode.value ? EvaIcons.eye : EvaIcons.eyeOff),
                           label: Text(
-                            controller.isSimpleMode.value
-                                ? 'Включить подробный вид'
-                                : 'Выключить подробный вид',
+                            controller.isSimpleMode.value ? 'Включить подробный вид' : 'Выключить подробный вид',
                             style: TextStyle(
                               color: AppColors.white,
                               fontSize: 14,
@@ -227,10 +216,7 @@ class HomeView extends GetView<HomeController> {
                   right: 24,
                   child: Obx(
                     () => AnimatedOpacity(
-                      opacity: controller.showSimpleModeButton.value &&
-                              Get.width < 600
-                          ? 0
-                          : 1,
+                      opacity: controller.showSimpleModeButton.value && Get.width < 600 ? 0 : 1,
                       duration: 300.milliseconds,
                       child: Row(
                         children: [
@@ -259,9 +245,7 @@ class HomeView extends GetView<HomeController> {
                             heroTag: 'on_off_visibility',
                             backgroundColor: AppColors.white,
                             child: Icon(
-                              controller.isSimpleMode.value
-                                  ? EvaIcons.eye
-                                  : EvaIcons.eyeOff,
+                              controller.isSimpleMode.value ? EvaIcons.eye : EvaIcons.eyeOff,
                               color: AppColors.secondary,
                             ),
                             onPressed: controller.toggleSimpleMode,
@@ -277,10 +261,7 @@ class HomeView extends GetView<HomeController> {
                   right: 24,
                   child: Obx(
                     () => AnimatedOpacity(
-                      opacity:
-                          controller.showGooseButton.value && Get.width < 600
-                              ? 0
-                              : 1,
+                      opacity: controller.showGooseButton.value && Get.width < 600 ? 0 : 1,
                       duration: 300.milliseconds,
                       child: Container(
                         alignment: Alignment.bottomCenter,
@@ -309,10 +290,7 @@ class HomeView extends GetView<HomeController> {
                   left: 24,
                   child: Obx(
                     () => AnimatedOpacity(
-                      opacity:
-                          controller.showGooseButton.value && Get.width < 600
-                              ? 0
-                              : 1,
+                      opacity: controller.showGooseButton.value && Get.width < 600 ? 0 : 1,
                       duration: 300.milliseconds,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
