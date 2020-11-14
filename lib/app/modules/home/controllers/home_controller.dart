@@ -8,6 +8,7 @@ import 'package:supercharged/supercharged.dart';
 class HomeController extends GetxController {
   RxBool showInstruments = true.obs;
   RxBool showSimpleModeButton = true.obs;
+  RxBool showGooseButton = true.obs;
 
   RxBool isSimpleMode = false.obs;
 
@@ -15,7 +16,7 @@ class HomeController extends GetxController {
 
   List<DeviceModel> _models = [
     DeviceModel()
-      ..type = DeviceType.rza
+      ..type = DeviceType.ied
       ..name = 'РЗА'
       ..previewImage = 'assets/images/front.png'
       ..width = 4
@@ -39,7 +40,12 @@ class HomeController extends GetxController {
       ..height = 2
       ..slotsCount = 8
       ..settings = [
-        ['test', SettingsFieldType.text]
+        ['IED 1'],
+        ['IP адрес', SettingsFieldType.ip1],
+        ['Маска подсети', SettingsFieldType.mac1],
+        ['IED 2'],
+        ['IP адрес', SettingsFieldType.ip2],
+        ['Маска подсети', SettingsFieldType.mac2],
       ]
       ..widgetBuilder = (DroppedDeviceModel dm) => Device2(dm),
   ];
@@ -47,6 +53,7 @@ class HomeController extends GetxController {
   void toggleInstruments() {
     showInstruments.value = !showInstruments.value;
     showSimpleModeButton.value = !showSimpleModeButton.value;
+    showGooseButton.value = !showGooseButton.value;
   }
 
   void toggleSimpleMode() {

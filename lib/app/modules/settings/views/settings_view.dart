@@ -25,18 +25,28 @@ class SettingsView extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   for (int i = 0; i < device.model.settings.length; i += 1)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            labelText: device.model.settings[i][0]),
-                        controller: controller.controllers.length > 0
-                            ? controller?.controllers[i]
-                            : TextEditingController(),
+                    if (device.model.settings[i].length == 2)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              labelText: device.model.settings[i][0]),
+                          controller: controller.controllers.length > 0
+                              ? controller?.controllers[i]
+                              : TextEditingController(),
+                        ),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: Text(
+                          device.model.settings[i][0],
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
                   SizedBox(height: 24),
                   SizedBox(
                     width: double.infinity,

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
 import 'package:rosset_client/app/modules/home/widgets/device_panel.dart';
+import 'package:rosset_client/app/modules/pubsub_settings/views/settings_view.dart';
 import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -165,6 +166,35 @@ class HomeView extends GetView<HomeController> {
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         onPressed: controller.toggleSimpleMode,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 100,
+                right: 24,
+                child: Obx(
+                  () => AnimatedOpacity(
+                    opacity: controller.showGooseButton.value && Get.width < 600
+                        ? 0
+                        : 1,
+                    duration: 300.milliseconds,
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: RaisedButton(
+                        color: AppColors.secondary,
+                        child: Text(
+                          'Подписки GOOSE-сообщений',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        onPressed: () => Get.dialog(
+                          Dialog(child: PubSubSettingsView()),
+                        ),
                       ),
                     ),
                   ),
