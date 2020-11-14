@@ -6,6 +6,7 @@ import 'package:rosset_client/app/modules/auth/controllers/auth_controller.dart'
 import 'package:rosset_client/app/modules/challenges/controllers/challenges_controller.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/card.dart';
 import 'package:rosset_client/app/modules/tests/widgets/appbar.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/get_busy_mixin.dart';
@@ -113,7 +114,7 @@ class ChallengesView extends GetView<ChallengesController> {
                       Card(
                         elevation: 2,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () => Get.toNamed(Routes.HOME),
                           child: Padding(
                             padding: EdgeInsets.all(24),
                             child: Text(
