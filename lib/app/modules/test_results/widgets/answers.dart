@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/answer.dart';
@@ -18,6 +19,7 @@ class AnswersWidget extends StatelessWidget {
         answers.length,
         (qIndex) {
           final int userAnswer = answers[qIndex].userAnswer;
+          final int seconds = answers[qIndex].seconds;
           final QuestionModel question = answers[qIndex].question;
           return Card(
             margin: EdgeInsets.symmetric(vertical: 10),
@@ -34,13 +36,33 @@ class AnswersWidget extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
-                    child: Text(
-                      question.title,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.text,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            question.title,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.text,
+                            ),
+                          ),
+                        ),
+                        if (seconds + 30 > 45)
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: 4,
+                              left: 20,
+                            ),
+                            child: Icon(
+                              EvaIcons.clockOutline,
+                              color: Color(0xFFf6A421),
+                              size: 18,
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 12),
