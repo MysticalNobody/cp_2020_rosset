@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/draggable_device.dart';
+import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/home/widgets/platform_draggable.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_grid.dart';
@@ -25,6 +26,21 @@ class WorkspaceView extends GetView<WorkspaceController> {
               transformationController: controller.gridController,
               child: Stack(
                 children: [
+                  Positioned.fill(
+                    child: Obx(
+                      () => AnimatedOpacity(
+                        opacity: Get.find<HomeController>().isSimpleMode.value
+                            ? 0
+                            : 0.4,
+                        duration: 300.milliseconds,
+                        child: Image.asset(
+                          'assets/images/bg.png',
+                          fit: BoxFit.contain,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
+                    ),
+                  ),
                   DeviceGrid(controller: controller),
                   for (final dropped in controller.dropped)
                     Positioned(

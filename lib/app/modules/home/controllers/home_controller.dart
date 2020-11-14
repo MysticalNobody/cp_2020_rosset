@@ -7,28 +7,37 @@ import 'package:supercharged/supercharged.dart';
 
 class HomeController extends GetxController {
   RxBool showInstruments = true.obs;
+  RxBool showSimpleModeButton = true.obs;
+
+  RxBool isSimpleMode = false.obs;
 
   List<DeviceModel> models = [];
 
   List<DeviceModel> _models = [
     DeviceModel()
       ..name = 'РЗА'
-      ..width = 2
+      ..width = 4
       ..height = 2
-      ..slotsCount = 1
+      ..slotsCount = 2
       ..settings = {'test': ''}
       ..widgetBuilder = (DroppedDeviceModel dm) => Device1(dm),
     DeviceModel()
       ..name = 'Промышленный коммутатор'
-      ..width = 4
+      ..width = 6
       ..height = 2
-      ..slotsCount = 5
+      ..slotsCount = 8
       ..settings = {'test': ''}
       ..widgetBuilder = (DroppedDeviceModel dm) => Device2(dm),
   ];
 
   void toggleInstruments() {
     showInstruments.value = !showInstruments.value;
+    showSimpleModeButton.value = !showSimpleModeButton.value;
+  }
+
+  void toggleSimpleMode() {
+    isSimpleMode.value = !isSimpleMode.value;
+    update();
   }
 
   void search(String value) {
