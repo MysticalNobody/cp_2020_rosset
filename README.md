@@ -1,8 +1,8 @@
 # Цифровой прорыв 2020. Кейс Россети
 
-  
 
-  
+
+
 
 ## Общая информация
 
@@ -11,7 +11,7 @@
 В проекте реализована основная функциональность, кроме этого реализована система аналитики, а также админ-панель для управления тестами. 
 Сделаны все валидации, вёрстка адаптирована под все современные экраны.
 
-  
+
 
 Минимальные версии ОС:
 
@@ -24,7 +24,7 @@ IOS - **8**
 -   Safari (mobile & desktop)
 -   Edge (mobile & desktop)
 -   Firefox (desktop)
-  
+
 
 ## Дополнительно
 
@@ -36,22 +36,22 @@ IOS - **8**
 Админ-панель:
 
 [https://github.com/MysticalNobody/cp_2020_rosset_admin](https://github.com/MysticalNobody/cp_2020_rosset_admin)
-  
+
 
 ### Релиз:
 
-  
+
 
 Скачать APK (Android)
 
-https://static.itis.team/cp.apk
+https://tod.itis.team/android.apk
 
 WEB-версия
 
-https://cp.itis.team/
+https://tod.itis.team/
 
-  
-  
+
+
 
 ## Сборка
 
@@ -65,7 +65,7 @@ https://flutter.dev/docs/get-started/editor?tab=vscode
 
 После базовой настройки для запуска необходимо выполнить следующие команды(для Android):
 
-  
+
 
 > cd *project dir*
 
@@ -77,15 +77,15 @@ https://flutter.dev/docs/get-started/editor?tab=vscode
 
 > flutter build apk --release
 
-  
+
 
 https://flutter.dev/docs/deployment/android
 
-  
+
 
 ###  IOS:
 
-  
+
 
 > cd *project dir*
 
@@ -95,7 +95,7 @@ https://flutter.dev/docs/deployment/android
 
 Дальше запускать проект в Xcode
 
-  
+
 
 https://flutter.dev/docs/deployment/ios
 
@@ -103,6 +103,10 @@ https://flutter.dev/docs/deployment/ios
 ###  WEB:
 
 > flutter channel beta
+
+> flutter upgrade
+
+> flutter config --enable-web
 
 > cd *project dir*
 

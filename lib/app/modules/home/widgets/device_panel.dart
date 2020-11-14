@@ -86,23 +86,6 @@ class DevicePanel extends StatelessWidget {
                       ...devices.map((m) => InstrumentCard(model: m)).toList(),
                     ],
                   ),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    margin: EdgeInsets.only(bottom: 40),
-                    child: RaisedButton(
-                      color: AppColors.secondary,
-                      child: Text(
-                        'Проверить',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      onPressed: () => Get.toNamed(Routes.TESTS),
-                    ),
-                  ),
                 ]),
               ),
             ),

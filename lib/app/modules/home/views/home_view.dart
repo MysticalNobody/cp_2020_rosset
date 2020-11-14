@@ -5,6 +5,7 @@ import 'package:rosset_client/app/modules/home/controllers/home_controller.dart'
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
 import 'package:rosset_client/app/modules/home/widgets/device_panel.dart';
 import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
@@ -108,6 +109,27 @@ class HomeView extends GetView<HomeController> {
                       onPressed: controller.toggleInstruments,
                       child: AnimatedUpDownicon(),
                     ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 24,
+                right: 24,
+                child: Container(
+                  alignment: Alignment.bottomCenter,
+                  margin: EdgeInsets.only(bottom: 40),
+                  child: RaisedButton(
+                    color: AppColors.secondary,
+                    child: Text(
+                      'Проверить',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    onPressed: () => Get.toNamed(Routes.TESTS),
                   ),
                 ),
               )
