@@ -7,7 +7,6 @@ import 'package:rosset_client/app/modules/home/controllers/home_controller.dart'
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:rosset_client/theme/app_text_styles.dart';
 
 //2x2
 class Device1 extends StatelessWidget {
@@ -24,9 +23,7 @@ class Device1 extends StatelessWidget {
           children: [
             Obx(
               () => AnimatedCrossFade(
-                crossFadeState: isSimple.value
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
+                crossFadeState: isSimple.value ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                 duration: 100.milliseconds,
                 firstChild: Row(children: []),
                 secondChild: Row(
@@ -85,8 +82,7 @@ class Device1 extends StatelessWidget {
                     IconButton(
                       icon: Icon(EvaIcons.closeSquare),
                       color: Colors.redAccent,
-                      onPressed: () =>
-                          Get.find<WorkspaceController>().deleteDevice(dm),
+                      onPressed: () => Get.find<WorkspaceController>().deleteDevice(dm),
                     ),
                   ],
                 ),
@@ -109,8 +105,7 @@ class Device1 extends StatelessWidget {
                               () => !isSimple.value
                                   ? SizedBox()
                                   : Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 12.0),
+                                      padding: const EdgeInsets.only(left: 12.0),
                                       child: Text('Порт 71'),
                                     ),
                             ),
@@ -125,8 +120,7 @@ class Device1 extends StatelessWidget {
                               () => !isSimple.value
                                   ? SizedBox()
                                   : Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 12.0),
+                                      padding: const EdgeInsets.only(left: 12.0),
                                       child: Text('Порт 72'),
                                     ),
                             ),

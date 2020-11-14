@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -17,8 +16,7 @@ class InfoDialog extends StatelessWidget {
             children: [
               Text(
                 'Настройка IED на прием-передачу GOOSE-сообщений',
-                style: AppTextStyles.headLine4
-                    .copyWith(color: AppColors.secondary),
+                style: AppTextStyles.headLine4.copyWith(color: AppColors.secondary),
               ),
               SizedBox(height: 24),
               Text(
@@ -32,8 +30,7 @@ class InfoDialog extends StatelessWidget {
                   onPressed: Get.back,
                   child: Text(
                     'Закрыть',
-                    style: AppTextStyles.button
-                        .copyWith(color: AppColors.secondary),
+                    style: AppTextStyles.button.copyWith(color: AppColors.secondary),
                   ),
                 ),
               ),

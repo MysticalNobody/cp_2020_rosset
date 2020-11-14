@@ -6,6 +6,7 @@ import 'package:rosset_client/app/data/model/answer.dart';
 import 'package:rosset_client/app/data/model/question.dart';
 import 'package:rosset_client/app/data/repository/test_repository.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/card.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 
 class TestResultController extends GetxController {
   final TestRepository testRepository = Get.find<TestRepository>();
@@ -40,6 +41,11 @@ class TestResultController extends GetxController {
     }
     calculateData();
     update();
+  }
+
+  void onClosedTap() {
+    testRepository.clear();
+    Get.toNamed(Routes.HOME);
   }
 
   void calculateData() {

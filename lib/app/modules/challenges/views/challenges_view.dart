@@ -1,11 +1,6 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
-import 'package:rosset_client/app/modules/auth/controllers/auth_controller.dart';
 import 'package:rosset_client/app/modules/challenges/controllers/challenges_controller.dart';
-import 'package:rosset_client/app/modules/test_results/widgets/card.dart';
-import 'package:rosset_client/app/modules/tests/widgets/appbar.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
@@ -104,13 +99,10 @@ class ChallengesView extends GetView<ChallengesController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Задания',
-                            style: AppTextStyles.headLine3
-                                .copyWith(color: AppColors.secondary)),
+                        Text('Задания', style: AppTextStyles.headLine3.copyWith(color: AppColors.secondary)),
                         SizedBox(height: 12),
                         Text('Выберите задание из списка:',
-                            style: AppTextStyles.secondary.copyWith(
-                                color: AppColors.grey.withOpacity(.5))),
+                            style: AppTextStyles.secondary.copyWith(color: AppColors.grey.withOpacity(.5))),
                         SizedBox(height: 24),
                         Card(
                           elevation: 2,

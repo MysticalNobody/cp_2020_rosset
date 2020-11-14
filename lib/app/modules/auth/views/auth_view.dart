@@ -1,9 +1,7 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/auth/controllers/auth_controller.dart';
-import 'package:rosset_client/app/modules/tests/widgets/appbar.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/get_busy_mixin.dart';
@@ -103,21 +101,16 @@ class AuthView extends GetView<AuthController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Авторизация',
-                              style: AppTextStyles.headLine3
-                                  .copyWith(color: AppColors.secondary)),
+                          Text('Авторизация', style: AppTextStyles.headLine3.copyWith(color: AppColors.secondary)),
                           SizedBox(height: 24),
                           TextFormField(
                             decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 12),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 12),
                               labelText: 'ФИО',
                               labelStyle: AppTextStyles.mediumLabel,
                             ),
                             controller: controller.loginController,
-                            validator: ValidationBuilder()
-                                .minLength(1, 'Необходимо ввести ФИО')
-                                .build(),
+                            validator: ValidationBuilder().minLength(1, 'Необходимо ввести ФИО').build(),
                             focusNode: controller.loginFocusNode,
                             keyboardType: TextInputType.name,
                             textCapitalization: TextCapitalization.none,
@@ -125,14 +118,11 @@ class AuthView extends GetView<AuthController> {
                           SizedBox(height: 24),
                           TextFormField(
                             decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 12),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 12),
                               labelText: 'Номер группы',
                               labelStyle: AppTextStyles.mediumLabel,
                             ),
-                            validator: ValidationBuilder()
-                                .minLength(1, 'Необходимо ввести Номер группы')
-                                .build(),
+                            validator: ValidationBuilder().minLength(1, 'Необходимо ввести Номер группы').build(),
                             controller: controller.passwordController,
                             focusNode: controller.passwordFocusNode,
                           ),
