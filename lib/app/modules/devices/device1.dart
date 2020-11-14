@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rosset_client/app/data/model/device_link.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 

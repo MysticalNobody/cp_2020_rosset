@@ -11,7 +11,6 @@ class DeviceGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(key: controller.baseKey),
         for (int j = 0; j < 20; j++)
           Row(
             children: [

@@ -3,7 +3,6 @@ import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 import 'package:rosset_client/app/modules/devices/device1.dart';
 import 'package:rosset_client/app/modules/devices/device2.dart';
-import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 
 class HomeController extends GetxController {
   RxBool showInstruments = true.obs;

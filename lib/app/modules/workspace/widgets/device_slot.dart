@@ -10,7 +10,6 @@ class DeviceSlot extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<WorkspaceController>(
       builder: (_) => DragTarget<DeviceSlotModel>(
-        key: slot.key,
         builder: (context, list, list2) {
           return Container(
             height: 50,
@@ -36,6 +35,8 @@ class DeviceSlot extends StatelessWidget {
                 height: slot.link != null ? 25 : 40,
                 color: (slot.link != null ? Colors.black : Colors.grey)
                     .withOpacity(0.3),
+                alignment: Alignment.center,
+                child: SizedBox.shrink(key: slot.key),
               ),
             ),
           );
