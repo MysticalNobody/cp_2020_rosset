@@ -65,7 +65,8 @@ class TestsView extends GetView<TestsController> {
                       Text(
                         'Вопрос ${model.nowQuestionIndex + 1} из ${model.questions.length}',
                         textAlign: TextAlign.center,
-                        style: AppTextStyles.secondary.copyWith(color: Color(0xFF9096B5)),
+                        style: AppTextStyles.secondary
+                            .copyWith(color: Color(0xFF9096B5)),
                       ),
                       SizedBox(height: 40),
                       ...List.generate(
@@ -76,12 +77,15 @@ class TestsView extends GetView<TestsController> {
                             if (index == model.answer) {
                               type = OptionType.right;
                             }
-                            if (index == model.chosenOption && model.answer != model.chosenOption) {
+                            if (index == model.chosenOption &&
+                                model.answer != model.chosenOption) {
                               type = OptionType.error;
                             }
                           }
                           return OptionButton(
-                            onTap: () => model.chosenOption != null ? null : model.toAnswer(index),
+                            onTap: () => model.chosenOption != null
+                                ? null
+                                : model.toAnswer(index),
                             text: model.nowQuestion.options[index],
                             type: type,
                           );
@@ -89,20 +93,18 @@ class TestsView extends GetView<TestsController> {
                       ),
                     ],
                   ),
-                Container(
-                  margin: EdgeInsets.only(left: 32),
-                  child: RaisedButton(
-                    color: AppColors.secondary,
-                    child: Text(
-                      model.isLastQuestion ? 'К результатам' : 'Следующий вопрос',
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                RaisedButton(
+                  color: AppColors.secondary,
+                  child: Text(
+                    model.isLastQuestion ? 'К результатам' : 'Следующий вопрос',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                    onPressed: model.chosenOption == null ? null : model.nextQuestion,
                   ),
+                  onPressed:
+                      model.chosenOption == null ? null : model.nextQuestion,
                 ),
                 Container(),
                 Container(),
