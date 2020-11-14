@@ -32,12 +32,16 @@ class Device1 extends StatelessWidget {
                 secondChild: Row(
                   children: [
                     Expanded(
-                      child: Image.asset('assets/images/left.png',
-                          fit: BoxFit.fitHeight),
+                      child: Image.asset(
+                        'assets/images/left.png',
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                     Expanded(
-                      child: Image.asset('assets/images/front.png',
-                          fit: BoxFit.fitHeight),
+                      child: Image.asset(
+                        'assets/images/front.png',
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                   ],
                 ),
@@ -52,7 +56,7 @@ class Device1 extends StatelessWidget {
                     SizedBox(width: 12),
                     Tooltip(
                       message:
-                          'Терминал релейной защиты.\n\nЕго настройка занимает в 3 раза \nменьше времени, чем обычного.\n\nУстранение неполадок не требует \nприсутствия человека и решается \nво многих случаях дистанционно',
+                          'Терминал релейной защиты\n\nЕго настройка занимает в 3 раза \nменьше времени, чем обычного.\n\nУстранение неполадок не требует \nприсутствия человека и решается \nво многих случаях дистанционно',
                       child: Icon(
                         EvaIcons.questionMarkCircle,
                         color: Colors.black26,

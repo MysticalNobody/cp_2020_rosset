@@ -33,10 +33,6 @@ IOS - **8**
 
 [https://github.com/daniilsv/cp_2020_rosset_back](https://github.com/daniilsv/cp_2020_rosset_back)
 
-Админ-панель:
-
-[https://github.com/MysticalNobody/cp_2020_rosset_admin](https://github.com/MysticalNobody/cp_2020_rosset_admin)
-
 
 ### Релиз:
 

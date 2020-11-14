@@ -52,8 +52,7 @@ class HomeView extends GetView<HomeController> {
                 left: 12,
                 child: DescribedFeatureOverlay(
                   title: Text('Выбор инструмента'),
-                  description: Text(
-                      'Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
+                  description: Text('Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
                   backgroundColor: AppColors.secondary,
                   enablePulsingAnimation: false,
                   featureId: 'device',
@@ -68,8 +67,7 @@ class HomeView extends GetView<HomeController> {
                 left: 12,
                 child: DescribedFeatureOverlay(
                   title: Text('Выбор инструмента'),
-                  description: Text(
-                      'Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
+                  description: Text('Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
                   backgroundColor: AppColors.secondary,
                   enablePulsingAnimation: false,
                   featureId: 'device',
@@ -120,132 +118,214 @@ class HomeView extends GetView<HomeController> {
                 right: 24,
                 child: Obx(
                   () => AnimatedOpacity(
-                    opacity: controller.showInstruments.value && Get.width < 600
-                        ? 0
-                        : 1,
+                    opacity: controller.showInstruments.value && Get.width < 600 ? 0 : 1,
                     duration: 300.milliseconds,
                     child: Row(
                       children: [
-                        Container(
-                          alignment: Alignment.bottomCenter,
-                          margin: EdgeInsets.only(right: 12),
-                          child: RaisedButton.icon(
-                            color: AppColors.secondary,
-                            icon: Icon(EvaIcons.questionMarkCircle),
-                            label: Text(
-                              'Инструкция',
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                        if (Get.width > 600)
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            margin: EdgeInsets.only(right: 12),
+                            child: RaisedButton.icon(
+                              color: AppColors.secondary,
+                              icon: Icon(EvaIcons.questionMarkCircle),
+                              label: Text(
+                                'Инструкция',
+                                style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                              padding: EdgeInsets.symmetric(horizontal: 40),
+                              onPressed: () => Get.toNamed(Routes.TESTS),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 40),
-                            onPressed: () => Get.toNamed(Routes.TESTS),
                           ),
-                        ),
-                        Container(
-                          alignment: Alignment.bottomCenter,
-                          margin: EdgeInsets.only(right: 12),
-                          child: RaisedButton.icon(
-                            color: AppColors.secondary,
-                            icon: Icon(EvaIcons.info),
-                            label: Text(
-                              'Информация о задании',
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                        if (Get.width > 600)
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            margin: EdgeInsets.only(right: 12),
+                            child: RaisedButton.icon(
+                              color: AppColors.secondary,
+                              icon: Icon(EvaIcons.info),
+                              label: Text(
+                                'Информация о задании',
+                                style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                              padding: EdgeInsets.symmetric(horizontal: 40),
+                              onPressed: () => Get.dialog(InfoDialog()),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 40),
-                            onPressed: () => Get.dialog(InfoDialog()),
                           ),
-                        ),
-                        Container(
-                          alignment: Alignment.bottomCenter,
-                          child: RaisedButton.icon(
-                            color: AppColors.secondary,
-                            icon: Icon(EvaIcons.doneAll),
-                            label: Text(
-                              'Проверить',
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                        if (Get.width > 600)
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            child: RaisedButton.icon(
+                              color: AppColors.secondary,
+                              icon: Icon(EvaIcons.doneAll),
+                              label: Text(
+                                'Проверить',
+                                style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                              padding: EdgeInsets.symmetric(horizontal: 40),
+                              onPressed: controller.startCheck,
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 40),
-                            onPressed: () => Get.toNamed(Routes.TESTS),
                           ),
-                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 24,
-                right: 24,
-                child: Obx(
-                  () => AnimatedOpacity(
-                    opacity:
-                        controller.showSimpleModeButton.value && Get.width < 600
-                            ? 0
-                            : 1,
-                    duration: 300.milliseconds,
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      child: RaisedButton.icon(
-                        color: AppColors.secondary,
-                        icon: Icon(controller.isSimpleMode.value
-                            ? EvaIcons.eye
-                            : EvaIcons.eyeOff),
-                        label: Text(
-                          controller.isSimpleMode.value
-                              ? 'Включить подробный вид'
-                              : 'Выключить подробный вид',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 14,
+              if (Get.width > 600)
+                Positioned(
+                  bottom: 24,
+                  right: 24,
+                  child: Obx(
+                    () => AnimatedOpacity(
+                      opacity: controller.showSimpleModeButton.value && Get.width < 600 ? 0 : 1,
+                      duration: 300.milliseconds,
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        child: RaisedButton.icon(
+                          color: AppColors.secondary,
+                          icon: Icon(controller.isSimpleMode.value ? EvaIcons.eye : EvaIcons.eyeOff),
+                          label: Text(
+                            controller.isSimpleMode.value ? 'Включить подробный вид' : 'Выключить подробный вид',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        onPressed: controller.toggleSimpleMode,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 100,
-                right: 24,
-                child: Obx(
-                  () => AnimatedOpacity(
-                    opacity: controller.showGooseButton.value && Get.width < 600
-                        ? 0
-                        : 1,
-                    duration: 300.milliseconds,
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      child: RaisedButton(
-                        color: AppColors.secondary,
-                        child: Text(
-                          'Подписки GOOSE-сообщений',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        onPressed: () => Get.dialog(
-                          Dialog(child: PubSubSettingsView()),
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          onPressed: controller.toggleSimpleMode,
                         ),
                       ),
                     ),
                   ),
+                )
+              else
+                Positioned(
+                  top: 36,
+                  right: 24,
+                  child: Obx(
+                    () => AnimatedOpacity(
+                      opacity: controller.showSimpleModeButton.value && Get.width < 600 ? 0 : 1,
+                      duration: 300.milliseconds,
+                      child: Row(
+                        children: [
+                          FloatingActionButton(
+                            mini: true,
+                            heroTag: 'instruction',
+                            backgroundColor: AppColors.white,
+                            child: Icon(
+                              EvaIcons.questionMarkCircle,
+                              color: AppColors.secondary,
+                            ),
+                            onPressed: () => Get.dialog(InfoDialog()),
+                          ),
+                          FloatingActionButton(
+                            mini: true,
+                            heroTag: 'challenge',
+                            backgroundColor: AppColors.white,
+                            child: Icon(
+                              EvaIcons.info,
+                              color: AppColors.secondary,
+                            ),
+                            onPressed: () => Get.dialog(InfoDialog()),
+                          ),
+                          FloatingActionButton(
+                            mini: true,
+                            heroTag: 'on_off_visibility',
+                            backgroundColor: AppColors.white,
+                            child: Icon(
+                              controller.isSimpleMode.value ? EvaIcons.eye : EvaIcons.eyeOff,
+                              color: AppColors.secondary,
+                            ),
+                            onPressed: controller.toggleSimpleMode,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              )
+              if (Get.width > 600)
+                Positioned(
+                  top: 100,
+                  right: 24,
+                  child: Obx(
+                    () => AnimatedOpacity(
+                      opacity: controller.showGooseButton.value && Get.width < 600 ? 0 : 1,
+                      duration: 300.milliseconds,
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        child: RaisedButton(
+                          color: AppColors.secondary,
+                          child: Text(
+                            'Подписки GOOSE-сообщений',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 14,
+                            ),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          onPressed: () => Get.dialog(
+                            Dialog(child: PubSubSettingsView()),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              else
+                Positioned(
+                  bottom: 24,
+                  right: 24,
+                  left: 24,
+                  child: Obx(
+                    () => AnimatedOpacity(
+                      opacity: controller.showGooseButton.value && Get.width < 600 ? 0 : 1,
+                      duration: 300.milliseconds,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            child: RaisedButton(
+                              color: AppColors.secondary,
+                              child: Text(
+                                'Подписки GOOSE-сообщений',
+                                style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              onPressed: () => Get.dialog(
+                                Dialog(child: PubSubSettingsView()),
+                              ),
+                            ),
+                          ),
+                          FloatingActionButton(
+                            heroTag: 'done_challenge',
+                            backgroundColor: AppColors.white,
+                            child: Icon(
+                              EvaIcons.doneAll,
+                              color: AppColors.secondary,
+                            ),
+                            onPressed: () => Get.toNamed(Routes.TESTS),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
             ],
           ),
         ),
