@@ -3,6 +3,8 @@ import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 import 'package:rosset_client/app/data/model/quest_attempt.dart';
 import 'package:rosset_client/app/data/model/quest_mistake.dart';
+import 'package:rosset_client/app/data/repository/quest_repository.dart';
+import 'package:rosset_client/app/data/repository/test_repository.dart';
 import 'package:rosset_client/app/modules/devices/device1.dart';
 import 'package:rosset_client/app/modules/devices/device2.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
@@ -96,12 +98,14 @@ class HomeController extends GetxController {
     try {
       controller.check();
       attempt.end = DateTime.now();
+      Get.find<QuestRepository>().updateAttempt(attempt);
       Get.toNamed(Routes.TESTS);
     } on String catch (err) {
       Utils.showSnackbar('Ошибка', err, type: SnackbarType.error);
       attempt.mistakes.add(QuestMistake()
         ..time = DateTime.now()
         ..mistake = err);
+      Get.find<QuestRepository>().updateAttempt(attempt);
     }
   }
 }
