@@ -18,7 +18,7 @@ class HomeController extends GetxController {
       ..name = 'Прибор 4x2'
       ..width = 4
       ..height = 2
-      ..slotsCount = 6
+      ..slotsCount = 5
       ..widgetBuilder = (DroppedDeviceModel dm) => Device2(dm),
   ];
 

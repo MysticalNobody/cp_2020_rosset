@@ -9,12 +9,12 @@ class Device1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blueAccent,
+      color: Colors.black87,
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text('Прибор 2 x 2'),
+          Text('Прибор 2 x 2', style: TextStyle(color: Colors.white)),
           DeviceSlot(slot: dm.slots[0]),
         ],
       ),

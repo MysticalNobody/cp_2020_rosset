@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/device_link.dart';
 import 'package:rosset_client/app/data/model/device_slot.dart';
+import 'package:rosset_client/app/data/model/draggable_device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 
 class WorkspaceController extends GetxController {
@@ -10,7 +11,7 @@ class WorkspaceController extends GetxController {
   DeviceModel hintModel;
   List<DroppedDeviceModel> dropped = [];
   bool isDragging = false;
-  bool linksChanged = false;
+  GlobalKey baseKey = GlobalKey();
 
   void onDragStarted() {
     isDragging = true;
@@ -22,16 +23,22 @@ class WorkspaceController extends GetxController {
     update();
   }
 
-  bool enterTarget(int i, int j, DeviceModel data) {
-    debugPrint(['enterTarget', i, j, data.name].toString());
+  bool enterTarget(int i, int j, DraggableDevice data) {
     hintX = i;
     hintY = j;
-    hintModel = data;
+    hintModel = data.model ?? data.device.model;
     update();
     return true;
   }
 
-  void onDrop(int i, int j, DeviceModel data) {
+  void onDrop(int i, int j, DraggableDevice _data) {
+    if (_data.device != null) {
+      _data.device.x = i;
+      _data.device.y = j;
+      update();
+    }
+    if (_data.model == null) return;
+    final data = _data.model;
     debugPrint(['onDrop', i, j, data.name].toString());
     final dm = DroppedDeviceModel()
       ..id = DateTime.now().millisecondsSinceEpoch
@@ -57,22 +64,26 @@ class WorkspaceController extends GetxController {
   }
 
   void onLinkDropped(DeviceSlotModel slot) {
-    if (slot.link == null) return;
-    final start = slot.link?.start;
-    final end = slot.link?.end;
-    start.link = null;
-    end.link = null;
-    linksChanged = !linksChanged;
+    removeLink(slot);
     update();
   }
 
   void onLinkEnd(DeviceSlotModel slot, DeviceSlotModel another) {
+    removeLink(slot);
+    removeLink(another);
     final link = DeviceLinkModel()
       ..start = another
       ..end = slot;
     another.link = link;
     slot.link = link;
-    linksChanged = !linksChanged;
     update();
+  }
+
+  void removeLink(DeviceSlotModel slot) {
+    if (slot.link == null) return;
+    final start = slot.link?.start;
+    final end = slot.link?.end;
+    start?.link = null;
+    end?.link = null;
   }
 }

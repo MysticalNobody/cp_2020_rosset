@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rosset_client/app/data/model/device.dart';
+import 'package:rosset_client/app/data/model/draggable_device.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_grid.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/links_painter.dart';
@@ -15,6 +15,7 @@ class WorkspaceView extends GetView<WorkspaceController> {
       initState: (_) {},
       builder: (_) {
         return Stack(
+          key: controller.baseKey,
           children: [
             InteractiveViewer(
               minScale: 0.1,
@@ -29,27 +30,26 @@ class WorkspaceView extends GetView<WorkspaceController> {
                       top: 100.0 * dropped.y,
                       width: 100.0 * dropped.model.width,
                       height: 100.0 * dropped.model.height,
-                      child: Draggable<DeviceModel>(
-                          onDragStarted: () =>
-                              controller.dropped.remove(dropped),
-                          data: dropped.model,
-                          feedback: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: Container(
-                              width: 276,
-                              height: 120,
-                              child: Material(
-                                color: AppColors.secondary.withOpacity(0.2),
-                                child: Center(
-                                  child: Text(
-                                    dropped.model.name,
-                                    style: AppTextStyles.mediumLabel,
-                                  ),
+                      child: LongPressDraggable<DraggableDevice>(
+                        data: DraggableDevice()..device = dropped,
+                        feedback: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Container(
+                            width: 276,
+                            height: 120,
+                            child: Material(
+                              color: AppColors.secondary.withOpacity(0.2),
+                              child: Center(
+                                child: Text(
+                                  dropped.model.name,
+                                  style: AppTextStyles.mediumLabel,
                                 ),
                               ),
                             ),
                           ),
-                          child: dropped.widget ?? const SizedBox()),
+                        ),
+                        child: dropped.widget ?? const SizedBox(),
+                      ),
                     ),
                   if (controller.hintModel != null)
                     Positioned(
@@ -70,8 +70,8 @@ class WorkspaceView extends GetView<WorkspaceController> {
               child: IgnorePointer(
                 child: CustomPaint(
                   painter: LinksPainter(
+                    baseKey: controller.baseKey,
                     devices: controller.dropped,
-                    shouldUpdate: controller.linksChanged,
                   ),
                 ),
               ),

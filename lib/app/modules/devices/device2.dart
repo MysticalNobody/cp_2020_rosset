@@ -10,7 +10,7 @@ class Device2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blueGrey,
+      color: Colors.white,
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -18,15 +18,15 @@ class Device2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              for (int i = 0; i < 6; i++) DeviceSlot(slot: dm.slots[i]),
+              for (int i = 0; i < 5; i++) DeviceSlot(slot: dm.slots[i]),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text('Прибор 4 x 2'),
+              Text('Коммутатор'),
               MaterialButton(
-                child: Text('Какая то кнопка'),
+                child: Text('TROUBLE'),
                 onPressed: () {},
                 color: Colors.red,
               ),
