@@ -53,8 +53,7 @@ class InstrumentCard extends StatelessWidget {
         );
         return PlatformDraggable<DraggableDevice>(
           data: DraggableDevice()..model = model,
-          onDraggableStart: () =>
-              Get.find<HomeController>().showInstruments.value = false,
+          onDraggableStart: () => Get.width > 600 ? () {} : Get.find<HomeController>().showInstruments.value = false,
           feedback: Container(
             width: constraints.maxWidth,
             height: 125,
