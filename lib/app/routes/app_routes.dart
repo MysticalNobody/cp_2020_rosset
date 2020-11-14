@@ -4,6 +4,7 @@ part of 'app_pages.dart';
 abstract class Routes {
   static const HOME = '/home';
   static const AUTH = '/auth';
-  static const TESTS = '/home/tests';
+  static const TESTS = '/tests';
   static const WORKSPACE = '/workspace';
+  static const TEST_RESULT = '/test_result';
 }

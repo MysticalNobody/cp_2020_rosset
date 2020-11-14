@@ -21,7 +21,7 @@ class _TestsApi implements TestsApi {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.request<List<dynamic>>('data.json',
+    final _result = await _dio.request<List<dynamic>>('questions.json',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',

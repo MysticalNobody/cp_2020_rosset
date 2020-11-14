@@ -42,8 +42,7 @@ class DevicePanel extends StatelessWidget {
                         SizedBox(width: 56),
                         Text(
                           'Список\nинструментов',
-                          style: AppTextStyles.subtitle
-                              .copyWith(color: AppColors.primary),
+                          style: AppTextStyles.subtitle.copyWith(color: AppColors.primary),
                         ),
                       ],
                     ),
@@ -53,12 +52,12 @@ class DevicePanel extends StatelessWidget {
                         filled: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6),
-                          borderSide:
-                              BorderSide(color: AppColors.primary, width: .5),
+                          borderSide: BorderSide(color: AppColors.primary, width: .5),
                         ),
                         enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(6),
-                            borderSide: BorderSide.none),
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: BorderSide.none,
+                        ),
                         contentPadding: EdgeInsets.symmetric(horizontal: 6),
                         hintText: 'Поиск',
                         hintStyle: AppTextStyles.text.copyWith(
@@ -71,15 +70,14 @@ class DevicePanel extends StatelessWidget {
                     ),
                     SizedBox(height: 24),
                     RaisedButton(
-                      onPressed: () => Get.toNamed(Routes.TESTS),
-                      child: Text('Тесты',
-                          style: AppTextStyles.button
-                              .copyWith(color: AppColors.white)),
+                      onPressed: () => Get.toNamed(Routes.TEST_RESULT),
+                      child: Text(
+                        'Тесты',
+                        style: AppTextStyles.button.copyWith(color: AppColors.white),
+                      ),
                     ),
                     SizedBox(height: 24),
-                    ...controller.models
-                        .map((m) => InstrumentCard(model: m))
-                        .toList(),
+                    ...controller.models.map((m) => InstrumentCard(model: m)).toList(),
                   ],
                 ),
               ),

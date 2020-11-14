@@ -1,3 +1,5 @@
+import 'package:rosset_client/app/modules/test_results/bindings/test_result_binding.dart';
+import 'package:rosset_client/app/modules/test_results/views/test_result_view.dart';
 import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
 import 'package:rosset_client/app/modules/workspace/bindings/workspace_binding.dart';
 import 'package:rosset_client/app/modules/auth/views/auth_view.dart';
@@ -27,6 +29,11 @@ class AppPages {
       name: Routes.TESTS,
       page: () => TestsView(),
       binding: TestsBinding(),
+    ),
+    GetPage(
+      name: Routes.TEST_RESULT,
+      page: () => TestResultView(),
+      binding: TestResultBinding(),
     ),
   ];
 }

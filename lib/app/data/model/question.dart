@@ -4,7 +4,11 @@ part 'question.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class QuestionModel {
-  QuestionModel({this.title, this.options, this.answer});
+  QuestionModel({
+    this.title,
+    this.options,
+    this.answer,
+  });
 
   String title;
   List<String> options;

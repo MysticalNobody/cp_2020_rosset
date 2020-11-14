@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rosset_client/app/data/model/answer.dart';
 import 'package:rosset_client/app/data/model/question.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 
 class TestsController extends GetxController {
   // final _testsApi = Get.find<TestsApi>();
@@ -13,7 +15,7 @@ class TestsController extends GetxController {
   int nowQuestionIndex = 0;
   int chosenOption;
   List<QuestionModel> questions = [];
-  Map<int, bool> answers = Map<int, bool>();
+  List<AnswerModel> answers = [];
 
   void exitTest() {
     Get.back();
@@ -36,7 +38,13 @@ class TestsController extends GetxController {
   }
 
   void nextQuestion() {
-    if (nowQuestionIndex + 1 == questions.length) return Get.back();
+    if (nowQuestionIndex + 1 == questions.length) {
+      Get.toNamed(
+        Routes.TEST_RESULT,
+        arguments: answers,
+      );
+      return;
+    }
     chosenOption = null;
     nowQuestionIndex++;
     update();
@@ -44,7 +52,10 @@ class TestsController extends GetxController {
 
   void toAnswer(int index) {
     chosenOption = index;
-    answers[nowQuestionIndex] = answer == index;
+    answers.add(AnswerModel(
+      question: nowQuestion,
+      userAnswer: index,
+    ));
     update();
   }
 
