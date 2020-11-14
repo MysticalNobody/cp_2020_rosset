@@ -64,6 +64,7 @@ class InstrumentCard extends StatelessWidget {
                     style: AppTextStyles.mediumLabel.copyWith(
                       color: AppColors.white,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
