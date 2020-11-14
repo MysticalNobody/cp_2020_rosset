@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
@@ -23,10 +24,22 @@ class PubSubSettingsView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                AppBar(
-                  title: Text('Подписки GOOSE-сообщений'),
-                  backgroundColor: AppColors.secondary,
-                ),
+                if (Get.width > 600)
+                  AppBar(
+                    title: Text(
+                      'Подписки GOOSE-сообщений',
+                    ),
+                    backgroundColor: AppColors.secondary,
+                  )
+                else
+                  Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Text(
+                      'Подписки GOOSE-сообщений',
+                      style: AppTextStyles.headLine4
+                          .copyWith(color: AppColors.secondary),
+                    ),
+                  ),
                 Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Center(
@@ -102,10 +115,12 @@ class PubSubSettingsView extends StatelessWidget {
         return SizedBox(
           width: Get.width > 1000 ? 1000 : Get.width * .9,
           child: Scaffold(
-            appBar: AppBar(
-              title: Text('Подписки GOOSE-сообщений'),
-              backgroundColor: AppColors.secondary,
-            ),
+            appBar: Get.width > 600
+                ? AppBar(
+                    title: Text('Подписки GOOSE-сообщений'),
+                    backgroundColor: AppColors.secondary,
+                  )
+                : null,
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -113,6 +128,12 @@ class PubSubSettingsView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    if (Get.width <= 600)
+                      Text(
+                        'Подписки GOOSE-сообщений',
+                        style: AppTextStyles.headLine4
+                            .copyWith(color: AppColors.secondary),
+                      ),
                     ...groups,
                     SizedBox(height: 24),
                     SizedBox(

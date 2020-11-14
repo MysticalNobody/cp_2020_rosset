@@ -7,11 +7,13 @@ class PlatformDraggable<T> extends StatelessWidget {
     this.feedback,
     this.child,
     this.onDraggableCanceled,
+    this.onDraggableStart,
   });
   final T data;
   final Widget feedback;
   final Widget child;
   final DraggableCanceledCallback onDraggableCanceled;
+  final VoidCallback onDraggableStart;
   @override
   Widget build(BuildContext context) {
     if (kIsWeb)
@@ -21,6 +23,7 @@ class PlatformDraggable<T> extends StatelessWidget {
         maxSimultaneousDrags: 1,
         dragAnchor: DragAnchor.pointer,
         onDraggableCanceled: onDraggableCanceled,
+        onDragStarted: onDraggableStart,
         child: child,
       );
     else
@@ -31,6 +34,7 @@ class PlatformDraggable<T> extends StatelessWidget {
         hapticFeedbackOnStart: true,
         dragAnchor: DragAnchor.pointer,
         onDraggableCanceled: onDraggableCanceled,
+        onDragStarted: onDraggableStart,
         child: child,
       );
   }
