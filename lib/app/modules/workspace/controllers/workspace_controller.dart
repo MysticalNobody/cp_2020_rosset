@@ -15,23 +15,23 @@ Map<SettingsFieldType, Function(String)> settingsValidators = {
   SettingsFieldType.mac: (String val) {
     final min = int.parse('01:0C:CD:01:00:01'.replaceAll(':', ''), radix: 16);
     final max = int.parse('01:0C:CD:01:01:FF'.replaceAll(':', ''), radix: 16);
-    final i = int.parse(val.replaceAll(':', ''), radix: 16);
+    final i = int.tryParse(val.replaceAll(':', ''), radix: 16) ?? -1;
     if (i < min || i > max) throw 'Неверный MAC-адрес';
   },
   SettingsFieldType.app: (String val) {
     final min = int.parse('8000', radix: 16);
     final max = int.parse('BFFF', radix: 16);
-    final i = int.parse(val, radix: 16);
+    final i = int.tryParse(val, radix: 16) ?? -1;
     if (i < min || i > max) throw 'Неверный AppID';
   },
   SettingsFieldType.vlan: (String val) {
-    if (int.parse(val) < 0 || int.parse(val) > 4095) throw 'Неверный VLAN ID';
+    if ((int.tryParse(val) ?? -1) < 0 || (int.tryParse(val) ?? -1) > 4095) throw 'Неверный VLAN ID';
   },
   SettingsFieldType.minTime: (String val) {
-    if (int.parse(val) != 4) throw 'Неверное Минимальное время между отправками';
+    if ((int.tryParse(val) ?? -1) != 4) throw 'Неверное Минимальное время между отправками';
   },
   SettingsFieldType.maxTime: (String val) {
-    if (int.parse(val) != 1000) throw 'Неверное Максимальное время между отправками';
+    if ((int.tryParse(val) ?? -1) != 1000) throw 'Неверное Максимальное время между отправками';
   },
   SettingsFieldType.ip1: (String val) {
     if (!val.isIPv4) throw 'Неверно указан IP';
@@ -174,16 +174,18 @@ class WorkspaceController extends GetxController {
   }
 
   void checkIEDSettings(DroppedDeviceModel ied) {
+    if (ied.settings == null) throw 'Необходимо задать настройки РЗА';
     for (final entry in ied.settings.entries) {
       settingsValidators[entry.key](entry.value);
     }
   }
 
   void checkNetworkSettings(DroppedDeviceModel commut) {
+    if (commut.settings == null) throw 'Необходимо задать настройки комутатора';
     for (final entry in commut.settings.entries) {
       settingsValidators[entry.key](entry.value);
     }
-    if (settingsValidators[SettingsFieldType.masc1] != settingsValidators[SettingsFieldType.masc2])
+    if (commut.settings[SettingsFieldType.masc1] != commut.settings[SettingsFieldType.masc2])
       throw 'Маска подсети должна совпадать';
   }
 
@@ -192,7 +194,7 @@ class WorkspaceController extends GetxController {
         !pubSubData.containsKey(ied2) ||
         !pubSubData[ied1].containsKey(ied2) ||
         !pubSubData[ied2].containsKey(ied1)) throw 'РЗА должны быть подписаны на GOOSE сообщения друг-друга';
-    final checker = ['1-1', '2-2', '3-3'].toSet();
+    final checker = ['0-0', '1-1', '2-2'].toSet();
     if (pubSubData[ied1][ied2].keys.toSet().difference(checker).isNotEmpty)
       throw 'Вход каждого РЗА должен быть подписан на соответствующий выход каждого другого РЗА';
   }
