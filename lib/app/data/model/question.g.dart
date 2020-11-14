@@ -11,12 +11,13 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) {
     title: json['title'] as String,
     options: (json['options'] as List)?.map((e) => e as String)?.toList(),
     answer: json['answer'] as int,
-  );
+  )..tag = json['tag'] as String;
 }
 
 Map<String, dynamic> _$QuestionModelToJson(QuestionModel instance) =>
     <String, dynamic>{
       'title': instance.title,
       'options': instance.options,
+      'tag': instance.tag,
       'answer': instance.answer,
     };
