@@ -27,6 +27,8 @@ class WorkspaceView extends GetView<WorkspaceController> {
               child: Stack(
                 children: [
                   Positioned.fill(
+                    left: 100,
+                    top: 100,
                     child: Obx(
                       () => AnimatedOpacity(
                         opacity: Get.find<HomeController>().isSimpleMode.value
@@ -44,8 +46,8 @@ class WorkspaceView extends GetView<WorkspaceController> {
                   DeviceGrid(controller: controller),
                   for (final dropped in controller.dropped)
                     Positioned(
-                      left: 100.0 * dropped.x,
-                      top: 100.0 * dropped.y,
+                      left: 100 + 100.0 * dropped.x,
+                      top: 100 + 100.0 * dropped.y,
                       width: 100.0 * dropped.model.width,
                       height: 100.0 * dropped.model.height,
                       child: PlatformDraggable<DraggableDevice>(
@@ -73,8 +75,8 @@ class WorkspaceView extends GetView<WorkspaceController> {
                     ),
                   if (controller.hintModel != null)
                     Positioned(
-                      left: 100.0 * controller.hintX,
-                      top: 100.0 * controller.hintY,
+                      left: 100 + 100.0 * controller.hintX,
+                      top: 100 + 100.0 * controller.hintY,
                       width: 100.0 * controller.hintModel.width,
                       height: 100.0 * controller.hintModel.height,
                       child: IgnorePointer(

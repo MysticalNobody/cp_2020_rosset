@@ -72,6 +72,14 @@ class Device2 extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: Row(
                   children: [
+                    SizedBox(width: 12),
+                    Tooltip(
+                      message: 'Промышленный коммутатор',
+                      child: Icon(
+                        EvaIcons.questionMarkCircle,
+                        color: AppColors.grey.withOpacity(.5),
+                      ),
+                    ),
                     Spacer(),
                     TextButton.icon(
                       icon: Icon(

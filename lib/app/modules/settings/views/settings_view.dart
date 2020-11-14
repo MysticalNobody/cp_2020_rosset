@@ -6,13 +6,13 @@ import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 
 class SettingsView extends StatelessWidget {
-  SettingsView(this.device);
+  SettingsView(this.device) : controller = SettingsController(device);
   final DroppedDeviceModel device;
-
+  final SettingsController controller;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: SettingsController(device),
+    return GetBuilder<SettingsController>(
+      init: controller,
       builder: (controller) => SizedBox(
         width: Get.width > 600 ? 600 : Get.width * .9,
         child: Scaffold(
@@ -25,24 +25,34 @@ class SettingsView extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   for (int i = 0; i < device.model.settings.length; i += 1)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            labelText: device.model.settings[i][0]),
-                        controller: controller.controllers.length > 0
-                            ? controller?.controllers[i]
-                            : TextEditingController(),
+                    if (device.model.settings[i].length == 2)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              labelText: device.model.settings[i][0]),
+                          controller: controller.controllers.length > 0
+                              ? controller?.controllers[i]
+                              : TextEditingController(),
+                        ),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: Text(
+                          device.model.settings[i][0],
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
                   SizedBox(height: 24),
                   SizedBox(
                     width: double.infinity,
                     child: RaisedButton(
                       color: AppColors.secondary,
-                      onPressed: () => controller.save(),
+                      onPressed: controller.save,
                       child: Text('Сохранить'),
                     ),
                   )

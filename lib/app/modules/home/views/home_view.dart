@@ -1,9 +1,12 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
 import 'package:rosset_client/app/modules/home/widgets/device_panel.dart';
+import 'package:rosset_client/app/modules/home/widgets/info_dialog.dart';
+import 'package:rosset_client/app/modules/pubsub_settings/views/settings_view.dart';
 import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -121,21 +124,62 @@ class HomeView extends GetView<HomeController> {
                         ? 0
                         : 1,
                     duration: 300.milliseconds,
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      child: RaisedButton(
-                        color: AppColors.secondary,
-                        child: Text(
-                          'Проверить',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                    child: Row(
+                      children: [
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          margin: EdgeInsets.only(right: 12),
+                          child: RaisedButton.icon(
+                            color: AppColors.secondary,
+                            icon: Icon(EvaIcons.questionMarkCircle),
+                            label: Text(
+                              'Инструкция',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 40),
+                            onPressed: () => Get.toNamed(Routes.TESTS),
                           ),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 40),
-                        onPressed: () => Get.toNamed(Routes.TESTS),
-                      ),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          margin: EdgeInsets.only(right: 12),
+                          child: RaisedButton.icon(
+                            color: AppColors.secondary,
+                            icon: Icon(EvaIcons.info),
+                            label: Text(
+                              'Информация о задании',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 40),
+                            onPressed: () => Get.dialog(InfoDialog()),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          child: RaisedButton.icon(
+                            color: AppColors.secondary,
+                            icon: Icon(EvaIcons.doneAll),
+                            label: Text(
+                              'Проверить',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 40),
+                            onPressed: () => Get.toNamed(Routes.TESTS),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -152,9 +196,12 @@ class HomeView extends GetView<HomeController> {
                     duration: 300.milliseconds,
                     child: Container(
                       alignment: Alignment.bottomCenter,
-                      child: RaisedButton(
+                      child: RaisedButton.icon(
                         color: AppColors.secondary,
-                        child: Text(
+                        icon: Icon(controller.isSimpleMode.value
+                            ? EvaIcons.eye
+                            : EvaIcons.eyeOff),
+                        label: Text(
                           controller.isSimpleMode.value
                               ? 'Включить подробный вид'
                               : 'Выключить подробный вид',
@@ -165,6 +212,35 @@ class HomeView extends GetView<HomeController> {
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         onPressed: controller.toggleSimpleMode,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 100,
+                right: 24,
+                child: Obx(
+                  () => AnimatedOpacity(
+                    opacity: controller.showGooseButton.value && Get.width < 600
+                        ? 0
+                        : 1,
+                    duration: 300.milliseconds,
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: RaisedButton(
+                        color: AppColors.secondary,
+                        child: Text(
+                          'Подписки GOOSE-сообщений',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        onPressed: () => Get.dialog(
+                          Dialog(child: PubSubSettingsView()),
+                        ),
                       ),
                     ),
                   ),

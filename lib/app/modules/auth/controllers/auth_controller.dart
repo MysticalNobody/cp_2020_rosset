@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/utils/get_busy_mixin.dart';
 
 class AuthController extends GetxController with GetBusyMixin {
@@ -21,7 +22,7 @@ class AuthController extends GetxController with GetBusyMixin {
 
   void action() {
     if (formKey.currentState.validate()) {
-      // action
+      Get.offAllNamed(Routes.CHALLENGES);
     }
   }
 }
