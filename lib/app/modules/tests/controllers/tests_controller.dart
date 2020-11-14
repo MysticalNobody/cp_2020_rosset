@@ -34,7 +34,6 @@ class TestsController extends GetxController {
       var q = QuestionModel.fromJson(item);
       questions.add(q);
     }
-    List<AnswerModel> a = answers;
     if (answers.isNotEmpty && answers.length != questions.length) {
       nowQuestionIndex = answers.length;
     }
