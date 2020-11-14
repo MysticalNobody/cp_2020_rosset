@@ -85,4 +85,10 @@ class WorkspaceController extends GetxController {
     start?.link = null;
     end?.link = null;
   }
+
+  void deleteDevice(DroppedDeviceModel dm) {
+    for (final slot in dm.slots) removeLink(slot);
+    dropped.remove(dm);
+    update();
+  }
 }
