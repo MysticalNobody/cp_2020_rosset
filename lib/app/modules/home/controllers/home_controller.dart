@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
+import 'package:rosset_client/app/data/model/quest_attempt.dart';
+import 'package:rosset_client/app/data/model/quest_mistake.dart';
 import 'package:rosset_client/app/modules/devices/device1.dart';
 import 'package:rosset_client/app/modules/devices/device2.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
@@ -16,6 +18,8 @@ class HomeController extends GetxController {
   RxBool isSimpleMode = false.obs;
 
   List<DeviceModel> models = [];
+
+  QuestAttempt attempt;
 
   List<DeviceModel> _models = [
     DeviceModel()
@@ -73,6 +77,9 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     models = _models;
+    attempt = QuestAttempt()
+      ..start = DateTime.now()
+      ..mistakes = [];
     super.onInit();
   }
 
@@ -88,9 +95,13 @@ class HomeController extends GetxController {
     final controller = Get.find<WorkspaceController>();
     try {
       controller.check();
+      attempt.end = DateTime.now();
       Get.toNamed(Routes.TESTS);
     } on String catch (err) {
       Utils.showSnackbar('Ошибка', err, type: SnackbarType.error);
+      attempt.mistakes.add(QuestMistake()
+        ..time = DateTime.now()
+        ..mistake = err);
     }
   }
 }
