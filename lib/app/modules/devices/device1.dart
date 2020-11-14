@@ -104,7 +104,11 @@ class Device1 extends StatelessWidget {
                             Obx(
                               () => !isSimple.value
                                   ? SizedBox()
-                                  : Text('Порт 71'),
+                                  : Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 12.0),
+                                      child: Text('Порт 71'),
+                                    ),
                             ),
                           ],
                         ),
@@ -116,7 +120,11 @@ class Device1 extends StatelessWidget {
                             Obx(
                               () => !isSimple.value
                                   ? SizedBox()
-                                  : Text('Порт 72'),
+                                  : Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 12.0),
+                                      child: Text('Порт 72'),
+                                    ),
                             ),
                           ],
                         ),
