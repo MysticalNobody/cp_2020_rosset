@@ -32,12 +32,16 @@ class Device1 extends StatelessWidget {
                 secondChild: Row(
                   children: [
                     Expanded(
-                      child: Image.asset('assets/images/left.png',
-                          fit: BoxFit.fitHeight),
+                      child: Image.asset(
+                        'assets/images/left.png',
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                     Expanded(
-                      child: Image.asset('assets/images/front.png',
-                          fit: BoxFit.fitHeight),
+                      child: Image.asset(
+                        'assets/images/front.png',
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                   ],
                 ),
