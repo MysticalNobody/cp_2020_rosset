@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/question.dart';
 import 'package:rosset_client/app/modules/test_results/controllers/test_result_controller.dart';
+import 'package:rosset_client/app/modules/test_results/widgets/answers.dart';
+import 'package:rosset_client/app/modules/test_results/widgets/appbar.dart';
+import 'package:rosset_client/app/modules/test_results/widgets/card.dart';
+import 'package:rosset_client/app/modules/test_results/widgets/left_card.dart';
 import 'package:rosset_client/app/modules/test_results/widgets/option.dart';
+import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
@@ -23,62 +28,57 @@ class TestResultView extends GetView<TestResultController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Анатолич',
-                    style: AppTextStyles.subtitle.copyWith(
-                      color: AppColors.secondary,
-                    ),
-                  ),
-                  Text(
-                    'Результаты тестирования',
-                    style: AppTextStyles.subtitle.copyWith(
-                      color: AppColors.secondary,
-                    ),
-                  ),
-                  RaisedButton(
-                    child: Text('Назад'),
-                    onPressed: () {},
-                  ),
-                ],
+              TestResultAppbar(
+                onBackTap: () => Get.toNamed(Routes.HOME),
               ),
               SizedBox(height: Get.height * .05),
               if (model.answers?.isEmpty ?? true)
                 CircularProgressIndicator()
               else
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: model.answers.length,
-                    itemBuilder: (context, qIndex) {
-                      final int userAnswer = model.answers[qIndex].userAnswer;
-                      final QuestionModel question = model.answers[qIndex].question;
-                      return Card(
-                        child: Column(
-                          children: [
-                            Text(question.title),
-                            ...List.generate(
-                              question.options.length,
-                              (index) {
-                                OptionType type = OptionType.normal;
-                                if (index == (question.answer - 1)) {
-                                  type = OptionType.right;
-                                } else if (index == userAnswer && (question.answer - 1) != userAnswer) {
-                                  type = OptionType.error;
-                                }
-                                return OptionButton(
-                                  text: question.options[index],
-                                  onTap: () {},
-                                  type: type,
-                                );
-                              },
+                  child: ListView(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: Get.width * .025,
+                    ),
+                    children: [
+                      Row(
+                        children: [
+                          ResultCard(
+                            title: 'Время на один вопрос',
+                            text: '30 сек',
+                            type: CardResultType.good,
+                          ),
+                          ResultCard(
+                            title: 'Время выполнения',
+                            text: '6 мин',
+                            type: CardResultType.normal,
+                          ),
+                          ResultCard(
+                            title: 'Верных ответов',
+                            text: '30%',
+                            type: CardResultType.warning,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: Get.height * .03),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          LeftCard(
+                            onTap: model.changeTab,
+                            chosen: model.tabIndex,
+                          ),
+                          if (model.tabIndex == 0)
+                            Container()
+                          else
+                            AnswersWidget(
+                              answers: model.answers,
                             ),
-                          ],
-                        ),
-                      );
-                    },
+                          Container(),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
             ],

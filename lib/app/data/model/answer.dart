@@ -8,10 +8,12 @@ class AnswerModel {
   AnswerModel({
     this.question,
     this.userAnswer,
+    this.seconds,
   });
 
   QuestionModel question;
   int userAnswer;
+  int seconds;
 
   factory AnswerModel.fromJson(Map<String, dynamic> json) => _$AnswerModelFromJson(json);
 

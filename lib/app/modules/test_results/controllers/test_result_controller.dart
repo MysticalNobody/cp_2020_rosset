@@ -9,6 +9,8 @@ import 'package:rosset_client/app/data/model/question.dart';
 class TestResultController extends GetxController {
   List<AnswerModel> answers = [];
 
+  int tabIndex = 1;
+
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -27,5 +29,10 @@ class TestResultController extends GetxController {
     // var q = await _testsApi.getQuestions();
     // questions.addAll(q);
     // _isBusy.value = false;
+  }
+
+  void changeTab(int index) {
+    tabIndex = index;
+    update();
   }
 }
