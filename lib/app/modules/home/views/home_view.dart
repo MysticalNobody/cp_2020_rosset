@@ -43,8 +43,7 @@ class HomeView extends GetView<HomeController> {
               left: 12,
               child: DescribedFeatureOverlay(
                 title: Text('Выбор инструмента'),
-                description: Text(
-                    'Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
+                description: Text('Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
                 backgroundColor: AppColors.secondary,
                 enablePulsingAnimation: false,
                 featureId: 'device',
@@ -59,8 +58,7 @@ class HomeView extends GetView<HomeController> {
               left: 12,
               child: DescribedFeatureOverlay(
                 title: Text('Выбор инструмента'),
-                description: Text(
-                    'Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
+                description: Text('Для выбора инструмента,\nперетащите его из списка\nна рабочую область'),
                 backgroundColor: AppColors.secondary,
                 enablePulsingAnimation: false,
                 featureId: 'device',
@@ -97,6 +95,7 @@ class HomeView extends GetView<HomeController> {
                   height: controller.showInstruments.value ? 36 : 64,
                   duration: 300.milliseconds,
                   child: FloatingActionButton(
+                    elevation: 3,
                     heroTag: 'open_close_menu',
                     backgroundColor: AppColors.white,
                     onPressed: controller.toggleInstruments,

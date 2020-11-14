@@ -80,7 +80,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(5),
           borderSide: const BorderSide(color: AppColors.grey, width: 0),
         ),
-        focusColor: AppColors.primary,
+        focusColor: AppColors.secondary,
         fillColor: AppColors.background,
         errorStyle: AppTextStyles.secondary.apply(color: AppColors.redStatus),
       ),

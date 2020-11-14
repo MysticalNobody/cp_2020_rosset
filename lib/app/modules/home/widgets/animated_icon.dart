@@ -29,7 +29,7 @@ class _AnimatedUpDowniconState extends State<AnimatedUpDownicon> with SingleTick
   Widget build(BuildContext context) {
     return AnimatedIcon(
       icon: AnimatedIcons.close_menu,
-      color: AppColors.primary,
+      color: AppColors.secondary,
       progress: _controller,
     );
   }

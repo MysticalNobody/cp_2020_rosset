@@ -14,58 +14,37 @@ class InstrumentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        var child = Container(
-          height: 120,
-          margin: EdgeInsets.only(bottom: 24),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(3),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.grey.withOpacity(.15),
-                blurRadius: 3,
-                spreadRadius: 1,
-              ),
-            ],
-          ),
-          child: TextButton(
-            onPressed: () {},
-            child: Padding(
-              padding: EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    children: [
-                      Image.network(
-                        'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
-                        height: 60,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(width: 12),
-                      Flexible(
-                        child: Text(
-                          'Терминал релейной защиты ',
-                          style: AppTextStyles.subtitle,
-                        ),
-                      )
-                    ],
-                  ),
-                  // SizedBox(height: 6),
-                  // ClipRRect(
-                  //   borderRadius: BorderRadius.circular(6),
-                  //   child: TextButton(
-                  //     onPressed: () {},
-                  //     child: Text(
-                  //       'Подробнее',
-                  //       style: AppTextStyles.subtitle,
-                  //     ),
-                  //   ),
-                  // )
-                ],
+        var child = Column(
+          children: [
+            Card(
+              color: AppColors.white,
+              elevation: 5,
+              child: Padding(
+                padding: EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Image.network(
+                      'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
+                    SizedBox(width: 12),
+                  ],
+                ),
               ),
             ),
-          ),
+            SizedBox(height: 8),
+            Text(
+              'Терминал релейной защиты',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF495585).withOpacity(0.8),
+              ),
+            ),
+            SizedBox(height: 24),
+          ],
         );
         return PlatformDraggable<DraggableDevice>(
           data: DraggableDevice()..model = model,

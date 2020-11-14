@@ -32,53 +32,73 @@ class DevicePanel extends StatelessWidget {
                 width: 300,
                 height: Get.height,
                 padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 18),
-                    Row(
-                      children: [
-                        SizedBox(width: 56),
-                        Text(
-                          'Список\nинструментов',
-                          style: AppTextStyles.subtitle.copyWith(color: AppColors.primary),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 24),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: BorderSide(color: AppColors.primary, width: .5),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: BorderSide.none,
-                        ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 6),
-                        hintText: 'Поиск',
-                        hintStyle: AppTextStyles.text.copyWith(
-                          fontSize: 16,
-                          color: AppColors.text.withOpacity(.5),
-                        ),
-                        prefixIcon: Icon(EvaIcons.searchOutline),
+                child: Stack(children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 28),
+                      Row(
+                        children: [
+                          SizedBox(width: 56),
+                          Text(
+                            'Инструменты',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Color(0xFF303C74),
+                            ),
+                          ),
+                        ],
                       ),
-                      style: AppTextStyles.text.copyWith(fontSize: 16),
-                    ),
-                    SizedBox(height: 24),
-                    RaisedButton(
-                      onPressed: () => Get.toNamed(Routes.TESTS),
+                      SizedBox(height: 24),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          filled: true,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6),
+                            borderSide: BorderSide(
+                              color: AppColors.secondary,
+                              width: .5,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 6),
+                          hintText: 'Поиск',
+                          hintStyle: AppTextStyles.text.copyWith(
+                            fontSize: 16,
+                            color: AppColors.text.withOpacity(.5),
+                          ),
+                          prefixIcon: Icon(
+                            EvaIcons.searchOutline,
+                            color: AppColors.secondary,
+                          ),
+                        ),
+                        style: AppTextStyles.text.copyWith(fontSize: 16),
+                      ),
+                      SizedBox(height: 30),
+                      ...controller.models.map((m) => InstrumentCard(model: m)).toList(),
+                    ],
+                  ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    margin: EdgeInsets.only(bottom: 40),
+                    child: RaisedButton(
+                      color: AppColors.secondary,
                       child: Text(
-                        'Тесты',
-                        style: AppTextStyles.button.copyWith(color: AppColors.white),
+                        'Проверить',
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      onPressed: () => Get.toNamed(Routes.TESTS),
                     ),
-                    SizedBox(height: 24),
-                    ...controller.models.map((m) => InstrumentCard(model: m)).toList(),
-                  ],
-                ),
+                  ),
+                ]),
               ),
             ),
           ],
