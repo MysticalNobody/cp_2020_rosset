@@ -39,22 +39,32 @@ class TestResultView extends GetView<TestResultController> {
                       vertical: Get.height * 0.04,
                     ),
                     children: [
-                      Row(
+                      Wrap(
                         children: [
                           ResultCard(
                             title: 'Время на один вопрос',
-                            text: '30 сек',
-                            type: CardResultType.good,
+                            text: '${model.secondsPerQuestion} сек',
+                            type: model.secPerQCardType,
                           ),
                           ResultCard(
                             title: 'Время выполнения',
-                            text: '6 мин',
-                            type: CardResultType.normal,
+                            text: '${model.summaryTime} мин',
+                            type: model.sumTimeCardType,
+                          ),
+                          ResultCard(
+                            title: 'Минимальное время',
+                            text: '${model.minTime} сек',
+                            type: model.minTimeCardType,
+                          ),
+                          ResultCard(
+                            title: 'Максимальное время',
+                            text: '${model.maxTime} сек',
+                            type: model.maxTimeCardType,
                           ),
                           ResultCard(
                             title: 'Верных ответов',
-                            text: '30%',
-                            type: CardResultType.warning,
+                            text: '${model.accuracy}%',
+                            type: model.accuracyCardType,
                           ),
                         ],
                       ),
