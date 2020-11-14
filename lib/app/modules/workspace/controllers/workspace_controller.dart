@@ -144,7 +144,7 @@ class WorkspaceController extends GetxController {
         if (commut == null)
           commut = device;
         else
-          throw 'Требуется ровно один комутатор';
+          throw 'Требуется ровно один коммутатор';
       }
       if (device.model.type == DeviceType.ied) {
         if (ied1 == null)
@@ -181,7 +181,7 @@ class WorkspaceController extends GetxController {
   }
 
   void checkNetworkSettings(DroppedDeviceModel commut) {
-    if (commut.settings == null) throw 'Необходимо задать настройки комутатора';
+    if (commut.settings == null) throw 'Необходимо задать настройки коммутатора';
     for (final entry in commut.settings.entries) {
       settingsValidators[entry.key](entry.value);
     }
