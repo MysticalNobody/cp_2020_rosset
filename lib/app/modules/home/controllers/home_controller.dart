@@ -15,7 +15,9 @@ class HomeController extends GetxController {
 
   List<DeviceModel> _models = [
     DeviceModel()
+      ..type = DeviceType.rza
       ..name = 'РЗА'
+      ..previewImage = 'assets/images/front.png'
       ..width = 4
       ..height = 2
       ..slotsCount = 2
@@ -30,7 +32,9 @@ class HomeController extends GetxController {
       ]
       ..widgetBuilder = (DroppedDeviceModel dm) => Device1(dm),
     DeviceModel()
+      ..type = DeviceType.commutator
       ..name = 'Промышленный коммутатор'
+      ..previewImage = 'assets/images/commut.png'
       ..width = 6
       ..height = 2
       ..slotsCount = 8

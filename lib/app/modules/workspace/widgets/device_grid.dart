@@ -11,7 +11,7 @@ class DeviceGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < 12; j++)
           Row(
             children: [
               for (int i = 0; i < 20; i++)

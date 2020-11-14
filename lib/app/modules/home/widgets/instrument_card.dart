@@ -26,8 +26,8 @@ class InstrumentCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Image.network(
-                        'https://relematika.ru/upload/resize_cache/iblock/b3f/282_200_1/%D0%A2%D0%9E%D0%A0200_03_sm.jpg',
+                      Image.asset(
+                        model.previewImage,
                         height: 100,
                         fit: BoxFit.contain,
                       ),

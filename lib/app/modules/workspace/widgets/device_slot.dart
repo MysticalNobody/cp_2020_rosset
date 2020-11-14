@@ -50,10 +50,10 @@ class DeviceSlot extends StatelessWidget {
                   width: slot.link != null ? size / 2 : size * .7,
                   height: slot.link != null ? size / 2 : size * .7,
                   color: (slot.link != null
-                      ? Colors.black
+                      ? Colors.blue
                       : list.isNotEmpty
                           ? Colors.green
-                          : Colors.grey).withOpacity(0.8),
+                          : Colors.yellow).withOpacity(0.8),
                   alignment: Alignment.center,
                   child: SizedBox.shrink(key: slot.key),
                 ),

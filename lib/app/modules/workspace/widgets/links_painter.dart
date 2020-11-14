@@ -26,7 +26,8 @@ class LinksPainter extends CustomPainter {
               .localToGlobal(Offset.zero);
       final off2 = (link.end.key.currentContext.findRenderObject() as RenderBox)
           .localToGlobal(Offset.zero);
-      canvas.drawLine(off1 - baseOff, off2 - baseOff, Paint());
+      canvas.drawLine(
+          off1 - baseOff, off2 - baseOff, Paint()..strokeWidth = 1.5);
     }
   }
 
