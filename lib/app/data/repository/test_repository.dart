@@ -19,10 +19,10 @@ class TestRepository {
 
   Future<void> updateAnswers(List<AnswerModel> answers) async => _answers = await _testStorage.saveAnswers(answers);
   Future<void> addAnswer(AnswerModel answer) async {
-    List<AnswerModel> a = answers.toList();
-    a.add(answer);
-    _answers = await _testStorage.saveAnswers(a);
+    List<AnswerModel> answersList = answers.toList();
+    answersList.add(answer);
+    _answers = await _testStorage.saveAnswers(answersList);
   }
 
-  Future logout() async => await _testStorage.clear();
+  Future<void> clear() async => await _testStorage.clear();
 }
