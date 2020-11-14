@@ -12,6 +12,9 @@ class WorkspaceController extends GetxController {
   List<DroppedDeviceModel> dropped = [];
   GlobalKey baseKey = GlobalKey();
 
+  Map<DroppedDeviceModel, Map<DroppedDeviceModel, Map<String, bool>>>
+      pubSubData = {};
+
   TransformationController gridController;
   @override
   void onInit() {
@@ -19,6 +22,12 @@ class WorkspaceController extends GetxController {
     final v = Matrix4.identity();
     v.scale(0.8);
     gridController = TransformationController(v);
+  }
+
+  void savePubSub(
+      Map<DroppedDeviceModel, Map<DroppedDeviceModel, Map<String, bool>>>
+          data) {
+    pubSubData = data;
   }
 
   bool enterTarget(int i, int j, DraggableDevice data) {
