@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/tests/controllers/tests_controller.dart';
+import 'package:rosset_client/app/modules/tests/widgets/appbar.dart';
 import 'package:rosset_client/app/modules/tests/widgets/option.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
@@ -15,32 +16,35 @@ class TestsView extends GetView<TestsController> {
         init: controller,
         builder: (model) => Stack(
           children: [
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: SizedBox(
+                width: Get.width * .25,
+                child: Image.asset(
+                  'assets/images/test2.png',
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: SizedBox(
+                width: Get.width * .25,
+                child: Image.asset(
+                  'assets/images/test1.png',
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Анатолич',
-                      style: AppTextStyles.subtitle.copyWith(
-                        color: AppColors.secondary,
-                      ),
-                    ),
-                    Text(
-                      'Тест на проверку освоенного материала',
-                      style: AppTextStyles.subtitle.copyWith(
-                        color: AppColors.secondary,
-                      ),
-                    ),
-                    RaisedButton(
-                      child: Text('Закончить тест'),
-                      onPressed: model.exitTest,
-                    ),
-                  ],
-                ),
-                SizedBox(height: Get.height * .2),
+                TestsAppbar(onBackTap: model.exitTest),
+                Container(),
+                Container(),
                 if (model.questions.isEmpty)
                   CircularProgressIndicator()
                 else
@@ -48,14 +52,19 @@ class TestsView extends GetView<TestsController> {
                     children: [
                       Text(
                         model.nowQuestion.title,
-                        style: AppTextStyles.headLine3,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 36,
+                          color: Color(0xFF303C74),
+                        ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 8),
                       Text(
                         'Вопрос ${model.nowQuestionIndex + 1} из ${model.questions.length}',
-                        style: AppTextStyles.secondary,
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.secondary.copyWith(color: Color(0xFF9096B5)),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 40),
                       ...List.generate(
                         model.nowQuestion.options.length,
                         (index) {
@@ -77,15 +86,25 @@ class TestsView extends GetView<TestsController> {
                       ),
                     ],
                   ),
+                Container(
+                  margin: EdgeInsets.only(left: 32),
+                  child: RaisedButton(
+                    color: AppColors.secondary,
+                    child: Text(
+                      'Следующий вопрос',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: model.chosenOption == null ? null : model.nextQuestion,
+                  ),
+                ),
+                Container(),
+                Container(),
+                Container(),
               ],
-            ),
-            Container(
-              padding: EdgeInsets.only(bottom: Get.height * .1),
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                child: Text('Следующий вопрос'),
-                onPressed: model.nextQuestion,
-              ),
             ),
           ],
         ),

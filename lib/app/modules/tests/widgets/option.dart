@@ -19,45 +19,57 @@ class OptionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = AppColors.secondary.withOpacity(0.075);
+    Color color = Color(0xFFE5E8EF);
     if (type == OptionType.right) color = AppColors.greenStatus;
     if (type == OptionType.error) color = AppColors.redStatus;
-    return FlatButton(
-      padding: EdgeInsets.all(11),
-      onPressed: onTap,
-      child: Container(
-        constraints: BoxConstraints(
-          maxWidth: Get.width * .8,
-          minWidth: Get.width * .5,
-        ),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        width: 400,
-        height: 60,
-        child: Row(
-          children: [
-            SizedBox(width: 25),
-            if (type == OptionType.normal) SizedBox(width: 25),
-            if (type == OptionType.right)
-              Icon(
-                EvaIcons.checkmarkSquareOutline,
-                color: AppColors.primary,
-                size: 25,
+    return Padding(
+      padding: EdgeInsets.only(bottom: 6),
+      child: FlatButton(
+        padding: EdgeInsets.all(11),
+        color: color,
+        onPressed: onTap,
+        child: Container(
+          constraints: BoxConstraints(
+            maxWidth: Get.width * .8,
+            minWidth: Get.width * .3,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          width: 400,
+          height: 60,
+          child: Row(
+            children: [
+              SizedBox(width: 25),
+              if (type == OptionType.normal)
+                Icon(
+                  EvaIcons.squareOutline,
+                  color: Color(0xFF495585),
+                  size: 25,
+                ),
+              if (type == OptionType.right)
+                Icon(
+                  EvaIcons.checkmarkSquareOutline,
+                  color: Color(0xFF495585),
+                  size: 25,
+                ),
+              if (type == OptionType.error)
+                Icon(
+                  EvaIcons.closeSquareOutline,
+                  color: Color(0xFF495585),
+                  size: 25,
+                ),
+              SizedBox(width: 25),
+              Flexible(
+                child: Text(
+                  text,
+                  style: AppTextStyles.secondary.copyWith(
+                    color: Color(0xFF495585),
+                  ),
+                ),
               ),
-            if (type == OptionType.error)
-              Icon(
-                EvaIcons.closeSquareOutline,
-                color: AppColors.primary,
-                size: 25,
-              ),
-            SizedBox(width: 25),
-            Text(
-              text,
-              style: AppTextStyles.secondary,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
