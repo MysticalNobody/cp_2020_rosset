@@ -22,16 +22,36 @@ class DeviceSlot extends StatelessWidget {
             child: PlatformDraggable<DeviceSlotModel>(
               data: slot,
               feedback: Container(
-                width: 50,
-                height: 50,
-                color: Colors.red.withOpacity(0.3),
+                width: 10,
+                height: 10,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Positioned(
+                      left: -10,
+                      top: -10,
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black.withOpacity(0.3),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               onDraggableCanceled: (_, __) =>
                   Get.find<WorkspaceController>().onLinkDropped(slot),
               child: Container(
                 width: slot.link != null ? 25 : 40,
                 height: slot.link != null ? 25 : 40,
-                color: (slot.link != null ? Colors.black : Colors.grey)
+                color: (slot.link != null
+                        ? Colors.black
+                        : list.isNotEmpty
+                            ? Colors.red
+                            : Colors.grey)
                     .withOpacity(0.3),
                 alignment: Alignment.center,
                 child: SizedBox.shrink(key: slot.key),
