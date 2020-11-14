@@ -57,11 +57,21 @@ class TestsView extends GetView<TestsController> {
                       SizedBox(height: 30),
                       ...List.generate(
                         4,
-                        (index) => OptionButton(
-                          onTap: () {},
-                          text: controller.nowQuestion.options[index],
-                          type: OptionType.normal,
-                        ),
+                        (index) {
+                          OptionType type = OptionType.normal;
+                          if (index == controller.nowQuestion.answer && controller.chosenOption != null) {
+                            if (controller.nowQuestion.answer == controller.chosenOption) {
+                              type = OptionType.right;
+                            } else {
+                              type = OptionType.error;
+                            }
+                          }
+                          return OptionButton(
+                            onTap: () => controller.answer(index),
+                            text: controller.nowQuestion.options[index],
+                            type: type,
+                          );
+                        },
                       ),
                     ],
                   ),
