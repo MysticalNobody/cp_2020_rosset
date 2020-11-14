@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 import 'package:rosset_client/app/modules/settings/views/settings_view.dart';
+import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -12,6 +13,7 @@ import 'package:rosset_client/theme/app_text_styles.dart';
 class Device1 extends StatelessWidget {
   Device1(this.dm);
   final DroppedDeviceModel dm;
+  RxBool get isSimple => Get.find<HomeController>().isSimpleMode;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -26,42 +28,98 @@ class Device1 extends StatelessWidget {
           alignment: Alignment.center,
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: Icon(EvaIcons.closeSquare),
-                  color: Colors.redAccent,
-                  onPressed: () =>
-                      Get.find<WorkspaceController>().deleteDevice(dm),
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(dm.model.name, style: AppTextStyles.mediumLabel),
-                  TextButton.icon(
-                    icon: Icon(
-                      EvaIcons.settings,
-                      color: AppColors.secondary,
-                    ),
-                    label: Text(
-                      'Настройка',
-                      style: TextStyle(
-                        color: AppColors.secondary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () => Get.dialog(Dialog(
-                      child: SettingsView(dm),
-                    )),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              Obx(
+                () => AnimatedCrossFade(
+                  crossFadeState: isSimple.value
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  duration: 100.milliseconds,
+                  firstChild: Row(children: []),
+                  secondChild: Row(
                     children: [
-                      DeviceSlot(slot: dm.slots[0]),
+                      Expanded(
+                        child: Image.asset('assets/images/left.png',
+                            fit: BoxFit.fitHeight),
+                      ),
+                      Expanded(
+                        child: Image.asset('assets/images/front.png',
+                            fit: BoxFit.fitHeight),
+                      ),
                     ],
                   ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Spacer(),
+                      Text(dm.model.name),
+                      Spacer(),
+                      TextButton.icon(
+                        icon: Icon(
+                          EvaIcons.settings,
+                          color: AppColors.secondary,
+                        ),
+                        label: Text(
+                          'Настройка',
+                          style: TextStyle(
+                            color: AppColors.secondary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: Icon(EvaIcons.closeSquare),
+                        color: Colors.redAccent,
+                        onPressed: () =>
+                            Get.find<WorkspaceController>().deleteDevice(dm),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Spacer(flex: 3),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Spacer(flex: 5),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              DeviceSlot(slot: dm.slots[0], size: 25),
+                              Obx(
+                                () => !isSimple.value
+                                    ? SizedBox()
+                                    : Text('Порт 71'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              DeviceSlot(slot: dm.slots[1], size: 25),
+                              Obx(
+                                () => !isSimple.value
+                                    ? SizedBox()
+                                    : Text('Порт 72'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Spacer(flex: 1),
+                      ],
+                    ),
+                  ),
+                  Spacer(flex: 4),
                 ],
               ),
             ],

@@ -30,8 +30,8 @@ class HomeView extends GetView<HomeController> {
     });
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: GetBuilder(
-        init: HomeController(),
+      body: GetBuilder<HomeController>(
+        // init: HomeController(),
         builder: (controller) => SafeArea(
           child: Stack(
             children: [
@@ -123,7 +123,6 @@ class HomeView extends GetView<HomeController> {
                     duration: 300.milliseconds,
                     child: Container(
                       alignment: Alignment.bottomCenter,
-                      margin: EdgeInsets.only(bottom: 40),
                       child: RaisedButton(
                         color: AppColors.secondary,
                         child: Text(
@@ -136,6 +135,36 @@ class HomeView extends GetView<HomeController> {
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         onPressed: () => Get.toNamed(Routes.TESTS),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 24,
+                right: 24,
+                child: Obx(
+                  () => AnimatedOpacity(
+                    opacity:
+                        controller.showSimpleModeButton.value && Get.width < 600
+                            ? 0
+                            : 1,
+                    duration: 300.milliseconds,
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: RaisedButton(
+                        color: AppColors.secondary,
+                        child: Text(
+                          controller.isSimpleMode.value
+                              ? 'Включить подробный вид'
+                              : 'Выключить подробный вид',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        onPressed: controller.toggleSimpleMode,
                       ),
                     ),
                   ),
