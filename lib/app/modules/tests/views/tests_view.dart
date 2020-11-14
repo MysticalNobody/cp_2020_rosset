@@ -11,8 +11,9 @@ class TestsView extends GetView<TestsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Obx(
-        () => Stack(
+      body: GetBuilder<TestsController>(
+        init: controller,
+        builder: (model) => Stack(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,36 +36,41 @@ class TestsView extends GetView<TestsController> {
                     ),
                     RaisedButton(
                       child: Text('Закончить тест'),
-                      onPressed: controller.exitTest,
+                      onPressed: model.exitTest,
                     ),
                   ],
                 ),
                 SizedBox(height: Get.height * .2),
-                if (controller.isBusy)
+                if (model.questions.isEmpty)
                   CircularProgressIndicator()
                 else
                   Column(
                     children: [
                       Text(
-                        controller.nowQuestion.title,
+                        model.nowQuestion.title,
                         style: AppTextStyles.headLine3,
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'Вопрос ${controller.nowQuestionIndex + 1} из ${controller.questions.length}',
+                        'Вопрос ${model.nowQuestionIndex + 1} из ${model.questions.length}',
                         style: AppTextStyles.secondary,
                       ),
                       SizedBox(height: 30),
                       ...List.generate(
-                        4,
+                        model.nowQuestion.options.length,
                         (index) {
                           OptionType type = OptionType.normal;
-                          if (index == controller.nowQuestion.answer && controller.isRightAnswer != null) {
-                            type = controller.isRightAnswer ? OptionType.right : OptionType.error;
+                          if (model.chosenOption != null) {
+                            if (index == model.answer) {
+                              type = OptionType.right;
+                            }
+                            if (index == model.chosenOption && model.answer != model.chosenOption) {
+                              type = OptionType.error;
+                            }
                           }
                           return OptionButton(
-                            onTap: () => controller.answer(index),
-                            text: controller.nowQuestion.options[index],
+                            onTap: () => model.toAnswer(index),
+                            text: model.nowQuestion.options[index],
                             type: type,
                           );
                         },
@@ -78,7 +84,7 @@ class TestsView extends GetView<TestsController> {
               alignment: Alignment.bottomCenter,
               child: RaisedButton(
                 child: Text('Следующий вопрос'),
-                onPressed: controller.nextQuestion,
+                onPressed: model.nextQuestion,
               ),
             ),
           ],

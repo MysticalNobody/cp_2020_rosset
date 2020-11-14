@@ -7,14 +7,11 @@ import 'package:rosset_client/app/data/model/question.dart';
 class TestsController extends GetxController {
   // final _testsApi = Get.find<TestsApi>();
 
-  bool get isBusy => _isBusy.value;
-  QuestionModel get nowQuestion => questions[nowQuestionIndex.value];
-  bool get isRightAnswer => _chosenOption.value == null ? null : nowQuestion.answer == _chosenOption.value;
+  QuestionModel get nowQuestion => questions[nowQuestionIndex];
+  int get answer => nowQuestion.answer - 1;
 
-  RxBool _isBusy = false.obs;
-  RxInt nowQuestionIndex = 0.obs;
-  RxInt _chosenOption = RxInt();
-
+  int nowQuestionIndex = 0;
+  int chosenOption;
   List<QuestionModel> questions = [];
   Map<int, bool> answers = Map<int, bool>();
 
@@ -25,27 +22,30 @@ class TestsController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    _isBusy.value = true;
+    // _isBusy.value = true;
     String data = await DefaultAssetBundle.of(Get.context).loadString("assets/data/questions.json");
     final jsonResult = json.decode(data);
     for (final item in jsonResult) {
       var q = QuestionModel.fromJson(item);
       questions.add(q);
     }
+    update();
     // var q = await _testsApi.getQuestions();
     // questions.addAll(q);
-    _isBusy.value = false;
+    // _isBusy.value = false;
   }
 
   void nextQuestion() {
-    if (nowQuestionIndex.value + 1 == questions.length) Get.back();
-    _chosenOption.value = null;
-    nowQuestionIndex.value += 1;
+    if (nowQuestionIndex + 1 == questions.length) return Get.back();
+    chosenOption = null;
+    nowQuestionIndex++;
+    update();
   }
 
-  void answer(int index) {
-    _chosenOption.value = index;
-    answers[nowQuestionIndex.value] = nowQuestion.answer == index;
+  void toAnswer(int index) {
+    chosenOption = index;
+    answers[nowQuestionIndex] = answer == index;
+    update();
   }
 
   @override
