@@ -16,12 +16,14 @@ class HomeController extends GetxController {
       ..width = 2
       ..height = 2
       ..slotsCount = 2
+      ..settings = {'test': ''}
       ..widgetBuilder = (DroppedDeviceModel dm) => Device1(dm),
     DeviceModel()
       ..name = 'Промышленный коммуникатор'
       ..width = 4
       ..height = 2
       ..slotsCount = 5
+      ..settings = {'test': ''}
       ..widgetBuilder = (DroppedDeviceModel dm) => Device2(dm),
   ];
 

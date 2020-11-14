@@ -7,5 +7,6 @@ class DeviceModel {
   int height;
   String name;
   int slotsCount;
+  Map<String, String> settings;
   Widget Function(DroppedDeviceModel) widgetBuilder;
 }
