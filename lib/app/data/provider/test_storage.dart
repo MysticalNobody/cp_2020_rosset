@@ -26,6 +26,6 @@ class TestStorage {
   }
 
   Future<void> clear() async {
-    await GetStorage().erase();
+    _answers.val = null;
   }
 }

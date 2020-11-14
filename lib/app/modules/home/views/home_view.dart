@@ -118,11 +118,11 @@ class HomeView extends GetView<HomeController> {
                 right: 24,
                 child: Obx(
                   () => AnimatedOpacity(
-                    opacity: controller.showInstruments.value && Get.width < 600 ? 0 : 1,
+                    opacity: controller.showInstruments.value && Get.width < 1050 ? 0 : 1,
                     duration: 300.milliseconds,
                     child: Row(
                       children: [
-                        if (Get.width > 600)
+                        if (Get.width > 1050)
                           Container(
                             alignment: Alignment.bottomCenter,
                             margin: EdgeInsets.only(right: 12),
@@ -141,7 +141,7 @@ class HomeView extends GetView<HomeController> {
                               onPressed: () => Get.toNamed(Routes.TESTS),
                             ),
                           ),
-                        if (Get.width > 600)
+                        if (Get.width > 1050)
                           Container(
                             alignment: Alignment.bottomCenter,
                             margin: EdgeInsets.only(right: 12),
@@ -160,7 +160,7 @@ class HomeView extends GetView<HomeController> {
                               onPressed: () => Get.dialog(InfoDialog()),
                             ),
                           ),
-                        if (Get.width > 600)
+                        if (Get.width > 1050)
                           Container(
                             alignment: Alignment.bottomCenter,
                             child: RaisedButton.icon(
@@ -183,7 +183,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
               ),
-              if (Get.width > 600)
+              if (Get.width > 1050)
                 Positioned(
                   bottom: 24,
                   right: 24,
@@ -216,7 +216,7 @@ class HomeView extends GetView<HomeController> {
                   right: 24,
                   child: Obx(
                     () => AnimatedOpacity(
-                      opacity: controller.showSimpleModeButton.value && Get.width < 600 ? 0 : 1,
+                      opacity: controller.showSimpleModeButton.value && Get.width <= 600 ? 0 : 1,
                       duration: 300.milliseconds,
                       child: Row(
                         children: [
@@ -230,6 +230,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             onPressed: () => Get.dialog(InfoDialog()),
                           ),
+                          SizedBox(width: 12),
                           FloatingActionButton(
                             mini: true,
                             heroTag: 'challenge',
@@ -240,6 +241,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             onPressed: () => Get.dialog(InfoDialog()),
                           ),
+                          SizedBox(width: 12),
                           FloatingActionButton(
                             mini: true,
                             heroTag: 'on_off_visibility',
@@ -255,7 +257,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                 ),
-              if (Get.width > 600)
+              if (Get.width > 1050)
                 Positioned(
                   top: 100,
                   right: 24,
@@ -290,25 +292,28 @@ class HomeView extends GetView<HomeController> {
                   left: 24,
                   child: Obx(
                     () => AnimatedOpacity(
-                      opacity: controller.showGooseButton.value && Get.width < 600 ? 0 : 1,
+                      opacity: controller.showGooseButton.value && Get.width <= 600 ? 0 : 1,
                       duration: 300.milliseconds,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: Get.width > 600 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            alignment: Alignment.bottomCenter,
-                            child: RaisedButton(
-                              color: AppColors.secondary,
-                              child: Text(
-                                'Подписки GOOSE-сообщений',
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 14,
+                          Padding(
+                            padding: EdgeInsets.only(right: Get.width > 600 ? 24 : 0),
+                            child: Container(
+                              alignment: Alignment.bottomCenter,
+                              child: RaisedButton(
+                                color: AppColors.secondary,
+                                child: Text(
+                                  'Подписки GOOSE-сообщений',
+                                  style: TextStyle(
+                                    color: AppColors.white,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              onPressed: () => Get.dialog(
-                                Dialog(child: PubSubSettingsView()),
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                onPressed: () => Get.dialog(
+                                  Dialog(child: PubSubSettingsView()),
+                                ),
                               ),
                             ),
                           ),
