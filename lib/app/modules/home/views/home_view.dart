@@ -324,7 +324,7 @@ class HomeView extends GetView<HomeController> {
                               EvaIcons.doneAll,
                               color: AppColors.secondary,
                             ),
-                            onPressed: () => Get.toNamed(Routes.TESTS),
+                            onPressed: controller.startCheck,
                           ),
                         ],
                       ),
