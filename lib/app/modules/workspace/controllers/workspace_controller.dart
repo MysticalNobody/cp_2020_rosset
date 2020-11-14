@@ -6,14 +6,54 @@ import 'package:rosset_client/app/data/model/device_slot.dart';
 import 'package:rosset_client/app/data/model/draggable_device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
 
+Map<SettingsFieldType, Function(String)> settingsValidators = {
+  SettingsFieldType.gcb: (String val) {
+    if (val.isNullOrBlank) throw 'Имя GCB не должно быть пустым';
+    if (val.substring(0, 1).isNum) throw 'Имя GCB не должно начинаться с цифры';
+  },
+  SettingsFieldType.goose: (String val) => {},
+  SettingsFieldType.mac: (String val) {
+    final min = int.parse('01:0C:CD:01:00:01'.replaceAll(':', ''), radix: 16);
+    final max = int.parse('01:0C:CD:01:01:FF'.replaceAll(':', ''), radix: 16);
+    final i = int.parse(val.replaceAll(':', ''), radix: 16);
+    if (i < min || i > max) throw 'Неверный MAC-адрес';
+  },
+  SettingsFieldType.app: (String val) {
+    final min = int.parse('8000', radix: 16);
+    final max = int.parse('BFFF', radix: 16);
+    final i = int.parse(val, radix: 16);
+    if (i < min || i > max) throw 'Неверный AppID';
+  },
+  SettingsFieldType.vlan: (String val) {
+    if (int.parse(val) < 0 || int.parse(val) > 4095) throw 'Неверный VLAN ID';
+  },
+  SettingsFieldType.minTime: (String val) {
+    if (int.parse(val) != 4) throw 'Неверное Минимальное время между отправками';
+  },
+  SettingsFieldType.maxTime: (String val) {
+    if (int.parse(val) != 1000) throw 'Неверное Максимальное время между отправками';
+  },
+  SettingsFieldType.ip1: (String val) {
+    if (!val.isIPv4) throw 'Неверно указан IP';
+  },
+  SettingsFieldType.ip2: (String val) {
+    if (!val.isIPv4) throw 'Неверно указан IP';
+  },
+  SettingsFieldType.masc1: (String val) {
+    if (!val.isIPv4) throw 'Неверно указана маска подсети';
+  },
+  SettingsFieldType.masc2: (String val) {
+    if (!val.isIPv4) throw 'Неверно указана маска подсети';
+  },
+};
+
 class WorkspaceController extends GetxController {
   int hintX, hintY;
   DeviceModel hintModel;
   List<DroppedDeviceModel> dropped = [];
   GlobalKey baseKey = GlobalKey();
 
-  Map<DroppedDeviceModel, Map<DroppedDeviceModel, Map<String, bool>>>
-      pubSubData = {};
+  Map<DroppedDeviceModel, Map<DroppedDeviceModel, Map<String, bool>>> pubSubData = {};
 
   TransformationController gridController;
   @override
@@ -24,9 +64,7 @@ class WorkspaceController extends GetxController {
     gridController = TransformationController(v);
   }
 
-  void savePubSub(
-      Map<DroppedDeviceModel, Map<DroppedDeviceModel, Map<String, bool>>>
-          data) {
+  void savePubSub(Map<DroppedDeviceModel, Map<DroppedDeviceModel, Map<String, bool>>> data) {
     pubSubData = data;
   }
 
@@ -97,5 +135,65 @@ class WorkspaceController extends GetxController {
     for (final slot in dm.slots) removeLink(slot);
     dropped.remove(dm);
     update();
+  }
+
+  void check() {
+    DroppedDeviceModel ied1, ied2, commut;
+    for (final device in dropped) {
+      if (device.model.type == DeviceType.commutator) {
+        if (commut == null)
+          commut = device;
+        else
+          throw 'Требуется ровно один комутатор';
+      }
+      if (device.model.type == DeviceType.ied) {
+        if (ied1 == null)
+          ied1 = device;
+        else if (ied2 == null)
+          ied2 = device;
+        else
+          throw 'Требуется ровно два РЗА';
+      }
+    }
+    if (ied1 == null || ied2 == null) throw 'Недостаточно РЗА';
+    if (commut == null) throw 'Нет коммутатора';
+    checkLinks(ied1);
+    checkLinks(ied2);
+    checkIEDSettings(ied1);
+    checkIEDSettings(ied2);
+    checkNetworkSettings(commut);
+    checkPubSub(ied1, ied2);
+  }
+
+  void checkLinks(DroppedDeviceModel ied) {
+    final links = ied.slots.where((e) => e.link != null);
+    if (links.length != 1) throw 'Требуется ровно одна связь у каждого РЗА';
+    if (links.first.link.start.device.model.type != DeviceType.commutator &&
+        links.first.link.end.device.model.type != DeviceType.commutator)
+      throw 'У каждого РЗА должжна быть связь с коммутатором';
+  }
+
+  void checkIEDSettings(DroppedDeviceModel ied) {
+    for (final entry in ied.settings.entries) {
+      settingsValidators[entry.key](entry.value);
+    }
+  }
+
+  void checkNetworkSettings(DroppedDeviceModel commut) {
+    for (final entry in commut.settings.entries) {
+      settingsValidators[entry.key](entry.value);
+    }
+    if (settingsValidators[SettingsFieldType.masc1] != settingsValidators[SettingsFieldType.masc2])
+      throw 'Маска подсети должна совпадать';
+  }
+
+  void checkPubSub(DroppedDeviceModel ied1, DroppedDeviceModel ied2) {
+    if (!pubSubData.containsKey(ied1) ||
+        !pubSubData.containsKey(ied2) ||
+        !pubSubData[ied1].containsKey(ied2) ||
+        !pubSubData[ied2].containsKey(ied1)) throw 'РЗА должны быть подписаны на GOOSE сообщения друг-друга';
+    final checker = ['1-1', '2-2', '3-3'].toSet();
+    if (pubSubData[ied1][ied2].keys.toSet().difference(checker).isNotEmpty)
+      throw 'Вход каждого РЗА должен быть подписан на соответствующий выход каждого другого РЗА';
   }
 }

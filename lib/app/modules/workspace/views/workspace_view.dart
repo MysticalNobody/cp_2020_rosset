@@ -31,9 +31,7 @@ class WorkspaceView extends GetView<WorkspaceController> {
                     top: 100,
                     child: Obx(
                       () => AnimatedOpacity(
-                        opacity: Get.find<HomeController>().isSimpleMode.value
-                            ? 0
-                            : 0.4,
+                        opacity: Get.find<HomeController>().isSimpleMode.value ? 0 : 0.4,
                         duration: 300.milliseconds,
                         child: Image.asset(
                           'assets/images/bg.png',

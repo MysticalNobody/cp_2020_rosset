@@ -176,7 +176,7 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ),
                             padding: EdgeInsets.symmetric(horizontal: 40),
-                            onPressed: () => Get.toNamed(Routes.TESTS),
+                            onPressed: controller.startCheck,
                           ),
                         ),
                       ],
