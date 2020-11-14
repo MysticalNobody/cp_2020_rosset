@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/draggable_device.dart';
+import 'package:rosset_client/app/modules/home/widgets/platform_draggable.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_grid.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/links_painter.dart';
@@ -30,8 +31,9 @@ class WorkspaceView extends GetView<WorkspaceController> {
                       top: 100.0 * dropped.y,
                       width: 100.0 * dropped.model.width,
                       height: 100.0 * dropped.model.height,
-                      child: LongPressDraggable<DraggableDevice>(
+                      child: PlatformDraggable<DraggableDevice>(
                         data: DraggableDevice()..device = dropped,
+                        child: dropped.widget ?? const SizedBox(),
                         feedback: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
                           child: Container(
@@ -48,7 +50,6 @@ class WorkspaceView extends GetView<WorkspaceController> {
                             ),
                           ),
                         ),
-                        child: dropped.widget ?? const SizedBox(),
                       ),
                     ),
                   if (controller.hintModel != null)
