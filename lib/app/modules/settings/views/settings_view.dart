@@ -6,13 +6,13 @@ import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 
 class SettingsView extends StatelessWidget {
-  SettingsView(this.device);
+  SettingsView(this.device) : controller = SettingsController(device);
   final DroppedDeviceModel device;
-
+  final SettingsController controller;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: SettingsController(device),
+    return GetBuilder<SettingsController>(
+      init: controller,
       builder: (controller) => SizedBox(
         width: Get.width > 600 ? 600 : Get.width * .9,
         child: Scaffold(
@@ -42,7 +42,7 @@ class SettingsView extends StatelessWidget {
                     width: double.infinity,
                     child: RaisedButton(
                       color: AppColors.secondary,
-                      onPressed: () => controller.save(),
+                      onPressed: controller.save,
                       child: Text('Сохранить'),
                     ),
                   )

@@ -23,10 +23,10 @@ class SettingsController extends GetxController {
 
   @override
   void onInit() {
-    for (int i = 0; i < device.model.settings.toList().length; i += 1) {
+    for (int i = 0; i < device.model.settings.length; i += 1) {
       String text;
       if (device.settings?.isNotEmpty ?? false) {
-        text = device.settings[device.model.settings[i]];
+        text = device.settings[device.model.settings[i][1]];
       }
       controllers.add(TextEditingController(text: text));
     }
@@ -34,9 +34,4 @@ class SettingsController extends GetxController {
     update();
   }
 
-  @override
-  void onReady() {}
-
-  @override
-  void onClose() {}
 }
