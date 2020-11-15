@@ -34,8 +34,12 @@ class TestsController extends GetxController {
       var q = QuestionModel.fromJson(item);
       questions.add(q);
     }
-    if (answers.isNotEmpty && answers.length != questions.length) {
-      nowQuestionIndex = answers.length;
+    if (answers.isNotEmpty) {
+      if (answers.length != questions.length) {
+        nowQuestionIndex = answers.length;
+      } else {
+        testRepository.clear();
+      }
     }
     timer = Timer.periodic(
       1.seconds,
