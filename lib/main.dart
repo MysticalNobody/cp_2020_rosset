@@ -16,7 +16,7 @@ Future<void> main() async {
   await GetStorage.init();
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "Павел Анатольевич",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: AppTheme.getTheme,
