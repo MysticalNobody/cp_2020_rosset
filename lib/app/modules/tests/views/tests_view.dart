@@ -43,12 +43,10 @@ class TestsView extends GetView<TestsController> {
                 ),
                 SingleChildScrollView(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       TestsAppbar(onBackTap: model.exitTest),
-                      Container(),
-                      Container(),
+                      SizedBox(height: Get.height * .15),
                       if (model.questions.isEmpty)
                         CircularProgressIndicator()
                       else
@@ -56,8 +54,7 @@ class TestsView extends GetView<TestsController> {
                           children: [
                             if (Get.width < 600) SizedBox(height: 24),
                             Container(
-                              constraints:
-                                  BoxConstraints(maxWidth: Get.width * .8),
+                              constraints: BoxConstraints(maxWidth: Get.width * .8),
                               child: Text(
                                 model.nowQuestion.title,
                                 textAlign: TextAlign.center,
@@ -71,8 +68,7 @@ class TestsView extends GetView<TestsController> {
                             Text(
                               'Вопрос ${model.nowQuestionIndex + 1} из ${model.questions.length}',
                               textAlign: TextAlign.center,
-                              style: AppTextStyles.secondary
-                                  .copyWith(color: Color(0xFF9096B5)),
+                              style: AppTextStyles.secondary.copyWith(color: Color(0xFF9096B5)),
                             ),
                             SizedBox(height: 40),
                             ...List.generate(
@@ -83,15 +79,12 @@ class TestsView extends GetView<TestsController> {
                                   if (index == model.answer) {
                                     type = OptionType.right;
                                   }
-                                  if (index == model.chosenOption &&
-                                      model.answer != model.chosenOption) {
+                                  if (index == model.chosenOption && model.answer != model.chosenOption) {
                                     type = OptionType.error;
                                   }
                                 }
                                 return OptionButton(
-                                  onTap: () => model.chosenOption != null
-                                      ? null
-                                      : model.toAnswer(index),
+                                  onTap: () => model.chosenOption != null ? null : model.toAnswer(index),
                                   text: model.nowQuestion.options[index],
                                   type: type,
                                 );
@@ -99,26 +92,19 @@ class TestsView extends GetView<TestsController> {
                             ),
                           ],
                         ),
-                      if (Get.width < 600) SizedBox(height: 12),
+                      if (Get.width < 600) SizedBox(height: 12) else SizedBox(height: Get.height * .06),
                       RaisedButton(
                         color: AppColors.secondary,
                         child: Text(
-                          model.isLastQuestion
-                              ? 'К результатам'
-                              : 'Следующий вопрос',
+                          model.isLastQuestion ? 'К результатам' : 'Следующий вопрос',
                           style: TextStyle(
                             color: AppColors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: model.chosenOption == null
-                            ? null
-                            : model.nextQuestion,
+                        onPressed: model.chosenOption == null ? null : model.nextQuestion,
                       ),
-                      Container(),
-                      Container(),
-                      Container(),
                       if (Get.width < 600) SizedBox(height: 24),
                     ],
                   ),
