@@ -8,7 +8,7 @@ class AppTheme {
     return ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
       fontFamily: AppTextStyles.fontFamily,
-      accentColor: AppColors.accent,
+      accentColor: AppColors.primary,
       backgroundColor: AppColors.background,
       buttonColor: AppColors.primary,
       primaryColor: AppColors.primary,

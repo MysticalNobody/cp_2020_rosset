@@ -13,19 +13,23 @@ extension DateTimeExtension on DateTime {
 class Utils {
   static void showSnackbar(String title, String message, {SnackbarType type = SnackbarType.primary}) {
     Color bgColor;
-    final Color textColor = AppColors.text;
+    Color textColor = AppColors.text;
     switch (type) {
       case SnackbarType.error:
-        bgColor = AppColors.redStatus;
+        bgColor = Colors.redAccent;
+        textColor = Colors.white;
         break;
       case SnackbarType.primary:
         bgColor = AppColors.primary;
+        textColor = Colors.white;
         break;
       case SnackbarType.success:
-        bgColor = AppColors.greenStatus;
+        bgColor = Colors.green;
+        textColor = Colors.white;
         break;
       default:
         bgColor = AppColors.primary;
+        textColor = Colors.white;
         break;
     }
     Get.snackbar(

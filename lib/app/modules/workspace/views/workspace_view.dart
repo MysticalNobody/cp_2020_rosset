@@ -96,6 +96,18 @@ class WorkspaceView extends GetView<WorkspaceController> {
                 ),
               ),
             ),
+            Positioned(
+              left: 0,
+              child: IgnorePointer(
+                child: Obx(
+                  () => AnimatedContainer(
+                    duration: 300.milliseconds,
+                    width: Get.find<HomeController>().showInstruments.value ? 300 : 0,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
           ],
         );
       },
