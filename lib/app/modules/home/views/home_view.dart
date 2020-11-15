@@ -139,7 +139,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                               padding: EdgeInsets.symmetric(horizontal: 40),
-                              onPressed: () => Get.toNamed(Routes.TESTS),
+                              onPressed: () => Get.dialog(InstructionDialog()),
                             ),
                           ),
                         if (Get.width > 1050)
