@@ -46,6 +46,18 @@ class PubSubSettingsView extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: Get.back,
+                    child: Text(
+                      'Закрыть',
+                      style: AppTextStyles.button.copyWith(color: AppColors.secondary),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24),
               ],
             ),
           );
