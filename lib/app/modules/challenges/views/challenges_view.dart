@@ -89,35 +89,51 @@ class ChallengesView extends GetView<ChallengesController> {
                 children: [
                   SizedBox(height: 24),
                   Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(6),
+                  Text(
+                    'Задания',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: Get.width > 600 ? 36 : 24,
+                      color: Color(0xFF303C74),
                     ),
-                    padding: EdgeInsets.all(24),
-                    constraints: BoxConstraints(maxWidth: 600),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Задания', style: AppTextStyles.headLine3.copyWith(color: AppColors.secondary)),
-                        SizedBox(height: 12),
-                        Text('Выберите задание из списка:',
-                            style: AppTextStyles.secondary.copyWith(color: AppColors.grey.withOpacity(.5))),
-                        SizedBox(height: 24),
-                        Card(
-                          elevation: 2,
-                          child: TextButton(
-                            onPressed: () => Get.toNamed(Routes.HOME),
-                            child: Padding(
-                              padding: EdgeInsets.all(24),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Выберите задание из списка',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.secondary.copyWith(color: Color(0xFF9096B5)),
+                  ),
+                  SizedBox(height: 40),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 6),
+                    child: RaisedButton(
+                      padding: EdgeInsets.all(11),
+                      color: Color(0xFFE5E8EF),
+                      onPressed: () => Get.toNamed(Routes.HOME),
+                      child: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: Get.width * .8,
+                          minWidth: Get.width * .3,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        width: 435,
+                        height: 60,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 25),
+                            Flexible(
                               child: Text(
                                 'Настройка IED на прием-передачу GOOSE-сообщений',
-                                style: AppTextStyles.mediumLabel,
+                                style: AppTextStyles.secondary.copyWith(
+                                  color: Color(0xFF495585),
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   Spacer(),
