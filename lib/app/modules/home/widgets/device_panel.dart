@@ -25,7 +25,6 @@ class DevicePanel extends StatelessWidget {
     HomeController controller = Get.find<HomeController>();
     return Obx(
       () => AnimatedContainer(
-        color: AppColors.white,
         duration: 300.milliseconds,
         width: controller.showInstruments.value ? 300 : 0,
         child: Stack(
