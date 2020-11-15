@@ -26,6 +26,6 @@ class TestStorage {
   }
 
   Future<void> clear() async {
-    _answers.val = null;
+    _answers.val = {'answers': []};
   }
 }

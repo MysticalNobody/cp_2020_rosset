@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/auth/controllers/auth_controller.dart';
+import 'package:rosset_client/app/modules/auth/widgets/text_input.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/get_busy_mixin.dart';
@@ -91,61 +92,49 @@ class AuthView extends GetView<AuthController> {
                   children: [
                     SizedBox(height: 24),
                     Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(6),
+                    Text(
+                      'Авторизация',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: Get.width > 600 ? 36 : 24,
+                        color: Color(0xFF303C74),
                       ),
-                      padding: EdgeInsets.all(24),
-                      constraints: BoxConstraints(maxWidth: 600),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Авторизация', style: AppTextStyles.headLine3.copyWith(color: AppColors.secondary)),
-                          SizedBox(height: 24),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 12),
-                              labelText: 'ФИО',
-                              labelStyle: AppTextStyles.mediumLabel,
-                            ),
-                            controller: controller.loginController,
-                            validator: ValidationBuilder().minLength(1, 'Необходимо ввести ФИО').build(),
-                            focusNode: controller.loginFocusNode,
-                            keyboardType: TextInputType.name,
-                            textCapitalization: TextCapitalization.none,
-                          ),
-                          SizedBox(height: 24),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 12),
-                              labelText: 'Номер группы',
-                              labelStyle: AppTextStyles.mediumLabel,
-                            ),
-                            validator: ValidationBuilder().minLength(1, 'Необходимо ввести Номер группы').build(),
-                            controller: controller.passwordController,
-                            focusNode: controller.passwordFocusNode,
-                          ),
-                          SizedBox(height: 26),
-                          SizedBox(
-                            width: double.infinity,
-                            child: RaisedButton(
-                              color: AppColors.secondary,
-                              onPressed: controller.action,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('Войти'),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 24),
-                        ],
+                    ),
+                    SizedBox(height: 40),
+                    TextInputWidget(
+                      labelText: 'ФИО',
+                      controller: controller.loginController,
+                      focusNode: controller.loginFocusNode,
+                    ),
+                    SizedBox(height: 24),
+                    TextInputWidget(
+                      labelText: 'Номер группы',
+                      controller: controller.passwordController,
+                      focusNode: controller.passwordFocusNode,
+                    ),
+                    SizedBox(height: 24),
+                    Container(
+                      constraints: BoxConstraints(
+                        minWidth: Get.width * .4,
+                        maxWidth: Get.width * .8,
+                      ),
+                      width: 300,
+                      child: RaisedButton(
+                        color: AppColors.secondary,
+                        onPressed: controller.action,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Войти'),
+                        ),
                       ),
                     ),
                     Spacer(),
                     Text(
                       '© 2020 - Itis.team, Inc. All rights reserved.',
-                      style: AppTextStyles.mediumLabel,
+                      style: TextStyle(
+                        fontSize: Get.width > 600 ? 20 : 14,
+                        color: Color(0xFF303C74),
+                      ),
                     ),
                     SizedBox(height: 25),
                   ],
