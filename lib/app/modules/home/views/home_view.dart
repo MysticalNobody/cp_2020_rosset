@@ -6,6 +6,7 @@ import 'package:rosset_client/app/modules/home/controllers/home_controller.dart'
 import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
 import 'package:rosset_client/app/modules/home/widgets/device_panel.dart';
 import 'package:rosset_client/app/modules/home/widgets/info_dialog.dart';
+import 'package:rosset_client/app/modules/home/widgets/instruction.dart';
 import 'package:rosset_client/app/modules/pubsub_settings/views/settings_view.dart';
 import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
@@ -228,7 +229,7 @@ class HomeView extends GetView<HomeController> {
                               EvaIcons.questionMarkCircle,
                               color: AppColors.secondary,
                             ),
-                            onPressed: () => Get.dialog(InfoDialog()),
+                            onPressed: () => Get.dialog(InstructionDialog()),
                           ),
                           SizedBox(width: 12),
                           FloatingActionButton(
