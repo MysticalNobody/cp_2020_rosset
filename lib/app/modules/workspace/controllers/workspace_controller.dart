@@ -55,6 +55,7 @@ class WorkspaceController extends GetxController {
 
   Map<DroppedDeviceModel, Map<DroppedDeviceModel, Map<String, bool>>> pubSubData = {};
 
+  DeviceSlotModel startSlot;
   TransformationController gridController;
   @override
   void onInit() {
@@ -109,12 +110,14 @@ class WorkspaceController extends GetxController {
 
   void onLinkDropped(DeviceSlotModel slot) {
     removeLink(slot);
+    startSlot = null;
     update();
   }
 
   void onLinkEnd(DeviceSlotModel slot, DeviceSlotModel another) {
     removeLink(slot);
     removeLink(another);
+    startSlot = null;
     final link = DeviceLinkModel()
       ..start = another
       ..end = slot;
@@ -127,8 +130,18 @@ class WorkspaceController extends GetxController {
     if (slot.link == null) return;
     final start = slot.link?.start;
     final end = slot.link?.end;
+    startSlot = null;
     start?.link = null;
     end?.link = null;
+  }
+
+  void onSlotTap(DeviceSlotModel slot) {
+    if (startSlot == null) {
+      startSlot = slot;
+      update();
+      return;
+    }
+    onLinkEnd(slot, startSlot);
   }
 
   void deleteDevice(DroppedDeviceModel dm) {
