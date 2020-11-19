@@ -1,0 +1,50 @@
+{
+  "name": "js-3d-model-viewer",
+  "author": "CGWire <contact@cg-wire.com> (http://cg-wire.com)",
+  "version": "0.1.5",
+  "description": "An easy to use viewer to display 3D models in the browser.",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "webpack",
+    "build": "NODE_ENV=production webpack",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgwire/js-3d-model-viewer.git"
+  },
+  "keywords": [
+    "3d",
+    "viewer",
+    "model",
+    "character",
+    "props"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cgwire/js-3d-model-viewer/issues"
+  },
+  "homepage": "https://github.com/cgwire/js-3d-model-viewer#readme",
+  "dependencies": {
+    "three": "0.94.0",
+    "three-obj-mtl-loader": "1.0.3",
+    "three-orbit-controls": "82.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.54",
+    "@babel/preset-env": "7.0.0-beta.54",
+    "babel-loader": "8.0.0-beta.4",
+    "chai": "4.1.2",
+    "eslint": "5.2.0",
+    "eslint-config-standard": "11.0.0",
+    "eslint-loader": "2.1.0",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-promise": "3.8.0",
+    "eslint-plugin-standard": "3.1.0",
+    "mocha": "5.2.0",
+    "webpack": "4.16.1",
+    "webpack-cli": "3.1.0",
+    "webpack-dev-server": "3.1.11"
+  }
+}

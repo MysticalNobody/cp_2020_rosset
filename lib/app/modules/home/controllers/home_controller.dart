@@ -1,3 +1,7 @@
+import 'dart:html';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
@@ -10,11 +14,16 @@ import 'package:rosset_client/app/modules/workspace/controllers/workspace_contro
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/utils/utils.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:js/js.dart' as js;
+import 'dart:ui' as ui;
+
+import 'model_controller.dart';
 
 class HomeController extends GetxController {
   RxBool showInstruments = true.obs;
   RxBool showSimpleModeButton = true.obs;
   RxBool showGooseButton = true.obs;
+  final IFrameElement _iframeElement = IFrameElement();
 
   RxBool isSimpleMode = false.obs;
 
@@ -58,6 +67,15 @@ class HomeController extends GetxController {
       ..widgetBuilder = (DroppedDeviceModel dm) => Device2(dm),
   ];
 
+  void viewModel() {
+    Get.dialog(Dialog(
+      child: HtmlElementView(
+        viewType: 'viewer',
+      ),
+    ));
+    view3dModel();
+  }
+
   void toggleInstruments() {
     showInstruments.value = !showInstruments.value;
     showSimpleModeButton.value = !showSimpleModeButton.value;
@@ -81,6 +99,7 @@ class HomeController extends GetxController {
     attempt = QuestAttempt()
       ..start = DateTime.now()
       ..mistakes = [];
+    ui.platformViewRegistry.registerViewFactory('viewer', (_) => _iframeElement);
     super.onInit();
   }
 

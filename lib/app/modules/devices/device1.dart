@@ -59,6 +59,11 @@ class Device1 extends StatelessWidget {
                         color: Colors.black26,
                       ),
                     ),
+                    IconButton(
+                      onPressed: Get.find<HomeController>().viewModel,
+                      color: AppColors.accent,
+                      icon: Icon(EvaIcons.expand),
+                    ),
                     Spacer(),
                     Text(dm.model.name),
                     Spacer(),

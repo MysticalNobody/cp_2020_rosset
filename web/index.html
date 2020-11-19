@@ -28,12 +28,21 @@
 
   <title>rosset_client</title>
   <link rel="manifest" href="manifest.json">
+  
+  <script src="js/js-3d-model-viewer.min.js" type="module"></script>
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
+  import modelPlayer from 'js-3d-model-viewer'
+
+    function viewModel() {
+        const viewerElement = document.getElementById('viewer')
+        const scene = modelPlayer.prepareScene(viewerElement)
+        modelPlayer.loadObject(scene, './assets/sample.obj')
+    }
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {
         navigator.serviceWorker.register('flutter_service_worker.js');
