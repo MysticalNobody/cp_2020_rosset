@@ -59,6 +59,17 @@ class Device1 extends StatelessWidget {
                         color: Colors.black26,
                       ),
                     ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(666),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: IconButton(
+                          onPressed: Get.find<HomeController>().viewModel,
+                          color: AppColors.secondary,
+                          icon: Icon(Icons.preview),
+                        ),
+                      ),
+                    ),
                     Spacer(),
                     Text(dm.model.name),
                     Spacer(),
