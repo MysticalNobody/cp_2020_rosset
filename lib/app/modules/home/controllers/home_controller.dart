@@ -14,16 +14,13 @@ import 'package:rosset_client/app/modules/workspace/controllers/workspace_contro
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/utils/utils.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:js/js.dart' as js;
 import 'dart:ui' as ui;
-
-import 'model_controller.dart';
 
 class HomeController extends GetxController {
   RxBool showInstruments = true.obs;
   RxBool showSimpleModeButton = true.obs;
   RxBool showGooseButton = true.obs;
-  final IFrameElement _iframeElement = IFrameElement();
+  final IFrameElement _iframeElement = IFrameElement()..src = 'https://modelviewer.dev/';
 
   RxBool isSimpleMode = false.obs;
 
@@ -69,11 +66,14 @@ class HomeController extends GetxController {
 
   void viewModel() {
     Get.dialog(Dialog(
-      child: HtmlElementView(
-        viewType: 'viewer',
+      child: SizedBox(
+        width: Get.width > 700 ? 700 : Get.width * .9,
+        height: Get.width > 700 ? 700 : Get.height * .9,
+        child: HtmlElementView(
+          viewType: 'viewer3d',
+        ),
       ),
     ));
-    view3dModel();
   }
 
   void toggleInstruments() {
@@ -99,7 +99,7 @@ class HomeController extends GetxController {
     attempt = QuestAttempt()
       ..start = DateTime.now()
       ..mistakes = [];
-    ui.platformViewRegistry.registerViewFactory('viewer', (_) => _iframeElement);
+    ui.platformViewRegistry.registerViewFactory('viewer3d', (_) => _iframeElement);
     super.onInit();
   }
 

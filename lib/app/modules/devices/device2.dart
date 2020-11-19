@@ -72,6 +72,12 @@ class Device2 extends StatelessWidget {
                       color: Colors.black26,
                     ),
                   ),
+                  IconButton(
+                    onPressed: Get.find<HomeController>().viewModel,
+                    color: AppColors.secondary,
+                    icon: Icon(Icons.preview),
+                    splashRadius: 18,
+                  ),
                   Spacer(),
                   TextButton.icon(
                     icon: Icon(
