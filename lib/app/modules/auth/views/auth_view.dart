@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/auth/controllers/auth_controller.dart';
 import 'package:rosset_client/app/modules/auth/widgets/text_input.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/get_busy_mixin.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 

@@ -21,10 +21,8 @@ class UserRepository {
     return this;
   }
 
-  Future updateUser(UserModel user) async =>
-      _user = await _userStorage.saveUser(user);
-  Future updateToken(String token) async =>
-      _token = await _userStorage.saveToken(token);
+  Future updateUser(UserModel user) async => _user = await _userStorage.saveUser(user);
+  Future updateToken(String token) async => _token = await _userStorage.saveToken(token);
 
   Future logout() async => await _userStorage.clear();
 }

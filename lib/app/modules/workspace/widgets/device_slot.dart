@@ -20,7 +20,12 @@ class DeviceSlot extends StatelessWidget {
                 height: size,
                 width: size,
                 decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.black), borderRadius: BorderRadius.circular(3)),
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.black,
+                  ),
+                  borderRadius: BorderRadius.circular(3),
+                ),
                 alignment: Alignment.center,
                 child: PlatformDraggable<DeviceSlotModel>(
                   data: slot,

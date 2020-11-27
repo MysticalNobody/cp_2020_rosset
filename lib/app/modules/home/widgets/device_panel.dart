@@ -48,7 +48,13 @@ class DevicePanel extends StatelessWidget {
                         Row(
                           children: [
                             SizedBox(width: 56),
-                            Text('Инструменты', style: TextStyle(fontSize: 20, color: Color(0xFF303C74))),
+                            Text(
+                              'Инструменты',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Color(0xFF303C74),
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(height: 24),

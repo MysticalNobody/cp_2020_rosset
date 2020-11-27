@@ -35,7 +35,6 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: GetBuilder<HomeController>(
-        // init: HomeController(),
         builder: (controller) => SafeArea(
           child: Stack(
             children: [
@@ -176,8 +175,8 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                               padding: EdgeInsets.symmetric(horizontal: 40),
-                              onPressed: controller.startCheck,
-                              // onPressed: () => Get.toNamed(Routes.TESTS),
+                              // onPressed: controller.startCheck,
+                              onPressed: () => Get.toNamed(Routes.TESTS), //TODO:
                             ),
                           ),
                       ],
