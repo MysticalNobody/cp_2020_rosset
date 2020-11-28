@@ -20,16 +20,13 @@ class HomeView extends GetView<HomeController> {
           child: Column(
             children: [
               HomeAppBar(
-                onCheckTap: () {},
-                onMenuTap: () {},
+                onCheckTap: controller.startCheck,
+                onMenuTap: controller.toggleInstruments,
               ),
               Expanded(
                 child: Row(
                   children: [
-                    DevicePanel(
-                      onSearchChange: controller.search,
-                      devices: controller.models,
-                    ),
+                    DevicePanel(devices: controller.models),
                     Expanded(child: WorkspaceView()),
                   ],
                 ),

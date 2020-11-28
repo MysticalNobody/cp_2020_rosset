@@ -32,6 +32,7 @@ class HomeController extends GetxController {
     DeviceModel()
       ..type = DeviceType.ied
       ..name = 'РЗА'
+      ..shortInfo = 'Терминал релейной защиты'
       ..previewImage = 'assets/images/front.png'
       ..width = 4
       ..height = 2
@@ -49,6 +50,7 @@ class HomeController extends GetxController {
     DeviceModel()
       ..type = DeviceType.commutator
       ..name = 'Промышленный коммутатор'
+      ..shortInfo = 'Объединяет узлы компьютерной сети'
       ..previewImage = 'assets/images/commut.png'
       ..width = 6
       ..height = 2
@@ -82,8 +84,8 @@ class HomeController extends GetxController {
     showGooseButton.value = !showGooseButton.value;
   }
 
-  void toggleSimpleMode() {
-    isSimpleMode.value = !isSimpleMode.value;
+  void setSimpleMode(bool oldValue) {
+    isSimpleMode.value = !oldValue;
     update();
   }
 

@@ -44,7 +44,7 @@ class HomeAppBar extends StatelessWidget {
               ),
               const SizedBox(width: 11),
               Text(
-                'Тренажер',
+                'Тренажёр',
                 style: TextStyle(
                   color: AppColors.secondary,
                   fontSize: 16,

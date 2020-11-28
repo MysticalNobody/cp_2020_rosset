@@ -22,6 +22,7 @@ class DeviceModel {
   int width;
   int height;
   String name;
+  String shortInfo;
   String previewImage;
   int slotsCount;
   List<List<dynamic>> settings;

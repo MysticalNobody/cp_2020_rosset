@@ -1,23 +1,22 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
 
 import 'instrument_card.dart';
+import 'panel_row.dart';
+import 'simple_mode_row.dart';
 
 class DevicePanel extends StatelessWidget {
   const DevicePanel({
     Key key,
-    this.opened,
-    this.onSearchChange,
     this.devices,
   }) : super(key: key);
-  final bool opened;
-  final Function(String) onSearchChange;
+
   final List<DeviceModel> devices;
 
   @override
@@ -26,72 +25,70 @@ class DevicePanel extends StatelessWidget {
     return Obx(
       () => AnimatedContainer(
         duration: 300.milliseconds,
-        width: controller.showInstruments.value ? 300 : 0,
+        width: controller.showInstruments.value ? 350 : 0,
         child: Stack(
           fit: StackFit.loose,
           children: [
             AnimatedPositioned(
-              left: controller.showInstruments.value ? 0 : -300,
+              left: controller.showInstruments.value ? 0 : -350,
               top: 0,
               duration: 300.milliseconds,
               child: Container(
                 color: AppColors.white,
-                width: 300,
-                height: Get.height,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 28),
-                        Row(
-                          children: [
-                            SizedBox(width: 56),
-                            Text(
-                              'Инструменты',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Color(0xFF303C74),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 24),
-                        TextFormField(
-                          onChanged: onSearchChange,
-                          decoration: InputDecoration(
-                            filled: true,
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
-                              borderSide: BorderSide(
-                                color: AppColors.secondary,
-                                width: .5,
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
-                              borderSide: BorderSide.none,
-                            ),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 6),
-                            hintText: 'Поиск',
-                            hintStyle: AppTextStyles.text.copyWith(
-                              fontSize: 16,
-                              color: AppColors.text.withOpacity(.5),
-                            ),
-                            prefixIcon: Icon(
-                              EvaIcons.searchOutline,
-                              color: AppColors.secondary,
+                width: 350,
+                height: Get.height - 58,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 17),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 15,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            EvaIcons.cubeOutline,
+                            size: 23,
+                            color: AppColors.secondary,
+                          ),
+                          const SizedBox(width: 16),
+                          Text(
+                            'Устройства',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 14,
                             ),
                           ),
-                          style: AppTextStyles.text.copyWith(fontSize: 16),
-                        ),
-                        SizedBox(height: 30),
-                        ...devices.map((m) => InstrumentCard(model: m)).toList(),
-                        SizedBox(height: 30),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: devices.length,
+                        itemBuilder: (context, index) => InstrumentCard(
+                          model: devices[index],
+                        ),
+                      ),
+                    ),
+                    PanelRow(
+                      iconData: EvaIcons.twitterOutline,
+                      text: 'Подписки GOOSE-сообщений',
+                    ),
+                    PanelRow(
+                      iconData: EvaIcons.bookOutline,
+                      text: 'Задание',
+                    ),
+                    PanelRow(
+                      iconData: EvaIcons.fileTextOutline,
+                      text: 'Инструкция',
+                    ),
+                    SimpleModeRow(
+                      onChanged: controller.setSimpleMode,
+                      value: !controller.isSimpleMode.value,
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -16,47 +16,65 @@ class InstrumentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        var child = Column(
-          children: [
-            Card(
-              color: AppColors.white,
-              elevation: 4,
-              child: TextButton(
-                onPressed: () {},
-                child: Padding(
-                  padding: EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Image.asset(
-                        model.previewImage,
-                        height: 100,
-                        fit: BoxFit.contain,
+        Widget child = Container(
+          width: 350,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 17,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      model.previewImage,
+                      width: 60,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    SizedBox(width: 12),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            model.name,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.secondary,
+                            ),
+                          ),
+                          Text(
+                            model.shortInfo,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 12),
-                    ],
-                  ),
+                    ),
+                    SizedBox(width: 12),
+                  ],
                 ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              model.name,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-                color: Color(0xFF495585).withOpacity(0.8),
+              Image.asset(
+                'assets/icons/menu-dots.png',
+                width: 24,
+                height: 24,
               ),
-            ),
-            SizedBox(height: 24),
-          ],
+            ],
+          ),
         );
+
         return PlatformDraggable<DraggableDevice>(
           data: DraggableDevice()..model = model,
           onDraggableStart: () => Get.width > 740 ? () {} : Get.find<HomeController>().toggleInstruments(),
           feedback: Container(
             width: constraints.maxWidth,
-            height: 125,
+            height: 80,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: Material(
