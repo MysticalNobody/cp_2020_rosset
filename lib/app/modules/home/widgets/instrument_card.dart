@@ -18,9 +18,11 @@ class InstrumentCard extends StatelessWidget {
       builder: (context, constraints) {
         Widget child = Container(
           width: 350,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 17,
+          padding: const EdgeInsets.only(
+            left: 15,
+            right: 18,
+            top: 17,
+            bottom: 17,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +58,7 @@ class InstrumentCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: 12),
+                    SizedBox(width: 10),
                   ],
                 ),
               ),

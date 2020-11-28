@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,58 +9,102 @@ class InstructionDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: SizedBox(
-        width: Get.width > 600 ? 600 : Get.width * .9,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+      child: Container(
+        width: Get.width > 480 ? 480 : Get.width * .9,
+        padding: const EdgeInsets.only(
+          top: 48,
+          bottom: 22,
+          left: 48,
+          right: 21, //TODO: make adaptive
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
               children: [
-                Text(
-                  'Инструкция',
-                  style: AppTextStyles.headLine4.copyWith(color: AppColors.secondary),
+                Icon(
+                  EvaIcons.gridOutline,
+                  color: AppColors.primary,
+                  size: 24,
                 ),
-                SizedBox(height: 24),
-                Text(
-                  'Что такое рабочая область?',
-                  style: AppTextStyles.subtitle,
-                ),
-                SizedBox(height: 12),
-                Text(
-                  'Рабочая область это пространство, на котором вы можете выполнять задания. На неё можно перетаскивать инструменты и взаимодействовать с ними',
-                  style: AppTextStyles.text,
-                ),
-                SizedBox(height: 24),
-                Text(
-                  'Как взаимодействовать с инструментами?',
-                  style: AppTextStyles.subtitle,
-                ),
-                SizedBox(height: 12),
-                if (kIsWeb)
-                  Text(
-                    'Для того, чтобы взаимодействовать с инструментом, вы должны перетащить его на рабочую область.\nВы можете выстраивать связи между инструментами, а также настраивать или удалять их на рабочей панели',
-                    style: AppTextStyles.text,
-                  )
-                else
-                  Text(
-                    'Для того, чтобы взаимодействовать с инструментом, вы должны долгим нажатием перетащить его на рабочую область.\nВы можете выстраивать связи между инструментами, а также настраивать или удалять их на рабочей панели',
-                    style: AppTextStyles.text,
-                  ),
-                SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                    onPressed: Get.back,
-                    child: Text(
-                      'Закрыть',
-                      style: AppTextStyles.button.copyWith(color: AppColors.secondary),
+                const SizedBox(width: 12),
+                Flexible(
+                  child: Text(
+                    'Что такое рабочая область?',
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontSize: 16,
                     ),
                   ),
                 ),
               ],
             ),
-          ),
+            SizedBox(height: 15),
+            Padding(
+              padding: EdgeInsets.only(right: 30),
+              child: Text(
+                'Рабочая область – это пространство, на котором вы можете выполнять задания. На неё можно перетаскивать инструменты и взаимодействовать с ними.',
+                style: TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            SizedBox(height: 22),
+            Row(
+              children: [
+                Icon(
+                  EvaIcons.cubeOutline,
+                  color: AppColors.primary,
+                  size: 24,
+                ),
+                const SizedBox(width: 12),
+                Flexible(
+                  child: Text(
+                    'Как взаимодействовать с инструментами?',
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+            Padding(
+              padding: EdgeInsets.only(right: 30),
+              child: Text(
+                'Чтобы взаимодействовать с инструментом, его нужно перетащить  на рабочую область. Вы можете выстраивать связи между инструментами, соединяя разъёмы, выделенные зелёным цветом, а также настраивать или удалять инструменты с рабочего поля.',
+                style: TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            SizedBox(height: 44),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                  width: 125,
+                  child: RaisedButton(
+                    color: AppColors.secondary,
+                    child: Text(
+                      'Закрыть',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    onPressed: Get.back,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

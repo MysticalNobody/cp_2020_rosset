@@ -14,7 +14,7 @@ class InfoDialog extends StatelessWidget {
           top: 48,
           bottom: 22,
           left: 40,
-          right: 40,
+          right: 40, //TODO: make adaptive
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

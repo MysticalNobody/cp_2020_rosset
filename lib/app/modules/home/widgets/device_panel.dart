@@ -44,24 +44,32 @@ class DevicePanel extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 17),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            EvaIcons.cubeOutline,
-                            size: 23,
-                            color: AppColors.secondary,
+                          Row(
+                            children: [
+                              Icon(
+                                EvaIcons.cubeOutline,
+                                size: 23,
+                                color: AppColors.secondary,
+                              ),
+                              const SizedBox(width: 16),
+                              Text(
+                                'Устройства',
+                                style: TextStyle(
+                                  color: AppColors.primary,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 16),
-                          Text(
-                            'Устройства',
-                            style: TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 14,
-                            ),
+                          Icon(
+                            EvaIcons.arrowIosDownward,
+                            size: 24,
+                            color: AppColors.secondary,
                           ),
                         ],
                       ),
