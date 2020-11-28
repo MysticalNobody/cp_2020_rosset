@@ -7,54 +7,57 @@ class PanelRow extends StatelessWidget {
     Key key,
     @required this.iconData,
     @required this.text,
-    this.leading,
+    @required this.onTap,
   }) : super(key: key);
   final IconData iconData;
   final String text;
-  final Widget leading;
+
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 17,
-      ),
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: AppColors.grey.withOpacity(0.1),
-            width: 1,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 17,
+        ),
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: AppColors.grey.withOpacity(0.1),
+              width: 1,
+            ),
           ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Icon(
-                iconData,
-                size: 23,
-                color: AppColors.secondary,
-              ),
-              const SizedBox(width: 16),
-              Text(
-                text,
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 14,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  iconData,
+                  size: 23,
+                  color: AppColors.secondary,
                 ),
-              ),
-            ],
-          ),
-          leading ??
-              Icon(
-                EvaIcons.arrowIosForward,
-                size: 24,
-                color: AppColors.secondary,
-              ),
-        ],
+                const SizedBox(width: 16),
+                Text(
+                  text,
+                  style: TextStyle(
+                    color: AppColors.primary,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+            Icon(
+              EvaIcons.arrowIosForward,
+              size: 24,
+              color: AppColors.secondary,
+            ),
+          ],
+        ),
       ),
     );
   }

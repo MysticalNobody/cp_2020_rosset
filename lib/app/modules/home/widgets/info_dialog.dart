@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/theme/app_colors.dart';
@@ -7,35 +8,83 @@ class InfoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: SizedBox(
-        width: Get.width > 600 ? 600 : Get.width * .9,
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Настройка IED на прием-передачу GOOSE-сообщений',
-                style: AppTextStyles.headLine4.copyWith(color: AppColors.secondary),
-              ),
-              SizedBox(height: 24),
-              Text(
-                'Из предложенного набора элементов (два терминала релейной защиты и автоматики и промышленный коммутатор) необходимо собрать схему и выполнить необходимые настройки',
-                style: AppTextStyles.text,
-              ),
-              SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: Get.back,
+      child: Container(
+        width: Get.width > 480 ? 480 : Get.width * .9,
+        padding: const EdgeInsets.only(
+          top: 48,
+          bottom: 22,
+          left: 40,
+          right: 40,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                const SizedBox(width: 9),
+                Icon(
+                  EvaIcons.bookOutline,
+                  color: AppColors.primary,
+                  size: 24,
+                ),
+                const SizedBox(width: 12),
+                Flexible(
                   child: Text(
-                    'Закрыть',
-                    style: AppTextStyles.button.copyWith(color: AppColors.secondary),
+                    'Настройка IED на прием-передачу\nGOOSE-сообщений',
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
+              ],
+            ),
+            SizedBox(height: 15),
+            Padding(
+              padding: EdgeInsets.only(left: 9),
+              child: Text(
+                'Из предложенного набора элементов (два терминала релейной защиты и автоматики и промышленный коммутатор) необходимо собрать схему и выполнить необходимые настройки',
+                style: TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w300,
+                ),
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 52),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaisedButton(
+                  color: AppColors.secondary,
+                  child: Text(
+                    'Открыть учебник',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  onPressed: Get.back,
+                ),
+                SizedBox(
+                  width: 125,
+                  child: RaisedButton(
+                    color: AppColors.secondary,
+                    child: Text(
+                      'Закрыть',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    onPressed: Get.back,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

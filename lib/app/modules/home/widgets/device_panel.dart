@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
+import 'package:rosset_client/app/modules/home/widgets/info_dialog.dart';
+import 'package:rosset_client/app/modules/pubsub_settings/views/settings_view.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:supercharged_dart/supercharged_dart.dart';
 
+import 'instruction.dart';
 import 'instrument_card.dart';
 import 'panel_row.dart';
 import 'simple_mode_row.dart';
@@ -75,14 +78,19 @@ class DevicePanel extends StatelessWidget {
                     PanelRow(
                       iconData: EvaIcons.twitterOutline,
                       text: 'Подписки GOOSE-сообщений',
+                      onTap: () => Get.dialog(
+                        Dialog(child: PubSubSettingsView()),
+                      ),
                     ),
                     PanelRow(
                       iconData: EvaIcons.bookOutline,
                       text: 'Задание',
+                      onTap: () => Get.dialog(InfoDialog()),
                     ),
                     PanelRow(
                       iconData: EvaIcons.fileTextOutline,
                       text: 'Инструкция',
+                      onTap: () => Get.dialog(InstructionDialog()),
                     ),
                     SimpleModeRow(
                       onChanged: controller.setSimpleMode,

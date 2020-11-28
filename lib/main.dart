@@ -20,6 +20,7 @@ Future<void> main() async {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: AppTheme.getTheme,
+      debugShowCheckedModeBanner: false,
       builder: (ctx, _) => FeatureDiscovery(
         child: _,
       ),
