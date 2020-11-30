@@ -81,9 +81,7 @@ class DevicePanel extends StatelessWidget {
                     PanelRow(
                       iconData: EvaIcons.twitterOutline,
                       text: 'Подписки GOOSE-сообщений',
-                      onTap: () => Get.dialog(
-                        Dialog(child: PubSubSettingsView()),
-                      ),
+                      onTap: controller.openGoose,
                     ),
                     PanelRow(
                       iconData: EvaIcons.bookOutline,
