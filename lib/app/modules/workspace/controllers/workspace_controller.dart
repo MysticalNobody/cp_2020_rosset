@@ -62,7 +62,7 @@ class WorkspaceController extends GetxController {
     super.onInit();
     final v = Matrix4.identity();
     v.scale(0.8);
-    v.translate(-400, -200);
+    v.translate(-400.0, -200.0);
     gridController = TransformationController(v);
   }
 

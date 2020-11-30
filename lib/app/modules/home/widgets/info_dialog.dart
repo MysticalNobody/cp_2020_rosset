@@ -2,7 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'dart:js' as js;
+import 'package:url_launcher/url_launcher.dart';
 
 class InfoDialog extends StatelessWidget {
   @override
@@ -65,10 +65,7 @@ class InfoDialog extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  onPressed: () => js.context.callMethod(
-                    'open',
-                    ['http://tod.itis.team/corp_prof.pdf'],
-                  ),
+                  onPressed: () => launch('http://tod.itis.team/corp_prof.pdf'),
                 ),
                 SizedBox(
                   width: 125,

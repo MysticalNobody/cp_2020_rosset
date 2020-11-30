@@ -130,7 +130,7 @@ class AuthView extends GetView<AuthController> {
                     Text(
                       '© 2020 - Itis.team, Inc. All rights reserved.',
                       style: TextStyle(
-                        fontSize: Get.width > 600 ? 20 : 14,
+                        fontSize: Get.width > 500 ? 20 : 14,
                         color: Color(0xFF303C74),
                       ),
                     ),
