@@ -7,6 +7,7 @@ import 'package:rosset_client/app/modules/settings/views/settings_view.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
+import 'package:rosset_client/theme/app_text_styles.dart';
 
 //4x2
 class Device2 extends StatelessWidget {
@@ -65,23 +66,20 @@ class Device2 extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(width: 12),
-                  Tooltip(
-                    message: 'Промышленный коммутатор',
-                    child: Icon(
-                      EvaIcons.questionMarkCircle,
-                      color: Colors.black26,
-                    ),
-                  ),
                   IconButton(
                     onPressed: () => Get.find<HomeController>().viewModel(dm),
                     color: AppColors.secondary,
-                    icon: Icon(Icons.preview),
+                    icon: Icon(EvaIcons.questionMarkCircle),
                     splashRadius: 18,
+                  ),
+                  Text(
+                    dm.model.name,
+                    style: AppTextStyles.button,
                   ),
                   Spacer(),
                   TextButton.icon(
                     icon: Icon(
-                      EvaIcons.settings,
+                      EvaIcons.settings2Outline,
                       color: AppColors.secondary,
                     ),
                     label: Text(
