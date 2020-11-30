@@ -73,7 +73,7 @@ class Device2 extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: Get.find<HomeController>().viewModel,
+                    onPressed: () => Get.find<HomeController>().viewModel(dm),
                     color: AppColors.secondary,
                     icon: Icon(Icons.preview),
                     splashRadius: 18,

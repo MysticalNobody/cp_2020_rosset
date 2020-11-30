@@ -7,6 +7,7 @@ import 'package:rosset_client/app/modules/home/controllers/home_controller.dart'
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
+import 'package:rosset_client/theme/app_text_styles.dart';
 
 //2x2
 class Device1 extends StatelessWidget {
@@ -51,31 +52,25 @@ class Device1 extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(width: 12),
-                    Tooltip(
-                      message:
-                          'Терминал релейной защиты\n\nЕго настройка занимает в 3 раза \nменьше времени, чем обычного.\n\nУстранение неполадок не требует \nприсутствия человека и решается \nво многих случаях дистанционно',
-                      child: Icon(
-                        EvaIcons.questionMarkCircle,
-                        color: Colors.black26,
-                      ),
-                    ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(666),
                       child: Material(
                         color: Colors.transparent,
                         child: IconButton(
-                          onPressed: Get.find<HomeController>().viewModel,
+                          onPressed: () => Get.find<HomeController>().viewModel(dm),
                           color: AppColors.secondary,
-                          icon: Icon(Icons.preview),
+                          icon: Icon(EvaIcons.questionMarkCircle),
                         ),
                       ),
                     ),
-                    Spacer(),
-                    Text(dm.model.name),
+                    Text(
+                      dm.model.name,
+                      style: AppTextStyles.button,
+                    ),
                     Spacer(),
                     TextButton.icon(
                       icon: Icon(
-                        EvaIcons.settings,
+                        EvaIcons.settings2Outline,
                         color: AppColors.secondary,
                       ),
                       label: Text(
