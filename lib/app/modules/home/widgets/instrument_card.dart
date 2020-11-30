@@ -101,7 +101,9 @@ class _InstrumentCardState extends State<InstrumentCard> {
               setState(() {});
             },
             onDragEnd: (_) {
+              mouseCursor = SystemMouseCursors.grab;
               Get.find<HomeController>().cursor.value = SystemMouseCursors.basic;
+              setState(() {});
             },
             feedback: Container(
               width: constraints.maxWidth,
