@@ -33,9 +33,7 @@ class Device2 extends StatelessWidget {
                     duration: 100.milliseconds,
                     firstChild: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(dm.model.name),
-                      ],
+                      children: [],
                     ),
                     secondChild: Image.asset(
                       'assets/images/commut.png',
