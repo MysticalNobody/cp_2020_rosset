@@ -66,11 +66,6 @@ class DevicePanel extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Icon(
-                            EvaIcons.arrowIosDownward,
-                            size: 24,
-                            color: AppColors.secondary,
-                          ),
                         ],
                       ),
                     ),
