@@ -40,7 +40,7 @@ class HomeController extends GetxController {
       ..shortInfo = 'Терминал релейной защиты'
       ..previewImage = 'assets/images/front.png'
       ..width = 4
-      ..height = 2
+      ..height = 3
       ..slotsCount = 2
       ..settings = [
         ['Имя GCB', SettingsFieldType.gcb],

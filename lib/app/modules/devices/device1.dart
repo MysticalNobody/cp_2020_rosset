@@ -35,21 +35,25 @@ class Device1 extends StatelessWidget {
                     crossFadeState: isSimple.value ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                     duration: 100.milliseconds,
                     firstChild: Row(children: []),
-                    secondChild: Row(
-                      children: [
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/left.png',
-                            fit: BoxFit.fitHeight,
+                    secondChild: Container(
+                      height: double.infinity,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              'assets/images/left.png',
+                              fit: BoxFit.fitHeight,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/front.png',
-                            fit: BoxFit.fitHeight,
+                          Expanded(
+                            child: Image.asset(
+                              'assets/images/front.png',
+                              fit: BoxFit.fitHeight,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -91,11 +95,10 @@ class Device1 extends StatelessWidget {
                   children: [
                     Spacer(flex: 3),
                     Expanded(
-                      flex: 5,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Spacer(flex: 5),
+                          SizedBox(height: 160),
                           Expanded(
                             child: Row(
                               children: [
@@ -126,10 +129,15 @@ class Device1 extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Spacer(flex: 1),
+                          SizedBox(
+                            height: 70,
+                          )
                         ],
                       ),
                     ),
+                    SizedBox(
+                      width: 208,
+                    )
                   ],
                 ),
               ],
