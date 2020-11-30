@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
@@ -24,6 +25,7 @@ class HomeController extends GetxController {
   final IFrameElement _iframeElement2 = IFrameElement()..src = 'https://tod.itis.team/models/comm.html';
 
   RxBool isSimpleMode = false.obs;
+  Rx<SystemMouseCursor> cursor = Rx<SystemMouseCursor>();
 
   List<DeviceModel> models = [];
 

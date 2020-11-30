@@ -1,9 +1,7 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/home/controllers/home_controller.dart';
-import 'package:rosset_client/app/modules/home/widgets/animated_icon.dart';
 import 'package:rosset_client/app/modules/home/widgets/appbar.dart';
 import 'package:rosset_client/app/modules/home/widgets/device_panel.dart';
 import 'package:rosset_client/app/modules/workspace/views/workspace_view.dart';
@@ -16,22 +14,27 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: GetBuilder<HomeController>(
-        builder: (controller) => SafeArea(
-          child: Column(
-            children: [
-              HomeAppBar(
-                onCheckTap: controller.startCheck,
-                onMenuTap: controller.toggleInstruments,
+        builder: (controller) => Obx(
+          () => MouseRegion(
+            cursor: controller.cursor.value ?? SystemMouseCursors.basic,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  HomeAppBar(
+                    onCheckTap: controller.startCheck,
+                    onMenuTap: controller.toggleInstruments,
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        DevicePanel(devices: controller.models),
+                        Expanded(child: WorkspaceView()),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Row(
-                  children: [
-                    DevicePanel(devices: controller.models),
-                    Expanded(child: WorkspaceView()),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
