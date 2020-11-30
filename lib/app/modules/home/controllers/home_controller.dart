@@ -57,9 +57,9 @@ class HomeController extends GetxController {
       ..name = 'Промышленный коммутатор'
       ..shortInfo = 'Объединяет узлы компьютерной сети'
       ..previewImage = 'assets/images/commut.png'
-      ..width = 6
+      ..width = 8
       ..height = 2
-      ..slotsCount = 8
+      ..slotsCount = 12
       ..settings = [
         ['IED 1'],
         ['IP адрес', SettingsFieldType.ip1],

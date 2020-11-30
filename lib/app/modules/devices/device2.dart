@@ -52,18 +52,23 @@ class Device2 extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                  top: 75,
+                  top: 60,
                   left: 0,
                   right: 0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Spacer(flex: 3),
-                      for (int i = 0; i < 8; i++)
+                      SizedBox(width: 328),
+                      for (int i = 0; i < dm.model.slotsCount / 2; i++)
                         Expanded(
-                          child: DeviceSlot(slot: dm.slots[i], size: 37),
+                          child: DeviceSlot(slot: dm.slots[i], size: 22),
                         ),
-                      Spacer(flex: 2),
+                      SizedBox(width: 10),
+                      for (int i = dm.model.slotsCount ~/ 2; i < dm.model.slotsCount; i++)
+                        Expanded(
+                          child: DeviceSlot(slot: dm.slots[i], size: 22),
+                        ),
+                      SizedBox(width: 145),
                     ],
                   ),
                 ),
