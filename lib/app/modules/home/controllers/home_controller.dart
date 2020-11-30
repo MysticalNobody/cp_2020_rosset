@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'package:universal_html/html.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +17,16 @@ import 'package:rosset_client/app/modules/workspace/controllers/workspace_contro
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/utils/utils.dart';
 import 'package:supercharged/supercharged.dart';
-import 'dart:ui' as ui;
+import 'package:rosset_client/utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController {
   RxBool showInstruments = true.obs;
   RxBool showSimpleModeButton = true.obs;
   RxBool showGooseButton = true.obs;
+  final String _modelUrl1 = 'https://tod.itis.team/models/bmrz.html';
+  final String _modelUrl2 = 'https://tod.itis.team/models/comm.html';
   final IFrameElement _iframeElement1 = IFrameElement()..src = 'https://tod.itis.team/models/bmrz.html';
   final IFrameElement _iframeElement2 = IFrameElement()..src = 'https://tod.itis.team/models/comm.html';
 
@@ -72,15 +76,23 @@ class HomeController extends GetxController {
   ];
 
   void viewModel(DroppedDeviceModel dm) {
-    Get.dialog(Dialog(
-      child: SizedBox(
-        width: Get.width > 700 ? 700 : Get.width * .9,
-        height: Get.width > 700 ? 700 : Get.height * .9,
-        child: HtmlElementView(
-          viewType: dm.model.type == DeviceType.ied ? 'viewer3d1' : 'viewer3d2',
+    if (kIsWeb) {
+      Get.dialog(Dialog(
+        child: SizedBox(
+          width: Get.width > 700 ? 700 : Get.width * .9,
+          height: Get.width > 700 ? 700 : Get.height * .9,
+          child: HtmlElementView(
+            viewType: dm.model.type == DeviceType.ied ? 'viewer3d1' : 'viewer3d2',
+          ),
         ),
-      ),
-    ));
+      ));
+    } else {
+      if (dm.model.type == DeviceType.ied) {
+        launch(_modelUrl1);
+      } else {
+        launch(_modelUrl2);
+      }
+    }
   }
 
   void openGoose() {
@@ -116,8 +128,10 @@ class HomeController extends GetxController {
     attempt = QuestAttempt()
       ..start = DateTime.now()
       ..mistakes = [];
-    ui.platformViewRegistry.registerViewFactory('viewer3d1', (_) => _iframeElement1);
-    ui.platformViewRegistry.registerViewFactory('viewer3d2', (_) => _iframeElement2);
+    if (kIsWeb) {
+      ui.platformViewRegistry.registerViewFactory('viewer3d1', (_) => _iframeElement1);
+      ui.platformViewRegistry.registerViewFactory('viewer3d2', (_) => _iframeElement2);
+    }
     super.onInit();
   }
 
