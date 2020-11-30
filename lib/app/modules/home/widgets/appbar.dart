@@ -34,12 +34,22 @@ class HomeAppBar extends StatelessWidget {
         children: [
           Row(
             children: [
-              InkWell(
-                onTap: onMenuTap,
-                child: Icon(
-                  EvaIcons.menuOutline,
-                  size: 30,
-                  color: AppColors.secondary,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(99),
+                child: Material(
+                  color: AppColors.white,
+                  child: SizedBox(
+                    width: 38,
+                    height: 38,
+                    child: InkWell(
+                      onTap: onMenuTap,
+                      child: Icon(
+                        EvaIcons.menuOutline,
+                        size: 30,
+                        color: AppColors.secondary,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(width: 11),

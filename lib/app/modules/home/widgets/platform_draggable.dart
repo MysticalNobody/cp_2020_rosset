@@ -8,12 +8,14 @@ class PlatformDraggable<T> extends StatelessWidget {
     this.child,
     this.onDraggableCanceled,
     this.onDraggableStart,
+    this.onDragEnd,
   });
   final T data;
   final Widget feedback;
   final Widget child;
   final DraggableCanceledCallback onDraggableCanceled;
   final VoidCallback onDraggableStart;
+  final Function(DraggableDetails) onDragEnd;
   @override
   Widget build(BuildContext context) {
     if (kIsWeb)
@@ -24,6 +26,7 @@ class PlatformDraggable<T> extends StatelessWidget {
         dragAnchor: DragAnchor.pointer,
         onDraggableCanceled: onDraggableCanceled,
         onDragStarted: onDraggableStart,
+        onDragEnd: onDragEnd,
         child: child,
       );
     else

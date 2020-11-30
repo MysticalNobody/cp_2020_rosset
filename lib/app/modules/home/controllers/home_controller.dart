@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/data/model/device.dart';
 import 'package:rosset_client/app/data/model/dropped_device.dart';
@@ -22,9 +23,11 @@ class HomeController extends GetxController {
   RxBool showInstruments = true.obs;
   RxBool showSimpleModeButton = true.obs;
   RxBool showGooseButton = true.obs;
-  final IFrameElement _iframeElement = IFrameElement()..src = 'https://modelviewer.dev/';
+  final IFrameElement _iframeElement1 = IFrameElement()..src = 'https://tod.itis.team/models/bmrz.html';
+  final IFrameElement _iframeElement2 = IFrameElement()..src = 'https://tod.itis.team/models/comm.html';
 
   RxBool isSimpleMode = false.obs;
+  Rx<SystemMouseCursor> cursor = Rx<SystemMouseCursor>();
 
   List<DeviceModel> models = [];
 
@@ -68,13 +71,13 @@ class HomeController extends GetxController {
       ..widgetBuilder = (DroppedDeviceModel dm) => Device2(dm),
   ];
 
-  void viewModel() {
+  void viewModel(DroppedDeviceModel dm) {
     Get.dialog(Dialog(
       child: SizedBox(
         width: Get.width > 700 ? 700 : Get.width * .9,
         height: Get.width > 700 ? 700 : Get.height * .9,
         child: HtmlElementView(
-          viewType: 'viewer3d',
+          viewType: dm.model.type == DeviceType.ied ? 'viewer3d1' : 'viewer3d2',
         ),
       ),
     ));
@@ -113,7 +116,8 @@ class HomeController extends GetxController {
     attempt = QuestAttempt()
       ..start = DateTime.now()
       ..mistakes = [];
-    ui.platformViewRegistry.registerViewFactory('viewer3d', (_) => _iframeElement);
+    ui.platformViewRegistry.registerViewFactory('viewer3d1', (_) => _iframeElement1);
+    ui.platformViewRegistry.registerViewFactory('viewer3d2', (_) => _iframeElement2);
     super.onInit();
   }
 

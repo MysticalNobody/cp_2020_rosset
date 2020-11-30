@@ -7,6 +7,9 @@ import 'package:rosset_client/app/modules/settings/views/settings_view.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
+import 'package:rosset_client/theme/app_text_styles.dart';
+
+import 'widgets/settings_button.dart';
 
 //4x2
 class Device2 extends StatelessWidget {
@@ -32,9 +35,7 @@ class Device2 extends StatelessWidget {
                     duration: 100.milliseconds,
                     firstChild: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(dm.model.name),
-                      ],
+                      children: [],
                     ),
                     secondChild: Image.asset(
                       'assets/images/commut.png',
@@ -65,34 +66,19 @@ class Device2 extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(width: 12),
-                  Tooltip(
-                    message: 'Промышленный коммутатор',
-                    child: Icon(
-                      EvaIcons.questionMarkCircle,
-                      color: Colors.black26,
-                    ),
-                  ),
                   IconButton(
-                    onPressed: Get.find<HomeController>().viewModel,
+                    onPressed: () => Get.find<HomeController>().viewModel(dm),
                     color: AppColors.secondary,
-                    icon: Icon(Icons.preview),
+                    icon: Icon(EvaIcons.questionMarkCircle),
                     splashRadius: 18,
                   ),
+                  Text(
+                    dm.model.name,
+                    style: AppTextStyles.button,
+                  ),
                   Spacer(),
-                  TextButton.icon(
-                    icon: Icon(
-                      EvaIcons.settings,
-                      color: AppColors.secondary,
-                    ),
-                    label: Text(
-                      'Настройка',
-                      style: TextStyle(
-                        color: AppColors.secondary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () => Get.dialog(SettingsView(dm)),
+                  SettingsButton(
+                    dm: dm,
                   ),
                   IconButton(
                     icon: Icon(EvaIcons.closeSquare),
