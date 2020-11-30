@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/pubsub_settings/controllers/settings_controller.dart';
@@ -10,139 +11,166 @@ class PubSubSettingsView extends StatelessWidget {
   final PubSubSettingsController controller;
   @override
   Widget build(BuildContext context) {
+    final TextStyle textStyle = TextStyle(
+      color: Color(0xFF303C74),
+      fontSize: 14,
+    );
     return GetBuilder<PubSubSettingsController>(
       init: controller,
       builder: (controller) {
         List<Widget> groups = [];
         int index = -1;
         int jindex = -1;
-        if ((controller.devices?.length ?? 0) < 2) {
-          return SizedBox(
-            width: Get.width > 1000 ? 1000 : Get.width * .9,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (Get.width > 600)
-                  AppBar(
-                    title: Text(
-                      'Подписки GOOSE-сообщений',
-                    ),
-                    backgroundColor: AppColors.secondary,
-                  )
-                else
-                  Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Text(
-                      'Подписки GOOSE-сообщений',
-                      style: AppTextStyles.headLine4.copyWith(color: AppColors.secondary),
-                    ),
-                  ),
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Center(
-                    child: Text(
-                      'Для настройки подписок GOOSE-сообщений, необходимо, чтобы на рабочей области было больше одной РЗА',
-                      style: AppTextStyles.text,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                    onPressed: Get.back,
-                    child: Text(
-                      'Закрыть',
-                      style: AppTextStyles.button.copyWith(color: AppColors.secondary),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24),
-              ],
-            ),
-          );
-        }
         for (final device in controller.devices) {
           index += 1;
           jindex = -1;
           List<Widget> devses = [];
-
           for (final another in controller.devices) {
             jindex += 1;
             if (jindex == index) continue;
-            devses.add(Divider());
-            devses.add(Row(
-              children: [
-                Expanded(child: Text('Выходы IED${jindex + 1}', textAlign: TextAlign.center)),
-                for (int inputI = 0; inputI < 3; inputI++)
-                  Expanded(child: Text('Вход ${inputI + 1}', textAlign: TextAlign.center))
-              ],
-            ));
-            for (int outJ = 0; outJ < 3; outJ++)
-              devses.add(Row(
+            devses.add(SizedBox(height: 10));
+            devses.add(
+              Row(
                 children: [
-                  Expanded(child: Text('Выход IED${outJ + 1}', textAlign: TextAlign.center)),
+                  SizedBox(width: 19),
+                  Expanded(
+                    child: Text(
+                      'Выходы IED${jindex + 1}',
+                      textAlign: TextAlign.start,
+                      style: textStyle,
+                    ),
+                  ),
                   for (int inputI = 0; inputI < 3; inputI++)
                     Expanded(
-                      child: Checkbox(
-                        value: controller.isChecked(device, another, inputI, outJ),
-                        onChanged: (_) => controller.toggleCross(device, another, inputI, outJ),
+                      child: Text(
+                        'Вход ${inputI + 1}',
+                        textAlign: TextAlign.center,
+                        style: textStyle,
                       ),
-                    )
+                    ),
                 ],
-              ));
-          }
-          groups.add(Container(
-            margin: EdgeInsets.symmetric(vertical: 12),
-            decoration: BoxDecoration(
-              border: Border.all(),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(children: [
-                  Spacer(),
-                  Expanded(flex: 3, child: Text('Входы IED${index + 1}', textAlign: TextAlign.center))
-                ]),
-                ...devses
-              ],
-            ),
-          ));
-        }
-        return SizedBox(
-          width: Get.width > 1000 ? 1000 : Get.width * .9,
-          child: Scaffold(
-            appBar: Get.width > 600
-                ? AppBar(
-                    title: Text('Подписки GOOSE-сообщений'),
-                    backgroundColor: AppColors.secondary,
-                  )
-                : null,
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+              ),
+            );
+            devses.add(SizedBox(height: 5));
+            for (int outJ = 0; outJ < 3; outJ++)
+              devses.add(
+                Row(
                   children: [
-                    if (Get.width <= 600)
-                      Text(
-                        'Подписки GOOSE-сообщений',
-                        style: AppTextStyles.headLine4.copyWith(color: AppColors.secondary),
+                    SizedBox(width: 19),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 34),
+                        child: Text(
+                          'Выход ${outJ + 1}',
+                          textAlign: TextAlign.start,
+                          style: textStyle,
+                        ),
                       ),
-                    ...groups,
-                    SizedBox(height: 24),
-                    SizedBox(
-                      width: double.infinity,
-                      child: RaisedButton(
-                        color: AppColors.secondary,
-                        onPressed: controller.save,
-                        child: Text('Сохранить'),
+                    ),
+                    for (int inputI = 0; inputI < 3; inputI++)
+                      Expanded(
+                        child: Checkbox(
+                          value: controller.isChecked(device, another, inputI, outJ),
+                          onChanged: (_) => controller.toggleCross(device, another, inputI, outJ),
+                          checkColor: AppColors.white,
+                          activeColor: AppColors.secondary,
+                        ),
                       ),
-                    )
                   ],
                 ),
+              );
+          }
+          groups.add(
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (index != 0) const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      SizedBox(width: 19),
+                      Spacer(),
+                      Expanded(
+                        flex: 3,
+                        child: Text(
+                          'Входы IED${index + 1}',
+                          textAlign: TextAlign.center,
+                          style: textStyle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  ...devses
+                ],
+              ),
+            ),
+          );
+        }
+        return Dialog(
+          child: Container(
+            width: Get.width > 600 ? 600 : Get.width * .9,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.only(
+                top: 49,
+                bottom: 23,
+                left: 32,
+                right: 32,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 19,
+                      bottom: 23,
+                    ),
+                    child: Text(
+                      'Подписки GOOSE-сообщений',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: AppColors.secondary,
+                      ),
+                    ),
+                  ),
+                  ...groups,
+                  const SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 125,
+                        child: RaisedButton(
+                          color: AppColors.secondary,
+                          child: Text(
+                            'Закрыть',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          onPressed: Get.back,
+                        ),
+                      ),
+                      RaisedButton(
+                        color: Color(0xFF6BCB81),
+                        child: Text(
+                          'Сохранить',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        onPressed: controller.save,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

@@ -10,6 +10,8 @@ import 'package:rosset_client/app/data/model/quest_mistake.dart';
 import 'package:rosset_client/app/data/repository/quest_repository.dart';
 import 'package:rosset_client/app/modules/devices/device1.dart';
 import 'package:rosset_client/app/modules/devices/device2.dart';
+import 'package:rosset_client/app/modules/pubsub_settings/views/settings_view.dart';
+import 'package:rosset_client/app/modules/pubsub_settings/views/without_p3a_view.dart';
 import 'package:rosset_client/app/modules/workspace/controllers/workspace_controller.dart';
 import 'package:rosset_client/app/routes/app_pages.dart';
 import 'package:rosset_client/utils/utils.dart';
@@ -76,6 +78,16 @@ class HomeController extends GetxController {
         ),
       ),
     ));
+  }
+
+  void openGoose() {
+    final devicesLength =
+        Get.find<WorkspaceController>().dropped.where((element) => element.model.type == DeviceType.ied).length ?? 0;
+    if (devicesLength < 2) {
+      Get.dialog(WithoutP3AView());
+    } else {
+      Get.dialog(PubSubSettingsView());
+    }
   }
 
   void toggleInstruments() {
