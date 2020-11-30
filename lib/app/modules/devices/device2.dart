@@ -92,9 +92,7 @@ class Device2 extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: () => Get.dialog(
-                      Dialog(child: SettingsView(dm)),
-                    ),
+                    onPressed: () => Get.dialog(SettingsView(dm)),
                   ),
                   IconButton(
                     icon: Icon(EvaIcons.closeSquare),
