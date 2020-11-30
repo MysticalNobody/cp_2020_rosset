@@ -9,6 +9,8 @@ import 'package:rosset_client/app/modules/workspace/widgets/device_slot.dart';
 import 'package:rosset_client/theme/app_colors.dart';
 import 'package:rosset_client/theme/app_text_styles.dart';
 
+import 'widgets/settings_button.dart';
+
 //4x2
 class Device2 extends StatelessWidget {
   Device2(this.dm);
@@ -75,20 +77,8 @@ class Device2 extends StatelessWidget {
                     style: AppTextStyles.button,
                   ),
                   Spacer(),
-                  TextButton.icon(
-                    icon: Icon(
-                      EvaIcons.settings2Outline,
-                      color: AppColors.secondary,
-                    ),
-                    label: Text(
-                      'Настройка',
-                      style: TextStyle(
-                        color: AppColors.secondary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () => Get.dialog(SettingsView(dm)),
+                  SettingsButton(
+                    dm: dm,
                   ),
                   IconButton(
                     icon: Icon(EvaIcons.closeSquare),
