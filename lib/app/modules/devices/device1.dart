@@ -61,33 +61,41 @@ class Device1 extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Container(
                     color: Colors.white,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 12),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(666),
-                          child: Material(
-                            color: Colors.transparent,
-                            child: IconButton(
-                              onPressed: () => Get.find<HomeController>().viewModel(dm),
-                              color: AppColors.secondary,
-                              icon: Icon(EvaIcons.questionMarkCircle),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 12, right: 12, left: 12),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(666),
+                            child: Material(
+                              color: Colors.white,
+                              child: InkWell(
+                                onTap: () => Get.find<HomeController>().viewModel(dm),
+                                child: Icon(
+                                  EvaIcons.questionMarkCircle,
+                                  color: AppColors.secondary,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                        Text(
-                          dm.model.name,
-                          style: AppTextStyles.button,
-                        ),
-                        Spacer(),
-                        SettingsButton(dm: dm),
-                        IconButton(
-                          icon: Icon(EvaIcons.closeSquare),
-                          color: Colors.redAccent,
-                          onPressed: () => Get.find<WorkspaceController>().deleteDevice(dm),
-                        ),
-                      ],
+                          SizedBox(width: 12),
+                          Text(
+                            dm.model.name,
+                            style: AppTextStyles.button,
+                          ),
+                          Spacer(),
+                          SettingsButton(dm: dm),
+                          SizedBox(width: 12),
+                          Material(
+                            color: Colors.white,
+                            child: InkWell(
+                              child: Icon(EvaIcons.closeSquare, color: Colors.redAccent),
+                              onTap: () => Get.find<WorkspaceController>().deleteDevice(dm),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
