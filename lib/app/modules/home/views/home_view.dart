@@ -26,6 +26,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Expanded(
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         DevicePanel(devices: controller.models),
                         Expanded(child: WorkspaceView()),

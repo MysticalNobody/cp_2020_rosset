@@ -35,11 +35,12 @@ class DevicePanel extends StatelessWidget {
             AnimatedPositioned(
               left: controller.showInstruments.value ? 0 : -350,
               top: 0,
+              bottom: 0,
               duration: 300.milliseconds,
               child: Container(
                 color: AppColors.white,
                 width: 350,
-                height: Get.height - 58,
+                height: Get.height - 58 - Get.mediaQuery.padding.vertical,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -97,6 +98,7 @@ class DevicePanel extends StatelessWidget {
                       onChanged: controller.setSimpleMode,
                       value: !controller.isSimpleMode.value,
                     ),
+                    SafeArea(child: Container()),
                   ],
                 ),
               ),

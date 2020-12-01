@@ -1,9 +1,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:rosset_client/theme/app_text_styles.dart';
 
 class InstructionDialog extends StatelessWidget {
   @override
@@ -11,11 +9,11 @@ class InstructionDialog extends StatelessWidget {
     return Dialog(
       child: Container(
         width: Get.width > 480 ? 480 : Get.width * .9,
-        padding: const EdgeInsets.only(
-          top: 48,
+        padding: EdgeInsets.only(
+          top: Get.width > 480 ? 48 : 36,
           bottom: 22,
-          left: 48,
-          right: 21, //TODO: make adaptive
+          left: Get.width > 480 ? 48 : 32,
+          right: 21,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -24,7 +22,7 @@ class InstructionDialog extends StatelessWidget {
               children: [
                 Icon(
                   EvaIcons.gridOutline,
-                  color: AppColors.primary,
+                  color: Color(0xFF303C74),
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -32,8 +30,8 @@ class InstructionDialog extends StatelessWidget {
                   child: Text(
                     'Что такое рабочая область?',
                     style: TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 16,
+                      color: Color(0xFF303C74),
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -45,8 +43,8 @@ class InstructionDialog extends StatelessWidget {
               child: Text(
                 'Рабочая область – это пространство, на котором вы можете выполнять задания. На неё можно перетаскивать инструменты и взаимодействовать с ними.',
                 style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 12,
+                  color: Color(0xFF303C74),
+                  fontSize: 13,
                   fontWeight: FontWeight.w300,
                 ),
               ),
@@ -56,7 +54,7 @@ class InstructionDialog extends StatelessWidget {
               children: [
                 Icon(
                   EvaIcons.cubeOutline,
-                  color: AppColors.primary,
+                  color: Color(0xFF303C74),
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -64,8 +62,8 @@ class InstructionDialog extends StatelessWidget {
                   child: Text(
                     'Как взаимодействовать с инструментами?',
                     style: TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 16,
+                      color: Color(0xFF303C74),
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -77,8 +75,8 @@ class InstructionDialog extends StatelessWidget {
               child: Text(
                 'Чтобы взаимодействовать с инструментом, его нужно перетащить  на рабочую область. Вы можете выстраивать связи между инструментами, соединяя разъёмы, выделенные зелёным цветом, а также настраивать или удалять инструменты с рабочего поля.',
                 style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 12,
+                  color: Color(0xFF303C74),
+                  fontSize: 13,
                   fontWeight: FontWeight.w300,
                 ),
               ),

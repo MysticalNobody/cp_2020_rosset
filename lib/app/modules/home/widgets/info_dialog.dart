@@ -10,11 +10,11 @@ class InfoDialog extends StatelessWidget {
     return Dialog(
       child: Container(
         width: Get.width > 480 ? 480 : Get.width * .9,
-        padding: const EdgeInsets.only(
-          top: 48,
+        padding: EdgeInsets.only(
+          top: Get.width > 480 ? 48 : 36,
           bottom: 22,
-          left: 40,
-          right: 40, //TODO: make adaptive
+          left: Get.width > 480 ? 40 : 25,
+          right: Get.width > 480 ? 40 : 25,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -24,7 +24,7 @@ class InfoDialog extends StatelessWidget {
                 const SizedBox(width: 9),
                 Icon(
                   EvaIcons.bookOutline,
-                  color: AppColors.primary,
+                  color: Color(0xFF303C74),
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -32,8 +32,8 @@ class InfoDialog extends StatelessWidget {
                   child: Text(
                     'Настройка IED на прием-передачу\nGOOSE-сообщений',
                     style: TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 16,
+                      color: Color(0xFF303C74),
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -45,45 +45,82 @@ class InfoDialog extends StatelessWidget {
               child: Text(
                 'Из предложенного набора элементов (два терминала релейной защиты и автоматики и промышленный коммутатор) необходимо собрать схему и выполнить необходимые настройки',
                 style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 12,
+                  color: Color(0xFF303C74),
+                  fontSize: 13,
                   fontWeight: FontWeight.w300,
                 ),
               ),
             ),
             SizedBox(height: 52),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RaisedButton(
-                  color: AppColors.secondary,
-                  child: Text(
-                    'Открыть учебник',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onPressed: () => launch('http://tod.itis.team/corp_prof.pdf'),
-                ),
-                SizedBox(
-                  width: 125,
-                  child: RaisedButton(
+            if (Get.width > 480)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RaisedButton(
                     color: AppColors.secondary,
                     child: Text(
-                      'Закрыть',
+                      'Открыть учебник',
                       style: TextStyle(
                         color: AppColors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    onPressed: Get.back,
+                    onPressed: () => launch('http://tod.itis.team/corp_prof.pdf'),
                   ),
-                ),
-              ],
-            ),
+                  SizedBox(
+                    width: 125,
+                    child: RaisedButton(
+                      color: AppColors.secondary,
+                      child: Text(
+                        'Закрыть',
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      onPressed: Get.back,
+                    ),
+                  ),
+                ],
+              )
+            else
+              Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      color: AppColors.secondary,
+                      child: Text(
+                        'Открыть учебник',
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      onPressed: () => launch('http://tod.itis.team/corp_prof.pdf'),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      color: AppColors.secondary,
+                      child: Text(
+                        'Закрыть',
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      onPressed: Get.back,
+                    ),
+                  ),
+                ],
+              ),
           ],
         ),
       ),

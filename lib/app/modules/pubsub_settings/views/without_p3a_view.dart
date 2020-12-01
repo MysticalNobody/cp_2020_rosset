@@ -11,11 +11,11 @@ class WithoutP3AView extends StatelessWidget {
     return Dialog(
       child: Container(
         width: Get.width > 480 ? 480 : Get.width * .9,
-        padding: const EdgeInsets.only(
-          top: 48,
+        padding: EdgeInsets.only(
+          top: Get.width > 480 ? 48 : 46,
           bottom: 22,
-          left: 48,
-          right: 21, //TODO: make adaptive
+          left: Get.width > 480 ? 48 : 36,
+          right: 21,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -24,7 +24,7 @@ class WithoutP3AView extends StatelessWidget {
               children: [
                 Icon(
                   EvaIcons.twitterOutline,
-                  color: AppColors.primary,
+                  color: Color(0xFF303C74),
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -32,8 +32,8 @@ class WithoutP3AView extends StatelessWidget {
                   child: Text(
                     'Подписки GOOSE-сообщений',
                     style: TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 16,
+                      color: Color(0xFF303C74),
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -45,8 +45,8 @@ class WithoutP3AView extends StatelessWidget {
               child: Text(
                 'Для настройки подписок GOOSE-сообщений, необходимо, чтобы на рабочей области было больше одной РЗА',
                 style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 12,
+                  color: Color(0xFF303C74),
+                  fontSize: 13,
                   fontWeight: FontWeight.w300,
                 ),
               ),

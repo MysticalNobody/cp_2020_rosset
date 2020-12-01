@@ -1,9 +1,7 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rosset_client/app/modules/pubsub_settings/controllers/settings_controller.dart';
 import 'package:rosset_client/theme/app_colors.dart';
-import 'package:rosset_client/theme/app_text_styles.dart';
 import 'package:rosset_client/utils/unfocus_ext.dart';
 
 class PubSubSettingsView extends StatelessWidget {
@@ -15,6 +13,7 @@ class PubSubSettingsView extends StatelessWidget {
       color: Color(0xFF303C74),
       fontSize: 14,
     );
+    final bool isBigScreen = Get.width > 480;
     return GetBuilder<PubSubSettingsController>(
       init: controller,
       builder: (controller) {
@@ -28,11 +27,11 @@ class PubSubSettingsView extends StatelessWidget {
           for (final another in controller.devices) {
             jindex += 1;
             if (jindex == index) continue;
-            devses.add(SizedBox(height: 10));
+            devses.add(SizedBox(height: isBigScreen ? 10 : 5));
             devses.add(
               Row(
                 children: [
-                  SizedBox(width: 19),
+                  SizedBox(width: isBigScreen ? 19 : 0),
                   Expanded(
                     child: Text(
                       'Выходы IED${jindex + 1}',
@@ -56,10 +55,10 @@ class PubSubSettingsView extends StatelessWidget {
               devses.add(
                 Row(
                   children: [
-                    SizedBox(width: 19),
+                    SizedBox(width: isBigScreen ? 19 : 0),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 34),
+                        padding: EdgeInsets.only(left: isBigScreen ? 34 : 0),
                         child: Text(
                           'Выход ${outJ + 1}',
                           textAlign: TextAlign.start,
@@ -82,7 +81,7 @@ class PubSubSettingsView extends StatelessWidget {
           }
           groups.add(
             Container(
-              margin: EdgeInsets.symmetric(vertical: 12),
+              margin: EdgeInsets.symmetric(vertical: isBigScreen ? 12 : 5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +89,7 @@ class PubSubSettingsView extends StatelessWidget {
                   if (index != 0) const SizedBox(height: 10),
                   Row(
                     children: [
-                      SizedBox(width: 19),
+                      SizedBox(width: isBigScreen ? 19 : 0),
                       Spacer(),
                       Expanded(
                         flex: 3,
@@ -110,22 +109,22 @@ class PubSubSettingsView extends StatelessWidget {
         }
         return Dialog(
           child: Container(
-            width: Get.width > 600 ? 600 : Get.width * .9,
+            width: isBigScreen ? 480 : Get.width * .9,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(
-                top: 49,
+              padding: EdgeInsets.only(
+                top: isBigScreen ? 49 : 24,
                 bottom: 23,
-                left: 32,
-                right: 32,
+                left: isBigScreen ? 32 : 24,
+                right: isBigScreen ? 32 : 24,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 19,
-                      bottom: 23,
+                    padding: EdgeInsets.only(
+                      left: isBigScreen ? 19 : 0,
+                      bottom: isBigScreen ? 23 : 15,
                     ),
                     child: Text(
                       'Подписки GOOSE-сообщений',
@@ -137,39 +136,76 @@ class PubSubSettingsView extends StatelessWidget {
                     ),
                   ),
                   ...groups,
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 125,
-                        child: RaisedButton(
-                          color: AppColors.secondary,
+                  SizedBox(height: isBigScreen ? 40 : 10),
+                  if (isBigScreen)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 125,
+                          child: RaisedButton(
+                            color: AppColors.secondary,
+                            child: Text(
+                              'Закрыть',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            onPressed: Get.back,
+                          ),
+                        ),
+                        RaisedButton(
+                          color: Color(0xFF6BCB81),
                           child: Text(
-                            'Закрыть',
+                            'Сохранить',
                             style: TextStyle(
                               color: AppColors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          onPressed: Get.back,
+                          onPressed: controller.save,
                         ),
-                      ),
-                      RaisedButton(
-                        color: Color(0xFF6BCB81),
-                        child: Text(
-                          'Сохранить',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                      ],
+                    )
+                  else
+                    Column(
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: RaisedButton(
+                            color: AppColors.secondary,
+                            child: Text(
+                              'Закрыть',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            onPressed: Get.back,
                           ),
                         ),
-                        onPressed: controller.save,
-                      ),
-                    ],
-                  ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          width: double.infinity,
+                          child: RaisedButton(
+                            color: Color(0xFF6BCB81),
+                            child: Text(
+                              'Сохранить',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            onPressed: controller.save,
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),

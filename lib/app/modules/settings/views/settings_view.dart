@@ -11,32 +11,33 @@ class SettingsView extends StatelessWidget {
   final SettingsController controller;
   @override
   Widget build(BuildContext context) {
+    final bool isBigScreen = Get.width > 416;
     return GetBuilder<SettingsController>(
       init: controller,
       builder: (controller) => Dialog(
         child: SizedBox(
-          width: Get.width > 416 ? 416 : Get.width * .9,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 49,
+          width: isBigScreen ? 416 : Get.width * .9,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(
+              top: isBigScreen ? 49 : 24,
               bottom: 23,
-              left: 32,
-              right: 32,
+              left: isBigScreen ? 32 : 24,
+              right: isBigScreen ? 32 : 24,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                    left: 19,
-                    bottom: 23,
+                  padding: EdgeInsets.only(
+                    left: isBigScreen ? 19 : 0,
+                    bottom: isBigScreen ? 23 : 18,
                   ),
                   child: Text(
                     device.model.name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 18,
                       color: AppColors.secondary,
                     ),
                   ),
@@ -44,10 +45,10 @@ class SettingsView extends StatelessWidget {
                 for (int i = 0; i < device.model.settings.length; i += 1)
                   if (device.model.settings[i].length == 2)
                     Container(
-                      margin: const EdgeInsets.only(
+                      margin: EdgeInsets.only(
                         bottom: 9,
-                        left: 19,
-                        right: 23,
+                        left: isBigScreen ? 19 : 0,
+                        right: isBigScreen ? 23 : 0,
                       ),
                       child: TextField(
                         style: TextStyle(
@@ -94,7 +95,7 @@ class SettingsView extends StatelessWidget {
                       padding: EdgeInsets.only(
                         top: i == 0 ? 0 : 10,
                         bottom: 8,
-                        left: 19,
+                        left: isBigScreen ? 19 : 0,
                       ),
                       child: Text(
                         device.model.settings[i][0],
@@ -104,39 +105,76 @@ class SettingsView extends StatelessWidget {
                         ),
                       ),
                     ),
-                const SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 125,
-                      child: RaisedButton(
-                        color: AppColors.secondary,
+                SizedBox(height: isBigScreen ? 40 : 20),
+                if (isBigScreen)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 125,
+                        child: RaisedButton(
+                          color: AppColors.secondary,
+                          child: Text(
+                            'Закрыть',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          onPressed: Get.back,
+                        ),
+                      ),
+                      RaisedButton(
+                        color: Color(0xFF6BCB81),
                         child: Text(
-                          'Закрыть',
+                          'Сохранить',
                           style: TextStyle(
                             color: AppColors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        onPressed: Get.back,
+                        onPressed: controller.save,
                       ),
-                    ),
-                    RaisedButton(
-                      color: Color(0xFF6BCB81),
-                      child: Text(
-                        'Сохранить',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                    ],
+                  )
+                else
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: RaisedButton(
+                          color: AppColors.secondary,
+                          child: Text(
+                            'Закрыть',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          onPressed: Get.back,
                         ),
                       ),
-                      onPressed: controller.save,
-                    ),
-                  ],
-                ),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: RaisedButton(
+                          color: Color(0xFF6BCB81),
+                          child: Text(
+                            'Сохранить',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          onPressed: controller.save,
+                        ),
+                      ),
+                    ],
+                  ),
               ],
             ),
           ),
