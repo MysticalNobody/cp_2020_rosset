@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="team.itis.resset.rosset_client">
+    package="team.itis.rosset.client">
     <uses-permission android:name="android.permission.VIBRATE" />
    <application
         android:label="rosset_client"

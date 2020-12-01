@@ -13,6 +13,7 @@ class ChallengesView extends GetView<ChallengesController> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
+        bottom: false,
         child: Stack(
           children: [
             Positioned(

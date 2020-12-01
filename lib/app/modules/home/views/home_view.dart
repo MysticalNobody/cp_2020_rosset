@@ -17,24 +17,22 @@ class HomeView extends GetView<HomeController> {
         builder: (controller) => Obx(
           () => MouseRegion(
             cursor: controller.cursor.value ?? SystemMouseCursors.basic,
-            child: SafeArea(
-              child: Column(
-                children: [
-                  HomeAppBar(
-                    onCheckTap: controller.startCheck,
-                    onMenuTap: controller.toggleInstruments,
+            child: Column(
+              children: [
+                HomeAppBar(
+                  onCheckTap: controller.startCheck,
+                  onMenuTap: controller.toggleInstruments,
+                ),
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      DevicePanel(devices: controller.models),
+                      Expanded(child: WorkspaceView()),
+                    ],
                   ),
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        DevicePanel(devices: controller.models),
-                        Expanded(child: WorkspaceView()),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

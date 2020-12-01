@@ -1,4 +1,4 @@
-package team.itis.resset.rosset_client
+package team.itis.rosset.client
 
 import io.flutter.embedding.android.FlutterActivity
 

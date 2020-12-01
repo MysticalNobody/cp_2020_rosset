@@ -11,32 +11,32 @@ class AuthView extends GetView<AuthController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: SizedBox(
-                width: Get.width * .25,
-                child: Image.asset(
-                  'assets/images/test2.png',
-                  fit: BoxFit.fitWidth,
-                ),
+      body: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: SizedBox(
+              width: Get.width * .25,
+              child: Image.asset(
+                'assets/images/test2.png',
+                fit: BoxFit.fitWidth,
               ),
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              child: SizedBox(
-                width: Get.width * .25,
-                child: Image.asset(
-                  'assets/images/test1.png',
-                  fit: BoxFit.fitWidth,
-                ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: SizedBox(
+              width: Get.width * .25,
+              child: Image.asset(
+                'assets/images/test1.png',
+                fit: BoxFit.fitWidth,
               ),
             ),
-            Align(
+          ),
+          SafeArea(
+            child: Align(
               alignment: Alignment.topCenter,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,67 +80,71 @@ class AuthView extends GetView<AuthController> {
                 ],
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              child: Form(
-                key: controller.formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 24),
-                    Spacer(),
-                    Text(
-                      'Авторизация',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: Get.width > 600 ? 36 : 24,
-                        color: Color(0xFF303C74),
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 24),
+                  Spacer(),
+                  Text(
+                    'Авторизация',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: Get.width > 600 ? 36 : 24,
+                      color: Color(0xFF303C74),
+                    ),
+                  ),
+                  SizedBox(height: 40),
+                  TextInputWidget(
+                    labelText: 'ФИО',
+                    controller: controller.loginController,
+                    focusNode: controller.loginFocusNode,
+                  ),
+                  SizedBox(height: 24),
+                  TextInputWidget(
+                    labelText: 'Номер группы',
+                    controller: controller.passwordController,
+                    focusNode: controller.passwordFocusNode,
+                  ),
+                  SizedBox(height: 24),
+                  Container(
+                    constraints: BoxConstraints(
+                      minWidth: Get.width * .4,
+                      maxWidth: Get.width * .8,
+                    ),
+                    width: 300,
+                    child: RaisedButton(
+                      color: AppColors.secondary,
+                      onPressed: controller.action,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Войти'),
                       ),
                     ),
-                    SizedBox(height: 40),
-                    TextInputWidget(
-                      labelText: 'ФИО',
-                      controller: controller.loginController,
-                      focusNode: controller.loginFocusNode,
+                  ),
+                  Spacer(),
+                  Text(
+                    '© 2020 - Itis.team, Inc. All rights reserved.',
+                    style: TextStyle(
+                      fontSize: Get.width > 500 ? 20 : 14,
+                      color: Color(0xFF303C74),
                     ),
-                    SizedBox(height: 24),
-                    TextInputWidget(
-                      labelText: 'Номер группы',
-                      controller: controller.passwordController,
-                      focusNode: controller.passwordFocusNode,
-                    ),
-                    SizedBox(height: 24),
-                    Container(
-                      constraints: BoxConstraints(
-                        minWidth: Get.width * .4,
-                        maxWidth: Get.width * .8,
-                      ),
-                      width: 300,
-                      child: RaisedButton(
-                        color: AppColors.secondary,
-                        onPressed: controller.action,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('Войти'),
-                        ),
-                      ),
-                    ),
-                    Spacer(),
-                    Text(
-                      '© 2020 - Itis.team, Inc. All rights reserved.',
-                      style: TextStyle(
-                        fontSize: Get.width > 500 ? 20 : 14,
-                        color: Color(0xFF303C74),
-                      ),
-                    ),
-                    SizedBox(height: 25),
-                  ],
-                ),
+                  ),
+                  SafeArea(
+                    top: false,
+                    child: Container(),
+                  ),
+                  SizedBox(height: 25),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ).withBusyStack(controller).unfocusOnTap();
   }

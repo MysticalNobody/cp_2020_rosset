@@ -38,7 +38,11 @@ class Utils {
       backgroundColor: bgColor,
       colorText: textColor,
       maxWidth: 500,
-      margin: EdgeInsets.only(top: 12),
+      margin: EdgeInsets.only(
+        top: 12,
+        left: 12,
+        right: 12,
+      ),
     );
   }
 

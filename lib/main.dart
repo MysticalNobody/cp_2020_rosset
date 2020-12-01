@@ -8,10 +8,6 @@ import 'app/routes/app_pages.dart';
 import 'theme/app_theme.dart';
 
 Future<void> main() async {
-  print(int.parse('01:0C:CD:01:00:01'.replaceAll(':', ''), radix: 16));
-  print(int.parse('01:0C:CD:01:01:FF'.replaceAll(':', ''), radix: 16));
-  print(int.parse('8000'.replaceAll(':', ''), radix: 16));
-  print(int.parse('BFFF'.replaceAll(':', ''), radix: 16));
   await AppApi.init();
   await GetStorage.init();
   runApp(
@@ -21,9 +17,7 @@ Future<void> main() async {
       getPages: AppPages.routes,
       theme: AppTheme.getTheme,
       debugShowCheckedModeBanner: false,
-      builder: (ctx, _) => FeatureDiscovery(
-        child: _,
-      ),
+      builder: (ctx, _) => FeatureDiscovery(child: _),
     ),
   );
 }

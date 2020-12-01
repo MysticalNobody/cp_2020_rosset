@@ -98,7 +98,10 @@ class DevicePanel extends StatelessWidget {
                       onChanged: controller.setSimpleMode,
                       value: !controller.isSimpleMode.value,
                     ),
-                    SafeArea(child: Container()),
+                    SafeArea(
+                      top: false,
+                      child: Container(),
+                    ),
                   ],
                 ),
               ),
